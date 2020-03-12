@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: DreamEntryPage(),
+      home: DreamEntryPage(), //change this to see how your page is... def some way to show other pages without home!
     );
   }
 }

@@ -4,6 +4,7 @@ class DreamEntry {
   static const String PassionCooking = 'cooking';
   static const String PassionHiking = 'hiking';
   static const String PassionTraveling = 'traveling';
+  static bool isOn = true;
   String firstName = '';
   String lastName = '';
   Map passions = {

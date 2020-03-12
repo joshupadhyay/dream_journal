@@ -30,6 +30,10 @@ class _DreamEntryPageState extends State<DreamEntryPage>{
                 TextFormField(),
                 TextFormField(),
                 TextFormField(),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(0, 50, 0, 20),
+                  child: Text('test text'),
+                ),
               ],
 
             )

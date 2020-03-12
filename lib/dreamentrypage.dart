@@ -34,6 +34,7 @@ class _DreamEntryPageState extends State<DreamEntryPage>{
                   padding: const EdgeInsets.fromLTRB(0, 50, 0, 20),
                   child: Text('test text'),
                 ),
+                //https://youtu.be/54L3DOm6MTo?t=697
               ],
 
             )

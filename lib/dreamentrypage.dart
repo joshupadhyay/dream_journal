@@ -1,4 +1,5 @@
 import 'package:dreamjournal/EmoteButton.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'homepage.dart';
 import 'models/dreamentry.dart';
@@ -32,6 +33,13 @@ class _DreamEntryPageState extends State<DreamEntryPage>{
 Widget textFieldsBuilder (BuildContext context) {
   final _formKey = GlobalKey<FormState>(); //_formkey
 
+  TextStyle textStylePreferences(){
+    return TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 20,
+        color: Colors.lightBlueAccent);
+  }
+
   return Builder(
     builder: (context) =>
         Form( //contains all logical stuff
@@ -39,12 +47,37 @@ Widget textFieldsBuilder (BuildContext context) {
           child: Column( //container for all our form fields to be aligned vertically
             crossAxisAlignment: CrossAxisAlignment.stretch ,
             children: [
-              TextFormField() ,
+              TextFormField(
+                style: textStylePreferences(),
+                decoration: new InputDecoration(
+                  labelText: 'Enter a (brief) dream title',
+                  hintText: "'Josh Singing Kpop'",
+                  hintStyle: TextStyle(fontStyle: FontStyle.italic),
+                  fillColor: Colors.teal,
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                      borderSide: BorderSide(color: Colors.blue)),
+
+                ),
+                validator: (String value) {
+                  if (value.isEmpty) {
+                    return 'Please enter a title.';
+                  }else if (value.length > 30){
+                    return 'More brief title needed';
+                  }
+                return null;
+                }
+              ) ,
               TextFormField() ,
               TextFormField() ,
               Container(
                 padding: const EdgeInsets.fromLTRB(0 , 50 , 0 , 20) ,
-                child: Text('test text') ,
+                child: RichText(
+                  text: TextSpan(
+                    style: textStylePreferences(),
+                    text: "How did you feel during your dream?"
+                  )
+                )
               ) ,
               //https://youtu.be/54L3DOm6MTo?t=697
             ] ,

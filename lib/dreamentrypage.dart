@@ -22,7 +22,6 @@ class _DreamEntryPageState extends State<DreamEntryPage>{
         new Expanded(child: buttonEmotionBuilder())
           //TODO add borders, make the scrolling look nicer
         ],
-
       )
       );
 
@@ -31,14 +30,18 @@ class _DreamEntryPageState extends State<DreamEntryPage>{
 
 
 Widget textFieldsBuilder (BuildContext context) {
-  final _formKey = GlobalKey<FormState>(); //_formkey, will come in handy later
-  final headingcolor = Colors.lightBlue; //used in TextStyle() and InputDecoration()
+  final _formKey = GlobalKey<FormState>(); //_formkey, will come in handy later for saving
+  final headingcolor = Colors.lightBlue; //used in TextStyle() and InputDecoration() to set question colors
 
-  //TODO: how to change inputted text style without messing up header text - maybe input dec param?
+  final _control1 = TextEditingController();
+  final _control2 = TextEditingController();
+  final _control3 = TextEditingController();
+
+  //TODO: how to change inputted text style without messing up header text - maybe in input decoration param?
 
 //https://youtu.be/54L3DOm6MTo?t=697 form building video that might come in handy for adding functionality, etc
 
-  InputDecoration baselineInputDecorator(headertitle, hinttext){
+  InputDecoration baselineInputDecorator(headertitle, hinttext, controllernum){
     /*determines what headers,
     hints look like for textfield entry*/
     return new InputDecoration(
@@ -47,12 +50,22 @@ Widget textFieldsBuilder (BuildContext context) {
       fontSize: 16),
       hintText: hinttext,
       hintStyle: TextStyle(fontStyle: FontStyle.italic),
+      suffixIcon: IconButton(
+        onPressed: () => controllernum.clear(),
+        icon: Icon(Icons.clear),
+      ),
       focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(5.0)),
           borderSide: BorderSide(color: Colors.blue)),
-
     );
+  }
 
+
+/*checks if necessary fields have been filled out - before submitting works*/
+  void _submit() {
+    if (_formKey.currentState.validate()){
+      _formKey.currentState.save();
+    }
   }
 
   return Builder(
@@ -64,8 +77,9 @@ Widget textFieldsBuilder (BuildContext context) {
             children: [
               TextFormField(
                 decoration: baselineInputDecorator("What shall we call your dream?",
-                "'Josh Singing Kpop'"),
-                validator: (String value) { //template validator method .. for later
+                "'Josh Singing Kpop'", _control1),
+                controller: _control1,
+                validator: (String value) { //template validator method
                   if (value.isEmpty) {
                     return 'Please enter a title.';
                   }else if (value.length > 30){
@@ -76,11 +90,23 @@ Widget textFieldsBuilder (BuildContext context) {
               ) ,
               TextFormField(
                 decoration: baselineInputDecorator("Where were you?",
-                    "'Federico's House'")
+                    "'Federico's House'", _control2),
+                controller: _control2,
+              ),
+
+              //TODO move this submit button at the very bottom, fill out validation messages for each text entry
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[Padding(
+                    padding: const EdgeInsets.all(6.0),
+                    child: RaisedButton(onPressed: _submit,
+                    child: Text('submit')),
+              )],
               ),
               TextFormField(
                 decoration: baselineInputDecorator("Who was with you?",
-                    "'Kpop star IU'"),
+                    "'Kpop star IU'", _control3),
+                controller: _control3, //controllers
               ) ,
               Container(
                 padding: const EdgeInsets.fromLTRB(0 , 50 , 0 , 20) ,
@@ -100,7 +126,6 @@ Widget textFieldsBuilder (BuildContext context) {
         ) ,
   );
 }
-
 
 
 /*

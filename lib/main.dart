@@ -10,7 +10,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
         //
         // Try running your application with "flutter run". You'll see the
         // application has a blue toolbar. Then, without quitting the app, try
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: DreamEntryPage(), //change this to see how your page is... def some way to show other pages without home!
+      home: DreamEntryPage(),//change this to see how your page is... def some way to show other pages without home!
     );
   }
 }

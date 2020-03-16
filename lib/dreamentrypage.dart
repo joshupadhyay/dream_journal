@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'homepage.dart';
 import 'models/dreamentry.dart';
+import 'package:intl/intl.dart';
+
 
 class DreamEntryPage extends StatefulWidget{
   @override
@@ -13,13 +15,35 @@ class DreamEntryPage extends StatefulWidget{
 class _DreamEntryPageState extends State<DreamEntryPage>{
   final _dreamentry = DreamEntry(); //for when we start saving responses to the forms, etc
 
+  var dateformat = new DateFormat('MMMMd'); //dateformatting package
+  DateTime _datetime = DateTime.now(); //to default display today's date
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("New Dream Entry"), centerTitle: true,),
       body: Column(
-        children: <Widget>[textFieldsBuilder(context),
-        new Expanded(child: buttonEmotionBuilder())
+      children: <Widget>[OutlineButton(
+        shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+      child: Text('Date: ${dateformat.format(_datetime)}', //formatting today's date to show in button
+        style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 14,
+        color: Colors.teal)),
+          onPressed: (){
+          showDatePicker(context: context,
+              initialDate: DateTime.now(),
+              firstDate: DateTime(2020),
+              lastDate: DateTime(2025)).then((date){
+                setState(() {
+                  _datetime = date;
+                });
+              });
+        }),
+          /*Date Button widget ends right here*/
+
+          textFieldsBuilder(context),
+        new Expanded(child: buttonEmotionBuilder()) //the other widgets!
           //TODO add borders, make the scrolling look nicer
         ],
       )
@@ -32,8 +56,7 @@ class _DreamEntryPageState extends State<DreamEntryPage>{
 Widget textFieldsBuilder (BuildContext context) {
   final _formKey = GlobalKey<FormState>(); //_formkey, will come in handy later for saving
   final headingcolor = Colors.lightBlue; //used in TextStyle() and InputDecoration() to set question colors
-
-  final _control1 = TextEditingController();
+  final _control1 = TextEditingController(); //one for each field
   final _control2 = TextEditingController();
   final _control3 = TextEditingController();
 

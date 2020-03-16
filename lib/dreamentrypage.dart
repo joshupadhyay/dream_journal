@@ -20,7 +20,7 @@ class _DreamEntryPageState extends State<DreamEntryPage>{
       body: Column(
         children: <Widget>[textFieldsBuilder(context),
         new Expanded(child: buttonEmotionBuilder())
-          //TODO add a border, make the scrolling look nicer
+          //TODO add borders, make the scrolling look nicer
         ],
 
       )
@@ -31,13 +31,28 @@ class _DreamEntryPageState extends State<DreamEntryPage>{
 
 
 Widget textFieldsBuilder (BuildContext context) {
-  final _formKey = GlobalKey<FormState>(); //_formkey
+  final _formKey = GlobalKey<FormState>(); //_formkey, will come in handy later
+  final headingcolor = Colors.lightBlue; //used in TextStyle() and InputDecoration()
 
-  TextStyle textStylePreferences(){
-    return TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 20,
-        color: Colors.lightBlueAccent);
+  //TODO: how to change inputted text style without messing up header text - maybe input dec param?
+
+//https://youtu.be/54L3DOm6MTo?t=697 form building video that might come in handy for adding functionality, etc
+
+  InputDecoration baselineInputDecorator(headertitle, hinttext){
+    /*determines what headers,
+    hints look like for textfield entry*/
+    return new InputDecoration(
+      labelText: headertitle,
+      labelStyle: TextStyle(color: headingcolor, fontWeight: FontWeight.bold,
+      fontSize: 16),
+      hintText: hinttext,
+      hintStyle: TextStyle(fontStyle: FontStyle.italic),
+      focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          borderSide: BorderSide(color: Colors.blue)),
+
+    );
+
   }
 
   return Builder(
@@ -48,18 +63,9 @@ Widget textFieldsBuilder (BuildContext context) {
             crossAxisAlignment: CrossAxisAlignment.stretch ,
             children: [
               TextFormField(
-                style: textStylePreferences(),
-                decoration: new InputDecoration(
-                  labelText: 'Enter a (brief) dream title',
-                  hintText: "'Josh Singing Kpop'",
-                  hintStyle: TextStyle(fontStyle: FontStyle.italic),
-                  fillColor: Colors.teal,
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                      borderSide: BorderSide(color: Colors.blue)),
-
-                ),
-                validator: (String value) {
+                decoration: baselineInputDecorator("What shall we call your dream?",
+                "'Josh Singing Kpop'"),
+                validator: (String value) { //template validator method .. for later
                   if (value.isEmpty) {
                     return 'Please enter a title.';
                   }else if (value.length > 30){
@@ -68,18 +74,27 @@ Widget textFieldsBuilder (BuildContext context) {
                 return null;
                 }
               ) ,
-              TextFormField() ,
-              TextFormField() ,
+              TextFormField(
+                decoration: baselineInputDecorator("Where were you?",
+                    "'Federico's House'")
+              ),
+              TextFormField(
+                decoration: baselineInputDecorator("Who was with you?",
+                    "'Kpop star IU'"),
+              ) ,
               Container(
                 padding: const EdgeInsets.fromLTRB(0 , 50 , 0 , 20) ,
                 child: RichText(
                   text: TextSpan(
-                    style: textStylePreferences(),
-                    text: "How did you feel during your dream?"
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: headingcolor
+                    ),
+                    text: "What emotions did you experience? Press all that apply:",
                   )
                 )
               ) ,
-              //https://youtu.be/54L3DOm6MTo?t=697
             ] ,
           ) ,
         ) ,

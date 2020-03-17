@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dreamentrypage.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -9,17 +10,36 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: new AppBar(
-          title: new Text("Dream Journal"),
-        ),
-        body: new Column(
-          children: <Widget>[
-            Container(
-
-            )
-
-          ],
+        body: Column(
+          children: <Widget>[Container(
+            child: headingText(),
+          ),
+            newDreamEntryButton(context)],
         )
     );
   }
+}
+
+Widget headingText() { //just separated this widget
+  return Text('Dream Journal App',
+      style: TextStyle(
+        fontSize: 30,
+        fontWeight: FontWeight.bold,
+        fontStyle: FontStyle.italic, //just some placeholder stuff
+      ));
+}
+
+Widget newDreamEntryButton(BuildContext context){
+  return Container(
+      child: RaisedButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        child: Text("Add new dream"),
+        onPressed: () {
+          Navigator.push(
+            context,
+            new MaterialPageRoute(builder: (context) => new DreamEntryPage()),
+          );
+        },
+      )
+  );
 }

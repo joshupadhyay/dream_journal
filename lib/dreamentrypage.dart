@@ -6,6 +6,7 @@ import 'models/dreamentry.dart';
 import 'package:intl/intl.dart';
 
 
+
 class DreamEntryPage extends StatefulWidget{
   @override
   _DreamEntryPageState createState() => _DreamEntryPageState();
@@ -43,7 +44,8 @@ class _DreamEntryPageState extends State<DreamEntryPage>{
           /*Date Button widget ends right here*/
 
           textFieldsBuilder(context),
-        new Expanded(child: buttonEmotionBuilder()) //the other widgets!
+        new Expanded(child: buttonEmotionBuilder()),
+        //the other widgets!
           //TODO add borders, make the scrolling look nicer
         ],
       )
@@ -52,11 +54,16 @@ class _DreamEntryPageState extends State<DreamEntryPage>{
   }
 }
 
+Widget submitButton (BuildContext context){
+
+}
+
 
 Widget textFieldsBuilder (BuildContext context) {
   final _formKey = GlobalKey<FormState>(); //_formkey, will come in handy later for saving
   final headingcolor = Colors.lightBlue; //used in TextStyle() and InputDecoration() to set question colors
-  final _control1 = TextEditingController(); //one for each field
+
+  final _control1 = TextEditingController();
   final _control2 = TextEditingController();
   final _control3 = TextEditingController();
 

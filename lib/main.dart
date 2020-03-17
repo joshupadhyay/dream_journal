@@ -1,4 +1,5 @@
 import 'package:dreamjournal/dreamentrypage.dart';
+import 'package:dreamjournal/homepage.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: DreamEntryPage(),//change this to see how your page is... def some way to show other pages without home!
+      home: HomePage(),//change this to see how your page is... def some way to show other pages without home!
     );
   }
 }

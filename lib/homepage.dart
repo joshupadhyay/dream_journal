@@ -8,18 +8,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    // TODO: implement build
     return Scaffold(
-        appBar: new AppBar(
-          title: new Text("Dream Journal"),
-        ),
-        body: new Column(
-          children: <Widget>[
-            Container(
-
-            )
-
-          ],
-        )
-    );
+        body: Center(
+      child: FlatButton.icon(
+          onPressed: null,
+          label: Text(""),
+          icon: Icon(
+            Icons.add_box,
+            color: Colors.deepPurple,
+            size: 200.0,
+          )),
+    ));
   }
 }

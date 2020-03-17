@@ -11,26 +11,18 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(
-          children: <Widget>[Container(
-            child: headingText(),
-          ),
+          children: <Widget>[//add something here, I assume
             newDreamEntryButton(context)],
         )
     );
   }
 }
 
-Widget headingText() { //just separated this widget
-  return Text('Dream Journal App',
-      style: TextStyle(
-        fontSize: 30,
-        fontWeight: FontWeight.bold,
-        fontStyle: FontStyle.italic, //just some placeholder stuff
-      ));
-}
 
 Widget newDreamEntryButton(BuildContext context){
   return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 100,
       child: RaisedButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: Text("Add new dream"),

@@ -1,7 +1,6 @@
 import 'package:dreamjournal/EmoteButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'homepage.dart';
 import 'models/dreamentry.dart';
 import 'package:intl/intl.dart';
 
@@ -93,6 +92,7 @@ Widget textFieldsBuilder (BuildContext context) {
 
 /*checks if necessary fields have been filled out - before submitting works*/
   void _submit() {
+
     if (_formKey.currentState.validate()){
       _formKey.currentState.save();
     }
@@ -189,6 +189,7 @@ class _ButtonEmotionState extends State<buttonEmotionBuilder>{
   }
 
   void switchState(EmoteButton b) {
+
     setState(() { // to recall build, so it rebuilds
       b.on = !b.on; // to switch on and off
       if (b.on) {
@@ -216,7 +217,7 @@ class _ButtonEmotionState extends State<buttonEmotionBuilder>{
         height: 100.0,
         child: RaisedButton(
           padding: const EdgeInsets.all(18.0),
-          shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+          shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(50.0)),
           onPressed: buttonsList[i].enabled?()=>switchState(buttonsList[i]):null, // if the button is enabled, call switchState, else do null
           child: Text(
               buttonsList[i].activeText,

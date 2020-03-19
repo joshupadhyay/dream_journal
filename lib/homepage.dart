@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dreamentrypage.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -32,24 +33,8 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(fontFamily: "Pacifico",
                     fontSize: 30.0,
                     fontWeight: FontWeight.bold
-                ),
-
-              ),
-              FlatButton.icon(
-                onPressed: _incrementCounter,
-                label: Text("Add Dream",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(fontFamily: "Pacifico",
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold
-                    )),
-                icon: Icon(
-                  Icons.add_circle,
-                  color: Colors.pinkAccent,
-                  size: 250.0,
-                ),
-
-              )
+                )),
+               newDreamEntryButton(context)
             ],
 
 
@@ -58,4 +43,21 @@ class _HomePageState extends State<HomePage> {
     )
     );
   }
+}
+
+Widget newDreamEntryButton(BuildContext context){
+  return FlatButton.icon(onPressed: () {
+    Navigator.push(
+      context,
+      new MaterialPageRoute(builder: (context) => new DreamEntryPage()),
+    );
+  }, icon: Icon(
+    Icons.add_circle,
+    color: Colors.pinkAccent,
+    size: 250.0,),
+      label: Text("Add Dream",
+          textAlign: TextAlign.left,
+          style: TextStyle(fontFamily: "Pacifico",
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold)));
 }

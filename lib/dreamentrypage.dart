@@ -4,7 +4,16 @@ import 'package:flutter/material.dart';
 import 'models/dreamentry.dart';
 import 'package:intl/intl.dart';
 
+final _formKey = GlobalKey<FormState>(); //_formkey, will come in handy later for saving
 
+
+//TODO: probably nest this function somewhere, looks weird just sitting out here
+void _submit() {
+
+  if (_formKey.currentState.validate()){
+    _formKey.currentState.save();
+  }
+}
 
 class DreamEntryPage extends StatefulWidget{
   @override
@@ -43,11 +52,18 @@ class _DreamEntryPageState extends State<DreamEntryPage>{
           /*Date Button widget ends right here*/
 
           textFieldsBuilder(context),
-        new Expanded(child: buttonEmotionBuilder()),
+
+        new Flexible(child: buttonEmotionBuilder(),
+        flex: 5,),
+        new Flexible(child:
+        RaisedButton(onPressed: _submit,
+                child: Text('submit')),
+          flex: 1,
+        ),
+
+        ])
         //the other widgets!
           //TODO add borders, make the scrolling look nicer
-        ],
-      )
       );
 
   }
@@ -59,7 +75,6 @@ Widget submitButton (BuildContext context){
 
 
 Widget textFieldsBuilder (BuildContext context) {
-  final _formKey = GlobalKey<FormState>(); //_formkey, will come in handy later for saving
   final headingcolor = Colors.lightBlue; //used in TextStyle() and InputDecoration() to set question colors
 
   final _control1 = TextEditingController();
@@ -91,19 +106,12 @@ Widget textFieldsBuilder (BuildContext context) {
 
 
 /*checks if necessary fields have been filled out - before submitting works*/
-  void _submit() {
-
-    if (_formKey.currentState.validate()){
-      _formKey.currentState.save();
-    }
-  }
 
   return Builder(
     builder: (context) =>
         Form( //contains all logical stuff
           key: _formKey , //will be using formkey to get access to form data
           child: Column( //container for all our form fields to be aligned vertically
-            crossAxisAlignment: CrossAxisAlignment.stretch ,
             children: [
               TextFormField(
                 decoration: baselineInputDecorator("What shall we call your dream?",
@@ -125,14 +133,6 @@ Widget textFieldsBuilder (BuildContext context) {
               ),
 
               //TODO move this submit button at the very bottom, fill out validation messages for each text entry
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[Padding(
-                    padding: const EdgeInsets.all(6.0),
-                    child: RaisedButton(onPressed: _submit,
-                    child: Text('submit')),
-              )],
-              ),
               TextFormField(
                 decoration: baselineInputDecorator("Who was with you?",
                     "'Kpop star IU'", _control3),
@@ -150,7 +150,7 @@ Widget textFieldsBuilder (BuildContext context) {
                     text: "What emotions did you experience? Press all that apply:",
                   )
                 )
-              ) ,
+              ),
             ] ,
           ) ,
         ) ,
@@ -220,9 +220,9 @@ class _ButtonEmotionState extends State<buttonEmotionBuilder>{
           shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(50.0)),
           onPressed: buttonsList[i].enabled?()=>switchState(buttonsList[i]):null, // if the button is enabled, call switchState, else do null
           child: Text(
-              buttonsList[i].activeText,
-              style: TextStyle(color: Colors.limeAccent,
-                  fontSize: 40.0)),
+                buttonsList[i].activeText,
+                style: TextStyle(color: Colors.limeAccent,
+                    fontSize: 40.0)),
           color: buttonsList[i].bg,
           disabledColor: buttonsList[i].bg,
         ),

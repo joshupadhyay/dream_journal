@@ -1,4 +1,5 @@
 import 'package:dreamjournal/EmoteButton.dart';
+import 'package:dreamjournal/recentdreams.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'models/dreamentry.dart';
@@ -6,13 +7,15 @@ import 'package:intl/intl.dart';
 
 final _formKey = GlobalKey<FormState>(); //_formkey, will come in handy later for saving
 
-
 //TODO: probably nest this function somewhere, looks weird just sitting out here
-void _submit() {
+bool _submit() {
 
   if (_formKey.currentState.validate()){
+    //checks if everything has been filled out properly
     _formKey.currentState.save();
+    return true;
   }
+  return false;
 }
 
 class DreamEntryPage extends StatefulWidget{
@@ -22,10 +25,10 @@ class DreamEntryPage extends StatefulWidget{
 }
 
 class _DreamEntryPageState extends State<DreamEntryPage>{
-  final _dreamentry = DreamEntry(); //for when we start saving responses to the forms, etc
+  //final _dreamentry = DreamEntry(); //for when we start saving responses to the forms, etc
 
-  var dateformat = new DateFormat('MMMMd'); //dateformatting package
-  DateTime _datetime = DateTime.now(); //to default display today's date
+  var dateformat = new DateFormat('MMMMd'); //for nice date formatting
+  DateTime _datetime = DateTime.now(); //to display today's date by default
 
   @override
   Widget build(BuildContext context) {
@@ -53,14 +56,20 @@ class _DreamEntryPageState extends State<DreamEntryPage>{
 
           textFieldsBuilder(context),
 
-        new Flexible(child: buttonEmotionBuilder(),
-        flex: 5,),
-        new Flexible(child:
-        RaisedButton(onPressed: _submit,
-                child: Text('submit')),
-          flex: 1,
-        ),
+        new Flexible(
+    child: buttonEmotionBuilder(),flex: 5,),
+    new Flexible(
+    child:RaisedButton(
 
+    onPressed: (){
+      if(_submit() == true){
+        return Navigator.push(context,
+            new MaterialPageRoute(builder: (context) => new RecentDreams()));
+        //if all OK submitting, open recent dreams page (successful submit only, validator will catch errors otherwise)
+      }
+      return null;
+    },
+        child: Text('submit')),flex: 1),
         ])
         //the other widgets!
           //TODO add borders, make the scrolling look nicer
@@ -69,10 +78,7 @@ class _DreamEntryPageState extends State<DreamEntryPage>{
   }
 }
 
-Widget submitButton (BuildContext context){
-
-}
-
+/*Handles all the text fields, the question appearances, */
 
 Widget textFieldsBuilder (BuildContext context) {
   final headingcolor = Colors.lightBlue; //used in TextStyle() and InputDecoration() to set question colors
@@ -81,13 +87,15 @@ Widget textFieldsBuilder (BuildContext context) {
   final _control2 = TextEditingController();
   final _control3 = TextEditingController();
 
+
   //TODO: how to change inputted text style without messing up header text - maybe in input decoration param?
 
 //https://youtu.be/54L3DOm6MTo?t=697 form building video that might come in handy for adding functionality, etc
 
+  /*determines what headers, hints look like for textfield entry*/
+
   InputDecoration baselineInputDecorator(headertitle, hinttext, controllernum){
-    /*determines what headers,
-    hints look like for textfield entry*/
+
     return new InputDecoration(
       labelText: headertitle,
       labelStyle: TextStyle(color: headingcolor, fontWeight: FontWeight.bold,
@@ -104,9 +112,8 @@ Widget textFieldsBuilder (BuildContext context) {
     );
   }
 
-
-/*checks if necessary fields have been filled out - before submitting works*/
-
+  /*NOTE:
+  * each text field will get it's own validator, right now the only one is defined for the 'dream title' field*/
   return Builder(
     builder: (context) =>
         Form( //contains all logical stuff
@@ -117,22 +124,20 @@ Widget textFieldsBuilder (BuildContext context) {
                 decoration: baselineInputDecorator("What shall we call your dream?",
                 "'Josh Singing Kpop'", _control1),
                 controller: _control1,
-                validator: (String value) { //template validator method
+                validator: (String value) { //template validator method, this is title specific
                   if (value.isEmpty) {
                     return 'Please enter a title.';
                   }else if (value.length > 30){
                     return 'More brief title needed';
                   }
                 return null;
-                }
-              ) ,
+                }),
+
               TextFormField(
                 decoration: baselineInputDecorator("Where were you?",
                     "'Federico's House'", _control2),
                 controller: _control2,
               ),
-
-              //TODO move this submit button at the very bottom, fill out validation messages for each text entry
               TextFormField(
                 decoration: baselineInputDecorator("Who was with you?",
                     "'Kpop star IU'", _control3),
@@ -158,10 +163,7 @@ Widget textFieldsBuilder (BuildContext context) {
 }
 
 
-/*
-* Not sure if we can do this more efficiently, but https://flutter.dev/docs/development/ui/interactive
-* shows we need to make a class that extends stateful widget, then have that extend a state
-* */
+/*All the code for the emotion buttons. */
 class buttonEmotionBuilder extends StatefulWidget{
   _ButtonEmotionState createState() => _ButtonEmotionState();
 }

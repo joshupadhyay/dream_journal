@@ -1,5 +1,6 @@
 import 'package:dreamjournal/dreamentrypage.dart';
 import 'package:dreamjournal/homepage.dart';
+import 'package:dreamjournal/recentdreams.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());

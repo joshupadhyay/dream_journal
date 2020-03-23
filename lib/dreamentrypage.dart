@@ -7,8 +7,9 @@ import 'package:intl/intl.dart';
 
 final _formKey = GlobalKey<FormState>(); //_formkey, will come in handy later for saving
 
+
 //TODO: probably nest this function somewhere, looks weird just sitting out here
-bool _submit() {
+bool _submit(GlobalKey<FormState> _formKey) {
 
   if (_formKey.currentState.validate()){
     //checks if everything has been filled out properly
@@ -19,6 +20,7 @@ bool _submit() {
 }
 
 class DreamEntryPage extends StatefulWidget{
+
   @override
   _DreamEntryPageState createState() => _DreamEntryPageState();
 
@@ -62,7 +64,7 @@ class _DreamEntryPageState extends State<DreamEntryPage>{
     child:RaisedButton(
 
     onPressed: (){
-      if(_submit() == true){
+      if(_submit(_formKey) == true){
         return Navigator.push(context,
             new MaterialPageRoute(builder: (context) => new RecentDreams()));
         //if all OK submitting, open recent dreams page (successful submit only, validator will catch errors otherwise)

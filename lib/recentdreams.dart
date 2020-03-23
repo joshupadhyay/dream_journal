@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'models/dreamentry.dart';
+import 'editdream.dart';
 
 
 class RecentDreams extends StatefulWidget {
@@ -50,7 +51,13 @@ class _RecentDreamsState extends State<RecentDreams> {
       ),
 
       child: FlatButton(
-        onPressed: (){},
+        onPressed: (){
+          Navigator.push(context,
+              MaterialPageRoute(
+                builder: (context) => EditDreamPage()
+              ));
+
+        },
         child: Column(
           children: <Widget>[
             Flexible(

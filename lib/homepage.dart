@@ -28,6 +28,9 @@ class _HomePageState extends State<HomePage> {
         body: Center(
           child:Column(
             children: <Widget>[
+
+            ],
+            children: <Widget>[
               Text(
                 '$_counter',
                 style: TextStyle(fontFamily: "Pacifico",

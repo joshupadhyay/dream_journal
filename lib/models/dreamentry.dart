@@ -9,7 +9,6 @@ class DreamEntry {
     print('saving user using a web service');
   }
 
-
   DreamEntry(bool isHappy, {String dreamTitle, String dreamPeople}){
     this.dreamPeople = dreamPeople;
     this.dreamTitle = dreamTitle;

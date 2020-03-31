@@ -1,8 +1,5 @@
-import 'package:dreamjournal/models/dreamentryform.dart';
+import 'package:dreamjournal/models/dreamentrypage.dart';
 import 'package:flutter/material.dart';
-import 'dreamentrypage.dart';
-
-
 
 
 class EditDreamPage extends StatefulWidget {

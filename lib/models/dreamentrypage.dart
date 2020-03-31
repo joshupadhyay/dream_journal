@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../emotebuttonbuilder.dart';
+import 'emotebuttonbuilder.dart';
 import '../recentdreams.dart';
 
 class DreamEntryForm extends StatefulWidget {
@@ -10,7 +10,7 @@ class DreamEntryForm extends StatefulWidget {
   final Function submit;
 
   DreamEntryForm(this.title, this.submissionKey,
-      this.submit);
+      this.submit); //required args
 
   @override
   _DreamEntryFormState createState() => _DreamEntryFormState();
@@ -21,6 +21,10 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
   var dateformat = new DateFormat('MMMMd'); //for nice date formatting
   DateTime _datetime = DateTime.now(); //to display today's date by default
+
+  /*wherever you see widget.(something), like widget.title,
+  that's a parameter that's passed from the DreamEntryForm constructor defined above!
+   */
 
   @override
   Widget build(BuildContext context) {
@@ -78,11 +82,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
     final _control2 = TextEditingController();
     final _control3 = TextEditingController();
 
-    //TODO: how to change inputted text style without messing up header text - maybe in input decoration param?
-
-//https://youtu.be/54L3DOm6MTo?t=697 form building video that might come in handy for adding functionality, etc
-
-    /*determines what headers, hints look like for textfield entry*/
+    //determines what headers, hints look like for textfield entry
 
     InputDecoration baselineInputDecorator(headertitle, hinttext, controllernum){
 
@@ -114,11 +114,12 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
                     decoration: baselineInputDecorator("What shall we call your dream?",
                         "'Josh Singing Kpop'", _control1),
                     controller: _control1,
+
                     validator: (String value) { //template validator method, this is title specific
                       if (value.isEmpty) {
                         return 'Please enter a title.';
                       }else if (value.length > 30){
-                        return 'More brief title needed';
+                        return 'Shorter title needed.';
                       }
                       return null;
                     }),
@@ -127,12 +128,29 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
                   decoration: baselineInputDecorator("Where were you?",
                       "'Federico's House'", _control2),
                   controller: _control2,
-                ),
+
+                  validator: (String value) {
+                    if (value.isEmpty) {
+                      return 'Please enter location(s).';
+                    }else if (value.length > 30){
+                      return 'Shorter entry please!';
+                    }
+                    return null;
+                  },),
+
                 TextFormField(
                   decoration: baselineInputDecorator("Who was with you?",
                       "'Kpop star IU'", _control3),
-                  controller: _control3, //controllers
-                ) ,
+                  controller: _control3,
+                  validator: (String value) {
+                    if (value.isEmpty) {
+                      return 'Please enter a name.';
+                    }else if (value.length > 30){
+                      return 'Shorter / less names please!';
+                    }
+                    return null;
+                  }),
+
                 Container(
                     padding: const EdgeInsets.fromLTRB(0 , 50 , 0 , 20) ,
                     child: RichText(
@@ -151,7 +169,6 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
           ) ,
     );
   }
-
 }
 
 

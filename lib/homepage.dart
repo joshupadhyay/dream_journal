@@ -27,9 +27,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         body: Center(
           child:Column(
-            children: <Widget>[
 
-            ],
             children: <Widget>[
               Text(
                 '$_counter',

@@ -9,12 +9,13 @@ import 'package:intl/intl.dart';
 
 final _formKey = GlobalKey<FormState>(); //_formkey, will come in handy later for saving
 
+
+
 //TODO: probably nest this function somewhere, looks weird just sitting out here
 
 class DreamEntryPage extends StatefulWidget{
 
  // DreamEntryPage(String title, GlobalKey _submissionKey);
-
 
   @override
   _DreamEntryPageState createState() => _DreamEntryPageState();

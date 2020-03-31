@@ -5,7 +5,6 @@ class DreamEntry {
   String dreamPeople;
   bool isHappy;
 
-
   save() {
     print('saving user using a web service');
   }

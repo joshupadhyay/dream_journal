@@ -18,9 +18,6 @@ class _HomePageState extends State<HomePage> {
         body: Center(
           child:Column(
             children: <Widget>[
-
-            ],
-            children: <Widget>[
                newDreamEntryButton(context)
             ],
 

@@ -14,35 +14,46 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(
-      backgroundColor: Image.asset('').color,
-      body: SafeArea(
-        child: Stack(
-          children: <Widget>[
-            Positioned(
-              left: 10,
-              right: 0,
-              top: 150,
-              child: newDreamEntryButton(context),
-            ),
-
-            Positioned(
-                left: 120,
-                top: 400,
-                child: Text(
-                  "new dream",
-                  style: TextStyle(
-                      fontFamily: "Permanent",
-                      fontSize: 30.0,
-                      color: Colors.white
-                  ),
-                )
-            ),
-
-          ],
+    return Stack(
+      children: <Widget>[
+        Image.asset(
+          "assets/images/dreams.jpeg",
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          fit: BoxFit.cover,
         ),
-      ),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          body:SafeArea(
+            child: Stack(
+              children: <Widget>[
+                Positioned(
+                  left: 10,
+                  right: 0,
+                  top: 150,
+                  child: newDreamEntryButton(context),
+                ),
+
+                Positioned(
+                    left: 120,
+                    top: 400,
+                    child: Text(
+                      "new dream",
+                      style: TextStyle(
+                          fontFamily: "Permanent",
+                          fontSize: 30.0,
+                          color: Colors.white
+                      ),
+                    )
+                ),
+
+              ],
+            ),
+          ),
+        )
+      ],
     );
+
   }
 }
 

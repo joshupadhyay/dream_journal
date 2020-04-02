@@ -36,6 +36,15 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
 
+  assets:
+    - lib/Assets/Images/AngryEmoji.png
+    - lib/Assets/Images/AnxiousEmoji.png
+    - lib/Assets/Images/ConfusedEmoji.png
+    - lib/Assets/Images/ExcitedEmoji.png
+    - lib/Assets/Images/HappyEmoji.png
+    - lib/Assets/Images/RelaxedEmoji.png
+    - lib/Assets/Images/SadEmoji.png
+    - lib/Assets/Images/ScaredEmoji.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -50,8 +59,7 @@ flutter:
   # assets:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
-  assets:
-    - assets/
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'adddreampage.dart';
+import 'recentdreams.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -21,13 +22,13 @@ class _HomePageState extends State<HomePage> {
             Positioned(
               left: 10,
               right: 0,
-              top: 200,
+              top: 150,
               child: newDreamEntryButton(context),
             ),
 
             Positioned(
                 left: 120,
-                top: 350,
+                top: 400,
                 child: Text(
                   "new dream",
                   style: TextStyle(
@@ -70,7 +71,7 @@ Widget newDreamViewerButton(BuildContext context) {
       new MaterialPageRoute(builder: (context) => new RecentDreams()),
     );
   }, icon: Icon(
-    Icons.add_circle,
+    Icons.storage,
     color: Colors.pinkAccent,
     size: 250.0,),
       label: Text("")

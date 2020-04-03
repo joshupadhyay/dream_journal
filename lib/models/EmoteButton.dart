@@ -8,6 +8,7 @@ class EmoteButton{
   Color color2;
   bool enabled;
   bool on;
+  AssetImage emoji;
 
-  EmoteButton({this.id, this.activeText = "", this.bg = Colors.purple, this.color1 = Colors.purple, this.color2 = Colors.greenAccent, this.enabled = true, this.on = false});
+  EmoteButton({this.id, this.emoji, this.activeText = "", this.bg = Colors.grey, this.color1 = Colors.grey, this.color2 = Colors.yellowAccent, this.enabled = true, this.on = false});
 }

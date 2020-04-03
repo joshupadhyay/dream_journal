@@ -11,18 +11,14 @@ class buttonEmotionBuilder extends StatefulWidget{
 class _ButtonEmotionState extends State<buttonEmotionBuilder>{
 
   var buttonsList = <EmoteButton>[
-    new EmoteButton(id:1, bg:Colors.blue, color1: Colors.blue, color2: Colors.deepOrange),  // just did a couple random colors for proof of concept
-    new EmoteButton(id:2),
-    new EmoteButton(id:3),
-    new EmoteButton(id:4, bg:Colors.orange, color1:Colors.orange, color2:Colors.lightGreenAccent),
-    new EmoteButton(id:5),
-    new EmoteButton(id:6),
-    new EmoteButton(id:7, bg:Colors.orange, color1:Colors.orange, color2:Colors.lightGreenAccent),
-    new EmoteButton(id:8, bg:Colors.blue, color1: Colors.blue, color2: Colors.deepOrange),
-    new EmoteButton(id:9),
-    new EmoteButton(id:10),
-    new EmoteButton(id:11, bg:Colors.blue, color1: Colors.blue, color2: Colors.deepOrange),
-    new EmoteButton(id:12),
+    new EmoteButton(id:1, emoji:AssetImage("lib/assets/images/AngryEmoji.png"), color2: Colors.deepOrange),  // just did a couple random colors for proof of concept
+    new EmoteButton(id:2, emoji:AssetImage("lib/assets/images/AnxiousEmoji.png"), color2: Colors.lightGreen),
+    new EmoteButton(id:3, emoji:AssetImage("lib/assets/images/ConfusedEmoji.png"), color2: Colors.cyanAccent),
+    new EmoteButton(id:4, emoji:AssetImage("lib/assets/images/ExcitedEmoji.png"), color2: Colors.amber),
+    new EmoteButton(id:5, emoji:AssetImage("lib/assets/images/HappyEmoji.png"), color2: Colors.yellowAccent),
+    new EmoteButton(id:6, emoji:AssetImage("lib/assets/images/RelaxedEmoji.png"), color2: Colors.lightBlueAccent),
+    new EmoteButton(id:7, emoji:AssetImage("lib/assets/images/SadEmoji.png"), color2:Colors.blueAccent),
+    new EmoteButton(id:8, emoji:AssetImage("lib/assets/images/ScaredEmoji.png"), color2: Colors.purpleAccent),
   ];
 
   @override
@@ -48,7 +44,7 @@ class _ButtonEmotionState extends State<buttonEmotionBuilder>{
     return GridView.builder(
       padding: const EdgeInsets.all(18.0),  // padding from edge of screen
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,  // how many across
+        crossAxisCount: 4,  // how many across
         childAspectRatio: 1.0,  //increase to make squashed
         crossAxisSpacing: 18.0, // this num and num below should be the same for padding
         mainAxisSpacing: 18.0,
@@ -61,10 +57,13 @@ class _ButtonEmotionState extends State<buttonEmotionBuilder>{
           padding: const EdgeInsets.all(18.0),
           shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(50.0)),
           onPressed: buttonsList[i].enabled?()=>switchState(buttonsList[i]):null, // if the button is enabled, call switchState, else do null
-          child: Text(
-              buttonsList[i].activeText,
-              style: TextStyle(color: Colors.limeAccent,
-                  fontSize: 40.0)),
+          child: Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image:buttonsList[i].emoji,
+                  ),
+              )
+          ),
           color: buttonsList[i].bg,
           disabledColor: buttonsList[i].bg,
         ),

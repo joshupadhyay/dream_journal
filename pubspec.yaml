@@ -38,14 +38,15 @@ dev_dependencies:
 flutter:
 
   assets:
-    - lib/Assets/Images/AngryEmoji.png
-    - lib/Assets/Images/AnxiousEmoji.png
-    - lib/Assets/Images/ConfusedEmoji.png
-    - lib/Assets/Images/ExcitedEmoji.png
-    - lib/Assets/Images/HappyEmoji.png
-    - lib/Assets/Images/RelaxedEmoji.png
-    - lib/Assets/Images/SadEmoji.png
-    - lib/Assets/Images/ScaredEmoji.png
+    - lib/assets/images/AngryEmoji.png
+    - lib/assets/images/AnxiousEmoji.png
+    - lib/assets/images/ConfusedEmoji.png
+    - lib/assets/images/ExcitedEmoji.png
+    - lib/assets/images/HappyEmoji.png
+    - lib/assets/images/RelaxedEmoji.png
+    - lib/assets/images/SadEmoji.png
+    - lib/assets/images/ScaredEmoji.png
+    - lib/assets/images/dreams.jpg
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -60,8 +61,6 @@ flutter:
         - asset: fonts/PermanentMarker-Regular.ttf
 
     # To add assets to your application, add an assets section, like this:
-  assets:
-    - assets/images/dreams.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

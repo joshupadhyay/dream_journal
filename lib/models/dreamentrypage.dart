@@ -4,6 +4,11 @@ import 'package:intl/intl.dart';
 import 'emotebuttonbuilder.dart';
 import '../recentdreams.dart';
 
+
+/*
+DreamEntryForm is the class for creating add and edit dream entry pages (adddreampage, editdreampage)
+ */
+
 class DreamEntryForm extends StatefulWidget {
   final String title;
   final GlobalKey submissionKey;
@@ -52,12 +57,12 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
                 }) ,
               /*Date Button widget ends right here*/
 
-              textFieldsBuilder(context) ,
+              textFieldsBuilder(context) , //controls each of the textfields, see that widget below
 
               new Flexible(
                 child: buttonEmotionBuilder() , flex: 5 ,) ,
               new Flexible(
-                  child: RaisedButton(
+                  child: RaisedButton(//submission button
 
                       onPressed: () {
                         if (widget.submit(widget.submissionKey) == true) {
@@ -115,41 +120,45 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
                         "'Josh Singing Kpop'", _control1),
                     controller: _control1,
 
-                    validator: (String value) { //template validator method, this is title specific
-                      if (value.isEmpty) {
-                        return 'Please enter a title.';
-                      }else if (value.length > 30){
-                        return 'Shorter title needed.';
-                      }
-                      return null;
-                    }),
+//                    validator: (String value) { //template validator method, this is title specific
+//                      if (value.isEmpty) {
+//                        return 'Please enter a title.';
+//                      }else if (value.length > 30){
+//                        return 'Shorter title needed.';
+//                      }
+//                      return null;
+//                    }
+                    ),
 
                 TextFormField(
                   decoration: baselineInputDecorator("Where were you?",
                       "'Federico's House'", _control2),
                   controller: _control2,
 
-                  validator: (String value) {
-                    if (value.isEmpty) {
-                      return 'Please enter location(s).';
-                    }else if (value.length > 30){
-                      return 'Shorter entry please!';
-                    }
-                    return null;
-                  },),
+//                  validator: (String value) {
+//                    if (value.isEmpty) {
+//                      return 'Please enter location(s).';
+//                    }else if (value.length > 30){
+//                      return 'Shorter entry please!';
+//                    }
+//                    return null;
+//                  },
+                  ),
 
                 TextFormField(
                   decoration: baselineInputDecorator("Who was with you?",
                       "'Kpop star IU'", _control3),
                   controller: _control3,
-                  validator: (String value) {
-                    if (value.isEmpty) {
-                      return 'Please enter a name.';
-                    }else if (value.length > 30){
-                      return 'Shorter / less names please!';
-                    }
-                    return null;
-                  }),
+//                  validator: (String value) {
+//                    if (value.isEmpty) {
+//                      return 'Please enter a name.';
+//                    }else if (value.length > 30){
+//                      return 'Shorter / less names please!';
+//                    }
+//                    return null;
+//                  }
+
+                  ),
 
                 Container(
                     padding: const EdgeInsets.fromLTRB(0 , 50 , 0 , 20) ,

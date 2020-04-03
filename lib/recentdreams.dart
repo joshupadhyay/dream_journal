@@ -4,16 +4,18 @@ import 'package:flutter/material.dart';
 import 'models/dreamentry.dart';
 import 'editdreampage.dart';
 
+/*
+Page for showing saved / recent dream entries
+ */
 
 class RecentDreams extends StatefulWidget {
   @override
   _RecentDreamsState createState() => _RecentDreamsState();
 }
 
-
-
-
 class _RecentDreamsState extends State<RecentDreams> {
+
+  //Currently just a list, based on dreamentry class
 
   List <DreamEntry> dreamentries = [
     DreamEntry(true, dreamTitle: 'Singing Kareoke',
@@ -24,6 +26,8 @@ class _RecentDreamsState extends State<RecentDreams> {
         dreamPeople: "Josh, Josh's Family, Izzy"),
 
   ];
+
+  //card template for displaying entries
 
   Widget dreamTemplate(dreamentry){
     return
@@ -69,19 +73,11 @@ class _RecentDreamsState extends State<RecentDreams> {
         )))));
     }
 
-
+    //displays each of the saved dream entries as a card on the page
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text('Recent Dreams'),
       ),
       body: Column(

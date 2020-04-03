@@ -17,16 +17,18 @@ class _DreamEntryPageState extends State<DreamEntryPage> {
 
   bool _submit(GlobalKey<FormState> _formKey) {
     if (_formKey.currentState.validate()) {
-      //checks if everything has been filled out properly
+      //checks if everything has been filled out properly, see dreamentrypage for validators
       _formKey.currentState.save();
       return true;
     }
     return false;
   }
 
+  //instantiating DreamEntryForm as new dream entry page
+
   @override
   Widget build(BuildContext context) {
-    return DreamEntryForm("New Dream Entrry" , _formKey , _submit);
+    return DreamEntryForm("New Dream Entry" , _formKey , _submit);
   }
 }
 

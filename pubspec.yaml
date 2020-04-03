@@ -46,7 +46,7 @@ flutter:
     - lib/assets/images/RelaxedEmoji.png
     - lib/assets/images/SadEmoji.png
     - lib/assets/images/ScaredEmoji.png
-    - lib/assets/images/dreams.jpg
+    - assets/images/dreams.jpg
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

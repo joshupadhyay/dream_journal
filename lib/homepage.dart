@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(
                       fontFamily: "Pacifico",
                       fontSize: 55.0,
-                      color: Colors.green[200],
+                      color: Colors.white70,
 
                     ),
                   ),
@@ -140,7 +140,7 @@ Widget newDreamViewerButton(BuildContext context) {
     );
   }, icon: Icon(
     FontAwesomeIcons.book,
-    color: Colors.blueGrey[200],
+    color: Colors.white70,
     size: 60.0,),
       label: Text("")
   );
@@ -155,7 +155,7 @@ Widget newDreamAnalysisTab(BuildContext context) {
     );
   }, icon: Icon(
     FontAwesomeIcons.chartLine,
-    color: Colors.green[200],
+    color: Colors.white54,
     size: 60.0,),
       label: Text("")
   );

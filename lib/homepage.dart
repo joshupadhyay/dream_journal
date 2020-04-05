@@ -69,7 +69,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-
                 Positioned(
                   left: 20,
                   right: 10,
@@ -96,12 +95,11 @@ class _HomePageState extends State<HomePage> {
                   child: newDreamViewerButton(context),
                 ),
                 Positioned(
-                  left: -300,
-                  right: 0,
-                  top: 720,
-                  child: newDreamAnalysisTab(context),
-                ),
-
+                    left: -300,
+                    right: 0,
+                    top: 720,
+                    child: newDreamAnalysisTab(context),
+                  ),
               ],
             ),
           ),

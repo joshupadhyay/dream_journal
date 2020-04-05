@@ -15,8 +15,38 @@ class RecentDreams extends StatefulWidget {
 
 class _RecentDreamsState extends State<RecentDreams> {
 
-  //Currently just a list, based on dreamentry class
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Recent Dreams'),
+          centerTitle: true,
+        ),
+        body: Column(
+          children: <Widget>[
+            _helptext(),
+            Column(
+              children: dreamentries.map((dreamentry) => dreamTemplate(dreamentry)).toList()
+          )],
+        )
+    );
 
+  }
+
+  //code for the text above the dream entry cards
+  Widget _helptext(){
+    return Container(
+      child: Text("Tap on any of the entries to edit them!",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+              color: Colors.greenAccent
+          )),
+    );
+  }
+
+  //Currently just a list of dream summaries, based on dreamentry class
   List <DreamEntry> dreamentries = [
     DreamEntry(true, dreamTitle: 'Singing Kareoke',
     dreamPeople: 'Josh, Federico, IU'),
@@ -24,7 +54,6 @@ class _RecentDreamsState extends State<RecentDreams> {
         dreamPeople: 'Josh, Liam, Shafim'),
     DreamEntry(true, dreamTitle: 'Getting Stuck in the Basement, Parasite House ',
         dreamPeople: "Josh, Josh's Family, Izzy"),
-
   ];
 
   //card template for displaying entries
@@ -47,7 +76,6 @@ class _RecentDreamsState extends State<RecentDreams> {
               MaterialPageRoute(
                 builder: (context) => EditDreamPage()
               ));
-
         },
         child: Column(
           children: <Widget>[
@@ -72,17 +100,4 @@ class _RecentDreamsState extends State<RecentDreams> {
           ],
         )))));
     }
-
-    //displays each of the saved dream entries as a card on the page
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Recent Dreams'),
-      ),
-      body: Column(
-        children: dreamentries.map((dreamentry) => dreamTemplate(dreamentry)).toList()
-        )
-    );
-  }
 }

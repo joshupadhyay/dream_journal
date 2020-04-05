@@ -24,9 +24,6 @@ class DreamEntryForm extends StatefulWidget {
 
 class _DreamEntryFormState extends State<DreamEntryForm>{
 
-  var dateformat = new DateFormat('MMMMd'); //for nice date formatting
-  DateTime _datetime = DateTime.now(); //to display today's date by default
-
   /*wherever you see widget.(something), like widget.title,
   that's a parameter that's passed from the DreamEntryForm constructor defined above!
    */
@@ -34,61 +31,32 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(widget.title) , centerTitle: true ,) ,
+        appBar: AppBar(title: Text(widget.title) , centerTitle: true) ,
         body: Column(
-            children: <Widget>[OutlineButton(
-                shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(30.0)) ,
-                child: Text('Date: ${dateformat.format(_datetime)}' ,
-                    //formatting today's date to show in button
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold ,
-                        fontSize: 14 ,
-                        color: Colors.teal)) ,
-                onPressed: () {
-                  showDatePicker(context: context ,
-                      initialDate: DateTime.now() ,
-                      firstDate: DateTime(2020) ,
-                      lastDate: DateTime(2025)).then((date) {
-                    setState(() {
-                      _datetime = date;
-                    });
-                  });
-                }) ,
-              /*Date Button widget ends right here*/
+            children: <Widget>[
+              _calendarbutton(context), //date entry button and calendar functionality
+              textFieldsBuilder(context), //controls each of the textfields
 
-              textFieldsBuilder(context) , //controls each of the textfields, see that widget below
+              Flexible(
+                //TODO add borders, make the scrolling look nicer
+                child: buttonEmotionBuilder(), flex: 5 //controls emoji clicking
+              ),
 
-              new Flexible(
-                child: buttonEmotionBuilder() , flex: 5 ,) ,
-              new Flexible(
-                  child: RaisedButton(//submission button
-
-                      onPressed: () {
-                        if (widget.submit(widget.submissionKey) == true) {
-                          return Navigator.push(context ,
-                              new MaterialPageRoute(
-                                  builder: (context) => new RecentDreams()));
-                          //if all OK submitting, open recent dreams page (successful submit only, validator will catch errors otherwise)
-                        }
-                        return null;
-                      } ,
-                      child: Text('submit')) , flex: 1) ,
+              Flexible(
+                  child:  _submissionbutton(context), flex: 1 //submission button
+              ),
             ])
-      //the other widgets!
-      //TODO add borders, make the scrolling look nicer
     );
   }
 
   Widget textFieldsBuilder (BuildContext context) {
-    final headingcolor = Colors.lightBlue; //used in TextStyle() and InputDecoration() to set question colors
+    final headingcolor = Colors.greenAccent; //used in TextStyle() and InputDecoration() to set question colors
 
     final _control1 = TextEditingController();
     final _control2 = TextEditingController();
     final _control3 = TextEditingController();
 
     //determines what headers, hints look like for textfield entry
-
     InputDecoration baselineInputDecorator(headertitle, hinttext, controllernum){
 
       return new InputDecoration(
@@ -106,7 +74,6 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
             borderSide: BorderSide(color: Colors.blue)),
       );
     }
-
     /*NOTE:
   * each text field will get it's own validator, right now the only one is defined for the 'dream title' field*/
     return Builder(
@@ -178,6 +145,53 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
           ) ,
     );
   }
+
+
+  DateTime _datetime = DateTime.now(); //to display today's date by default
+
+  Widget _calendarbutton(BuildContext context){
+    var dateformat = new DateFormat('MMMMd'); //for nice date formatting
+
+    return OutlineButton(color: Colors.tealAccent,
+        shape: new RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(30.0)) ,
+        child: Text('Date: ${dateformat.format(_datetime)}' ,
+            //formatting for how the calendar font shows up in the page
+            style: TextStyle(
+                fontWeight: FontWeight.bold ,
+                fontSize: 14 ,
+                color: Colors.limeAccent)) ,
+        onPressed: () {
+          _popupSelectDate(context);
+        });
+  }
+
+  Future<Null> _popupSelectDate(BuildContext context) async{
+    final DateTime date_picked = await showDatePicker(context: context,
+        initialDate: _datetime, //
+        firstDate: DateTime(2020,2),
+        lastDate: DateTime(2025));
+    if (date_picked != null){
+          setState(() {
+            _datetime = date_picked;
+          });
+    }
+  }
+
+  Widget _submissionbutton(BuildContext context){
+    return RaisedButton(//submission button
+        onPressed: () {
+          if (widget.submit(widget.submissionKey) == true) {
+            return Navigator.push(context ,
+                new MaterialPageRoute(
+                    builder: (context) => new RecentDreams()));
+            //if all OK submitting, open recent dreams page (successful submit only, validator will catch errors otherwise)
+          }
+          return null;
+        } ,
+        child: Text('submit'));
+  }
+
 }
 
 

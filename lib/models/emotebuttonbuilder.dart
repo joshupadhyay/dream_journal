@@ -12,13 +12,13 @@ class _ButtonEmotionState extends State<buttonEmotionBuilder>{
 
   var buttonsList = <EmoteButton>[
     new EmoteButton(id:1, emoji:AssetImage("lib/assets/images/AngryEmoji.png"), color2: Colors.deepOrange),  // just did a couple random colors for proof of concept
-    new EmoteButton(id:2, emoji:AssetImage("lib/assets/images/AnxiousEmoji.png"), color2: Colors.lightGreen),
-    new EmoteButton(id:3, emoji:AssetImage("lib/assets/images/ConfusedEmoji.png"), color2: Colors.cyanAccent),
-    new EmoteButton(id:4, emoji:AssetImage("lib/assets/images/ExcitedEmoji.png"), color2: Colors.amber),
-    new EmoteButton(id:5, emoji:AssetImage("lib/assets/images/HappyEmoji.png"), color2: Colors.yellowAccent),
-    new EmoteButton(id:6, emoji:AssetImage("lib/assets/images/RelaxedEmoji.png"), color2: Colors.lightBlueAccent),
-    new EmoteButton(id:7, emoji:AssetImage("lib/assets/images/SadEmoji.png"), color2:Colors.blueAccent),
-    new EmoteButton(id:8, emoji:AssetImage("lib/assets/images/ScaredEmoji.png"), color2: Colors.purpleAccent),
+  new EmoteButton(id:2, emoji:AssetImage("lib/assets/images/AnxiousEmoji.png"), color2: Colors.lightGreen),
+  new EmoteButton(id:3, emoji:AssetImage("lib/assets/images/ConfusedEmoji.png"), color2: Colors.cyanAccent),
+  new EmoteButton(id:4, emoji:AssetImage("lib/assets/images/ExcitedEmoji.png"), color2: Colors.amber),
+  new EmoteButton(id:5, emoji:AssetImage("lib/assets/images/HappyEmoji.png"), color2: Colors.yellowAccent),
+  new EmoteButton(id:6, emoji:AssetImage("lib/assets/images/RelaxedEmoji.png"), color2: Colors.lightBlueAccent),
+  new EmoteButton(id:7, emoji:AssetImage("lib/assets/images/SadEmoji.png"), color2:Colors.blueAccent),
+  new EmoteButton(id:8, emoji:AssetImage("lib/assets/images/ScaredEmoji.png"), color2: Colors.purpleAccent),
   ];
 
   @override

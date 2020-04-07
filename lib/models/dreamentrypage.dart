@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'emotebuttonbuilder.dart';
 import '../recentdreams.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 /*

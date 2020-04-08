@@ -31,6 +31,7 @@ dev_dependencies:
     sdk: flutter
 
 
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -47,6 +48,7 @@ flutter:
     - lib/assets/images/SadEmoji.png
     - lib/assets/images/ScaredEmoji.png
     - assets/images/dreams.jpg
+    - assets/images/moon.flr
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

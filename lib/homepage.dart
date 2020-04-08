@@ -19,51 +19,81 @@ class _HomePageState extends State<HomePage> {
       children: <Widget>[
         Image.asset(
           "assets/images/dreams.jpg",
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
+          height: MediaQuery
+              .of(context)
+              .size
+              .height,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width,
           fit: BoxFit.cover,
 
         ),
         Scaffold(
           backgroundColor: Colors.transparent,
-          body:SafeArea(
+          body: SafeArea(
             child: Stack(
               children: <Widget>[
                 Positioned(
                   left: 0,
                   right: 0,
-                  top: 25,
+                  top: MediaQuery
+                      .of(context)
+                      .size
+                      .height * 0.05,
                   child: Icon(
                     FontAwesomeIcons.bookOpen,
                     color: Colors.black54,
-                    size: 120.0,
+                    size: MediaQuery
+                        .of(context)
+                        .size
+                        .width * 0.2,
                   ),
                 ),
                 Positioned(
-                  left: -75,
+                  left: 0 - MediaQuery
+                      .of(context)
+                      .size
+                      .width * 0.125,
                   right: 0,
-                  top: 35,
+                  top: MediaQuery
+                      .of(context)
+                      .size
+                      .height * 0.07,
                   child: Text(
                     "D",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: "Pacifico",
-                      fontSize: 55.0,
+                      fontSize: MediaQuery
+                          .of(context)
+                          .size
+                          .width * 0.08,
                       color: Colors.white70,
 
                     ),
                   ),
                 ),
                 Positioned(
-                  left: 70,
+                  left: 0 + MediaQuery
+                      .of(context)
+                      .size
+                      .width * 0.125,
                   right: 0,
-                  top: 35,
+                  top: MediaQuery
+                      .of(context)
+                      .size
+                      .height * 0.07,
                   child: Text(
                     "J",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: "Pacifico",
-                      fontSize: 55.0,
+                      fontSize: MediaQuery
+                          .of(context)
+                          .size
+                          .width * 0.08,
                       color: Colors.blueGrey[200],
 
                     ),
@@ -72,13 +102,19 @@ class _HomePageState extends State<HomePage> {
                 Positioned(
                   left: 20,
                   right: 10,
-                  top: 300,
+                  top: MediaQuery
+                      .of(context)
+                      .size
+                      .height * 0.35,
                   child: newDreamEntryButton(context),
                 ),
 
                 Positioned(
                     left: 140,
-                    top: 510,
+                    top: MediaQuery
+                        .of(context)
+                        .size
+                        .height * 0.6,
                     child: Text(
                       "new dream",
                       style: TextStyle(
@@ -91,22 +127,27 @@ class _HomePageState extends State<HomePage> {
                 Positioned(
                   left: 300,
                   right: 0,
-                  top: 720,
+                  top: MediaQuery
+                      .of(context)
+                      .size
+                      .height * 0.85,
                   child: newDreamViewerButton(context),
                 ),
                 Positioned(
-                    left: -300,
-                    right: 0,
-                    top: 720,
-                    child: newDreamAnalysisTab(context),
-                  ),
+                  left: -300,
+                  right: 0,
+                  top: MediaQuery
+                      .of(context)
+                      .size
+                      .height * 0.85,
+                  child: newDreamAnalysisTab(context),
+                ),
               ],
             ),
           ),
         )
       ],
     );
-
   }
 }
 
@@ -122,7 +163,10 @@ Widget newDreamEntryButton(BuildContext context) {
   }, icon: Icon(
     FontAwesomeIcons.plus,
     color: Colors.black87,
-    size: 220.0,
+    size: MediaQuery
+        .of(context)
+        .size
+        .width * 0.40,
 
   ),
       label: Text("")
@@ -139,7 +183,11 @@ Widget newDreamViewerButton(BuildContext context) {
   }, icon: Icon(
     FontAwesomeIcons.book,
     color: Colors.white70,
-    size: 60.0,),
+    size: MediaQuery
+        .of(context)
+        .size
+        .width * 0.1,
+  ),
       label: Text("")
   );
 }
@@ -154,10 +202,15 @@ Widget newDreamAnalysisTab(BuildContext context) {
   }, icon: Icon(
     FontAwesomeIcons.chartLine,
     color: Colors.white54,
-    size: 60.0,),
+    size: MediaQuery
+        .of(context)
+        .size
+        .width * 0.1,),
       label: Text("")
   );
 }
+
+
 
 
 //Text("",

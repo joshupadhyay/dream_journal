@@ -17,6 +17,9 @@ environment:
   sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
+
+  cloud_firestore:
+
   flutter:
     sdk: flutter
   intl: ^0.16.1

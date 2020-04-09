@@ -1,3 +1,4 @@
+import 'package:dreamjournal/models/dreamentry.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -18,8 +19,12 @@ class DreamEntryForm extends StatefulWidget {
   final GlobalKey submissionKey;
   final Function submit;
 
+  final TextEditingController control1;
+  final TextEditingController control2;
+  final TextEditingController control3;
+
   DreamEntryForm(this.title, this.submissionKey,
-      this.submit); //required args
+      this.submit, this.control1, this.control2, this.control3); //required args
 
   @override
   _DreamEntryFormState createState() => _DreamEntryFormState();
@@ -57,11 +62,9 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
   //controllers to grab textfield entry from textfields
 
 
+
   Widget textFieldsBuilder (BuildContext context) {
 
-    final control1 = TextEditingController();
-    final control2 = TextEditingController();
-    final control3 = TextEditingController();
 
     final headingcolor = Colors.greenAccent; //used in TextStyle() and InputDecoration() to set question colors
 
@@ -96,8 +99,8 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
                 TextFormField(
                     decoration: baselineInputDecorator("What shall we call your dream?",
-                        "'Josh Singing Kpop'", control1),
-                    controller: control1,
+                        "'Josh Singing Kpop'", widget.control1),
+                    controller: widget.control1,
 
 //                    validator: (String value) { //template validator method, this is title specific
 //                      if (value.isEmpty) {
@@ -112,8 +115,8 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
                 TextFormField(
                   decoration: baselineInputDecorator("Where were you?",
-                      "'Federico's House'", control2),
-                  controller: control2,
+                      "'Federico's House'", widget.control2),
+                  controller: widget.control2,
 
 //                  validator: (String value) {
 //                    if (value.isEmpty) {
@@ -127,8 +130,8 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
                 TextFormField(
                   decoration: baselineInputDecorator("Who was with you?",
-                      "'Kpop star IU'", control3),
-                  controller: control3,
+                      "'Kpop star IU'", widget.control3),
+                  controller: widget.control3,
 //                  validator: (String value) {
 //                    if (value.isEmpty) {
 //                      return 'Please enter a name.';
@@ -192,10 +195,11 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
   }
 
   Widget _submissionbutton(BuildContext context){
+
     return RaisedButton(//submission button
         onPressed: () {
           if (widget.submit(widget.submissionKey) == true) {
-
+            ///Submission functions are in adddreampage, editdreampage.
             return Navigator.push(context ,
                 new MaterialPageRoute(
                     builder: (context) => new RecentDreams()));

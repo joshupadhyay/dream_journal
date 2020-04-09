@@ -11,14 +11,22 @@ class buttonEmotionBuilder extends StatefulWidget{
 class _ButtonEmotionState extends State<buttonEmotionBuilder>{
 
   var buttonsList = <EmoteButton>[
+    //angry
     new EmoteButton(id:1, emoji:AssetImage("lib/assets/images/AngryEmoji.png"), color2: Colors.deepOrange),  // just did a couple random colors for proof of concept
-  new EmoteButton(id:2, emoji:AssetImage("lib/assets/images/AnxiousEmoji.png"), color2: Colors.lightGreen),
-  new EmoteButton(id:3, emoji:AssetImage("lib/assets/images/ConfusedEmoji.png"), color2: Colors.cyanAccent),
-  new EmoteButton(id:4, emoji:AssetImage("lib/assets/images/ExcitedEmoji.png"), color2: Colors.amber),
-  new EmoteButton(id:5, emoji:AssetImage("lib/assets/images/HappyEmoji.png"), color2: Colors.yellowAccent),
-  new EmoteButton(id:6, emoji:AssetImage("lib/assets/images/RelaxedEmoji.png"), color2: Colors.lightBlueAccent),
-  new EmoteButton(id:7, emoji:AssetImage("lib/assets/images/SadEmoji.png"), color2:Colors.blueAccent),
-  new EmoteButton(id:8, emoji:AssetImage("lib/assets/images/ScaredEmoji.png"), color2: Colors.purpleAccent),
+  //embarrassed
+    new EmoteButton(id:2, emoji:AssetImage("lib/assets/images/AnxiousEmoji.png"), color2: Colors.lightGreen),
+  //pensive, thinking
+    new EmoteButton(id:3, emoji:AssetImage("lib/assets/images/ConfusedEmoji.png"), color2: Colors.cyanAccent),
+  //happy, handwavy
+    new EmoteButton(id:4, emoji:AssetImage("lib/assets/images/ExcitedEmoji.png"), color2: Colors.amber),
+  //happy smile
+    new EmoteButton(id:5, emoji:AssetImage("lib/assets/images/HappyEmoji.png"), color2: Colors.yellowAccent),
+  //feelin cool
+    new EmoteButton(id:6, emoji:AssetImage("lib/assets/images/RelaxedEmoji.png"), color2: Colors.lightBlueAccent),
+  //sad
+    new EmoteButton(id:7, emoji:AssetImage("lib/assets/images/SadEmoji.png"), color2:Colors.blueAccent),
+  //surprised
+    new EmoteButton(id:8, emoji:AssetImage("lib/assets/images/ScaredEmoji.png"), color2: Colors.purpleAccent),
   ];
 
   @override
@@ -31,7 +39,9 @@ class _ButtonEmotionState extends State<buttonEmotionBuilder>{
     setState(() { // to recall build, so it rebuilds
       b.on = !b.on; // to switch on and off
       if (b.on) {
-        b.bg = b.color2;  // bg is the actual displayed color, color1 and color2 are just the on/off colors respectively
+        b.bg = b.color2; // bg is the actual displayed color, color1 and color2 are just the on/off colors respectively
+
+        //TODO: how can we use switchState() from here to change boolean values in DreamEntry class?
       }
       else {
         b.bg = b.color1;

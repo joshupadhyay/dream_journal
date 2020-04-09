@@ -30,7 +30,6 @@ class _RecentDreamsState extends State<RecentDreams> {
           )],
         )
     );
-
   }
 
   //code for the text above the dream entry cards

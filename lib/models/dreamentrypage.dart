@@ -1,4 +1,3 @@
-import 'package:dreamjournal/models/dreamentry.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -59,8 +58,6 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
 
   //controllers to grab textfield entry from textfields
-
-
 
   Widget textFieldsBuilder (BuildContext context) {
 
@@ -197,7 +194,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
     return RaisedButton(//submission button
         onPressed: () {
-          if (widget.submit(widget.submissionKey) == true) {
+          if (widget.submit(widget.submissionKey) == true)  {
             ///Submission functions are in adddreampage, editdreampage.
             return Navigator.push(context ,
                 new MaterialPageRoute(

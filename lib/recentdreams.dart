@@ -47,11 +47,11 @@ class _RecentDreamsState extends State<RecentDreams> {
 
   //Currently just a list of dream summaries, based on dreamentry class
   List <DreamEntry> dreamentries = [
-    DreamEntry(true, dreamTitle: 'Singing Kareoke',
+    DreamEntry(isHappy: true, dreamTitle: 'Singing Kareoke',
     dreamPeople: 'Josh, Federico, IU'),
-    DreamEntry(true, dreamTitle: 'Missed Flight and Granola',
+    DreamEntry(isHappy: true, dreamTitle: 'Missed Flight and Granola',
         dreamPeople: 'Josh, Liam, Shafim'),
-    DreamEntry(true, dreamTitle: 'Getting Stuck in the Basement, Parasite House ',
+    DreamEntry(isHappy: true, dreamTitle: 'Getting Stuck in the Basement, Parasite House ',
         dreamPeople: "Josh, Josh's Family, Izzy"),
   ];
 

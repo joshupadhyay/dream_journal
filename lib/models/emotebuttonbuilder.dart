@@ -1,5 +1,6 @@
 
 /*All the code for the emotion buttons. */
+import 'package:dreamjournal/models/Emotion.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'EmoteButton.dart';
@@ -10,23 +11,45 @@ class buttonEmotionBuilder extends StatefulWidget{
 
 class _ButtonEmotionState extends State<buttonEmotionBuilder>{
 
+  // the list of emotions
+  static var emotionsList = <Emotion>[
+    // angry
+    new Emotion(name:"Angry", emoji:AssetImage("lib/assets/images/AngryEmoji.png"), onColor: Colors.deepOrange),
+    //embarassed
+    new Emotion(name:"Embarassed", emoji:AssetImage("lib/assets/images/AnxiousEmoji.png"), onColor: Colors.lightGreen),
+    //confused
+    new Emotion(name:"Contemplative", emoji:AssetImage("lib/assets/images/ConfusedEmoji.png"), onColor: Colors.cyanAccent),
+    //excited
+    new Emotion(name:"Excited", emoji:AssetImage("lib/assets/images/ExcitedEmoji.png"), onColor: Colors.amber),
+    //happy
+    new Emotion(name:"Happy", emoji:AssetImage("lib/assets/images/HappyEmoji.png"), onColor: Colors.yellowAccent),
+    //relaxed
+    new Emotion(name:"Cool", emoji:AssetImage("lib/assets/images/RelaxedEmoji.png"), onColor: Colors.lightBlueAccent),
+    //sad
+    new Emotion(name:"Sad", emoji:AssetImage("lib/assets/images/SadEmoji.png"), onColor:Colors.blueAccent),
+    //scared
+    new Emotion(name:"Scared", emoji:AssetImage("lib/assets/images/ScaredEmoji.png"), onColor: Colors.purpleAccent),
+
+  ];
+
   var buttonsList = <EmoteButton>[
     //angry
-    new EmoteButton(id:1, emoji:AssetImage("lib/assets/images/AngryEmoji.png"), color2: Colors.deepOrange),  // just did a couple random colors for proof of concept
+    new EmoteButton(id:1, emotion: emotionsList[0]),
   //embarrassed
-    new EmoteButton(id:2, emoji:AssetImage("lib/assets/images/AnxiousEmoji.png"), color2: Colors.lightGreen),
-  //pensive, thinking
-    new EmoteButton(id:3, emoji:AssetImage("lib/assets/images/ConfusedEmoji.png"), color2: Colors.cyanAccent),
-  //happy, handwavy
-    new EmoteButton(id:4, emoji:AssetImage("lib/assets/images/ExcitedEmoji.png"), color2: Colors.amber),
-  //happy smile
-    new EmoteButton(id:5, emoji:AssetImage("lib/assets/images/HappyEmoji.png"), color2: Colors.yellowAccent),
-  //feelin cool
-    new EmoteButton(id:6, emoji:AssetImage("lib/assets/images/RelaxedEmoji.png"), color2: Colors.lightBlueAccent),
+    new EmoteButton(id:2, emotion: emotionsList[1]),
+  //confused
+    new EmoteButton(id:3, emotion: emotionsList[2]),
+  //excited
+    new EmoteButton(id:4, emotion: emotionsList[3]),
+  //happy
+    new EmoteButton(id:5, emotion: emotionsList[4]),
+  //relaxed
+    new EmoteButton(id:6, emotion: emotionsList[5]),
   //sad
-    new EmoteButton(id:7, emoji:AssetImage("lib/assets/images/SadEmoji.png"), color2:Colors.blueAccent),
-  //surprised
-    new EmoteButton(id:8, emoji:AssetImage("lib/assets/images/ScaredEmoji.png"), color2: Colors.purpleAccent),
+    new EmoteButton(id:7, emotion: emotionsList[6]),
+  //scared
+    new EmoteButton(id:8, emotion: emotionsList[7]),
+
   ];
 
   @override
@@ -39,12 +62,12 @@ class _ButtonEmotionState extends State<buttonEmotionBuilder>{
     setState(() { // to recall build, so it rebuilds
       b.on = !b.on; // to switch on and off
       if (b.on) {
-        b.bg = b.color2; // bg is the actual displayed color, color1 and color2 are just the on/off colors respectively
+        b.displayColor = b.emotion.onColor; // bg is the actual displayed color, color1 and color2 are just the on/off colors respectively
 
         //TODO: how can we use switchState() from here to change boolean values in DreamEntry class?
       }
       else {
-        b.bg = b.color1;
+        b.displayColor = b.emotion.offColor;
       }
     });
   }
@@ -70,12 +93,12 @@ class _ButtonEmotionState extends State<buttonEmotionBuilder>{
           child: Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image:buttonsList[i].emoji,
+                      image:buttonsList[i].emotion.emoji,
                   ),
               )
           ),
-          color: buttonsList[i].bg,
-          disabledColor: buttonsList[i].bg,
+          color: buttonsList[i].displayColor,
+          disabledColor: buttonsList[i].displayColor,
         ),
       ),
     );

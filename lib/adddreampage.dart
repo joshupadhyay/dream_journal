@@ -1,7 +1,6 @@
 import 'package:dreamjournal/models/dreamentrypage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
 import 'models/dreamentrypage.dart';
 import 'models/dreamentry.dart';
 import 'models/dbmanager.dart';
@@ -10,6 +9,7 @@ class DreamEntryPage extends StatefulWidget{
 
   @override
   _DreamEntryPageState createState() => _DreamEntryPageState();
+
 }
 
 class _DreamEntryPageState extends State<DreamEntryPage> {
@@ -20,13 +20,15 @@ class _DreamEntryPageState extends State<DreamEntryPage> {
 
   final _adddreamKey = GlobalKey<FormState>();
 
-  final dbmanager = DBManager();
-
-
   //make a class that holds the data of the 3 controllers
   //then use the model observer to pass around instead of the text controllers
 
   bool _submit(GlobalKey<FormState> _formKey) {
+
+    var dbmanager = new DBManager();
+
+    dbmanager.openDB();
+
     if (_formKey.currentState.validate()) {
       //checks if everything has been filled out properly, see dreamentrypage for validators
 
@@ -40,11 +42,9 @@ class _DreamEntryPageState extends State<DreamEntryPage> {
           dreamLocation: control2.toString(),
           dreamPeople: control3.toString());
 
-      dbmanager.insertDream(dream_submission);
+      dbmanager.insertDream(dream_submission); //see dbmanager.dart for dream
 
-      dbmanager.dreamList();
-
-      //saving method should be implemented in dreamentry.dart
+      dbmanager.dreamList(); //should spit out a list of the dreams (?)
 
       return true;
     }

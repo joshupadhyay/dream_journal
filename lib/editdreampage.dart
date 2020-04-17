@@ -1,6 +1,7 @@
 import 'package:dreamjournal/models/dreamentrypage.dart';
 import 'package:flutter/material.dart';
 import 'models/dreamentry.dart';
+import 'models/dbmanager.dart';
 
 
 class EditDreamPage extends StatefulWidget {
@@ -27,7 +28,19 @@ class _EditDreamPageState extends State<EditDreamPage>{
     return false;
   }
 
-  //instantiate DreamEntryForm as edit dream page
+  //need to first call a function that grabs the dream title from the selected RecentDreams page
+  //so each dreamcard needs to return a dreamtitle, onPressed
+  //then the dreamtitle needs to be passed into this page, so we can call "update dream"
+  //then we instantiate a dreamentry object with those parameters
+  //then send data to the textediting controller
+
+  //basically the reverse of add dream!
+
+  //then we can call the updatedream method
+
+  //we also need a delete dream method - where are we going to put that?
+
+
 
   @override
   Widget build(BuildContext context) {

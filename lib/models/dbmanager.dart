@@ -3,31 +3,42 @@ import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'package:path/path.dart';
 
+//TODO: call openDB somewhere ONCE instead of inside each command!
 
 class DBManager{
 
   Database _database;
 
     Future openDB () async {
-      _database = await openDatabase(
-        // Set the path to the database.
-        join(await getDatabasesPath() , 'dream_database.db') ,
-        // When the database is first created, create a table to store
-        onCreate: (Database db , version) async {
-          await db.execute(
-            "CREATE TABLE dreams(id INTEGER PRIMARY KEY, "
-                "dreamtitle TEXT, dreamplace TEXT, dreamlocation TEXT ishappy INTEGER)" ,
 
-            //INTEGER PRIMARY KEY will automatically autoincrement, as long as we pass null into id. That's that I've done
-          );
-        } ,
-        // Set the version. This executes the onCreate function and provides a
-        // path to perform database upgrades and downgrades.
-        version: 1 ,
-      );
+      if (_database == null) {
+
+        _database = await openDatabase(
+          // Set the path to the database.
+          join(await getDatabasesPath() , 'dreamdatabase.db') ,
+          // When the database is first created, create a table to store
+          onCreate: (Database db , version) async {
+            await db.execute(
+              "CREATE TABLE dreams(id INTEGER PRIMARY KEY, "
+                  "dreamtitle TEXT, dreamplace TEXT, dreampeople TEXT,"
+                  "dreamlocation TEXT, ishappy INTEGER)" ,
+
+              //INTEGER PRIMARY KEY will automatically autoincrement, as long as we pass null into id. That's that I've done
+            );
+
+            print("made it here");
+          } ,
+          // Set the version. This executes the onCreate function and provides a
+          // path to perform database upgrades and downgrades.
+          version: 2,
+        );
+      }
     }
 
     Future<void> insertDream(DreamEntry newdream) async {
+
+      await openDB();
+
       // Get a reference to the database.
       final Database db = await _database;
 
@@ -42,7 +53,10 @@ class DBManager{
     }
 
     Future<List<DreamEntry>> dreamList() async {
+      await openDB();
+
       // Get a reference to the database.
+
       final Database db = await _database;
 
       // Query the table for all The Dogs.
@@ -61,6 +75,9 @@ class DBManager{
 
 
     Future<void> updateDream(DreamEntry dream) async {
+
+      await openDB();
+
       // Get a reference to the database.
       final db = await _database;
 
@@ -82,6 +99,8 @@ class DBManager{
     ///when delete method is
 
     Future<void> deleteDream(String selectedtitle) async {
+      await openDB();
+
       // Get a reference to the database.
       final db = await _database;
 

@@ -23,10 +23,11 @@ class DBManager{
                   "dreamtitle TEXT, dreamplace TEXT, dreampeople TEXT,"
                   "dreamlocation TEXT, ishappy INTEGER)" ,
 
+              ///if you add a new column, change the version of the database so it actually updates
+
               //INTEGER PRIMARY KEY will automatically autoincrement, as long as we pass null into id. That's that I've done
             );
 
-            print("made it here");
           } ,
           // Set the version. This executes the onCreate function and provides a
           // path to perform database upgrades and downgrades.
@@ -116,7 +117,7 @@ class DBManager{
 
 }
 
-//TODO: These are the defined functions that we now need to implement, if we choose SQL
+///These are the database functions. Note how they're structured!
 
 //void main() async {
 //

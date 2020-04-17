@@ -10,22 +10,11 @@ class DreamEntry {
   String dreamTitle;
   String dreamPeople;
   String dreamLocation;
-  bool isHappy;
+  int isHappy;
+  ///add other emotions here
 
 
-  save() {
-    //TODO: get firebase commands here
-  }
-
-  update() {
-    //TODO: get firebase commands here
-  }
-
-  emotionToggle(){
-    //TODO: get buttonpressed to toggle emotions, 1 method for each emotion?
-  }
-
-  DreamEntry({bool isHappy, String dreamTitle, String dreamPeople, String dreamLocation}){
+  DreamEntry({int isHappy, String dreamTitle, String dreamPeople, String dreamLocation}){
     this.dreamPeople = dreamPeople;
     this.dreamTitle = dreamTitle;
     this.dreamLocation = dreamLocation;
@@ -39,6 +28,8 @@ class DreamEntry {
       'dreamlocation': dreamLocation,
       'dreampeople': dreamPeople,
       'ishappy': isHappy
+      ///add other emotions here
+      ///if you add emotions here, note you need to add them to multiple places in the database!
     };
   }
 

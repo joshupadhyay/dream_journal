@@ -37,7 +37,7 @@ class _DreamEntryPageState extends State<DreamEntryPage> {
 
 
       //creates a new dreamEntry init, saving the data from the textfields into the dream entry instantiation.
-      DreamEntry dream_submission = new DreamEntry(isHappy: true,
+      DreamEntry dream_submission = new DreamEntry(isHappy: 1,
           dreamTitle: control1.toString(),
           dreamLocation: control2.toString(),
           dreamPeople: control3.toString());

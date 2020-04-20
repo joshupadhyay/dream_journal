@@ -26,7 +26,7 @@ class DreamEntryForm extends StatefulWidget {
   List<EmoteButton> buttonList;   // I think that you can access the actual list (found in emotebuttonbuilder) by doing emotebuttonbuilder.buttonslist
 
   DreamEntryForm(this.title, this.submissionKey,
-      this.submit, this.control1, this.control2, this.control3); //required args
+      this.submit, this.control1, this.control2, this.control3, this.buttonList); //required args
 
   @override
   _DreamEntryFormState createState() => _DreamEntryFormState();

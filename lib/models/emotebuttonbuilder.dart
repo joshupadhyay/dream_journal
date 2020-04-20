@@ -3,50 +3,8 @@
 import 'package:dreamjournal/models/Emotion.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'ButtonList.dart';
 import 'EmoteButton.dart';
-
-
-// the list of emotions
-var emotionsList = <Emotion>[
-  // angry
-  new Emotion(name:"Angry", emoji:AssetImage("lib/assets/images/AngryEmoji.png"), onColor: Colors.deepOrange),
-  //embarassed
-  new Emotion(name:"Embarassed", emoji:AssetImage("lib/assets/images/AnxiousEmoji.png"), onColor: Colors.lightGreen),
-  //confused
-  new Emotion(name:"Contemplative", emoji:AssetImage("lib/assets/images/ConfusedEmoji.png"), onColor: Colors.cyanAccent),
-  //excited
-  new Emotion(name:"Excited", emoji:AssetImage("lib/assets/images/ExcitedEmoji.png"), onColor: Colors.amber),
-  //happy
-  new Emotion(name:"Happy", emoji:AssetImage("lib/assets/images/HappyEmoji.png"), onColor: Colors.yellowAccent),
-  //relaxed
-  new Emotion(name:"Cool", emoji:AssetImage("lib/assets/images/RelaxedEmoji.png"), onColor: Colors.lightBlueAccent),
-  //sad
-  new Emotion(name:"Sad", emoji:AssetImage("lib/assets/images/SadEmoji.png"), onColor:Colors.blueAccent),
-  //scared
-  new Emotion(name:"Scared", emoji:AssetImage("lib/assets/images/ScaredEmoji.png"), onColor: Colors.purpleAccent),
-
-];
-
-var buttonsList = <EmoteButton>[
-  //angry
-  new EmoteButton(id:1, emotion: emotionsList[0]),
-  //embarrassed
-  new EmoteButton(id:2, emotion: emotionsList[1]),
-  //confused
-  new EmoteButton(id:3, emotion: emotionsList[2]),
-  //excited
-  new EmoteButton(id:4, emotion: emotionsList[3]),
-  //happy
-  new EmoteButton(id:5, emotion: emotionsList[4]),
-  //relaxed
-  new EmoteButton(id:6, emotion: emotionsList[5]),
-  //sad
-  new EmoteButton(id:7, emotion: emotionsList[6]),
-  //scared
-  new EmoteButton(id:8, emotion: emotionsList[7]),
-
-];
-
 
 class buttonEmotionBuilder extends StatefulWidget{
   _ButtonEmotionState createState() => _ButtonEmotionState();
@@ -58,6 +16,8 @@ class _ButtonEmotionState extends State<buttonEmotionBuilder>{
   void initState() {
     super.initState();
   }
+
+  ButtonList bl;
 
   void switchState(EmoteButton b) {
 
@@ -84,23 +44,23 @@ class _ButtonEmotionState extends State<buttonEmotionBuilder>{
         crossAxisSpacing: 18.0, // this num and num below should be the same for padding
         mainAxisSpacing: 18.0,
       ),
-      itemCount: buttonsList.length,
+      itemCount: bl.buttonsList.length,
       itemBuilder: (context, i) => SizedBox(
         width: 100.0,
         height: 100.0,
         child: RaisedButton(
           padding: const EdgeInsets.all(18.0),
           shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(50.0)),
-          onPressed: buttonsList[i].enabled?()=>switchState(buttonsList[i]):null, // if the button is enabled, call switchState, else do null
+          onPressed: bl.buttonsList[i].enabled?()=>switchState(bl.buttonsList[i]):null, // if the button is enabled, call switchState, else do null
           child: Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image:buttonsList[i].emotion.emoji,
+                      image:bl.buttonsList[i].emotion.emoji,
                   ),
               )
           ),
-          color: buttonsList[i].displayColor,
-          disabledColor: buttonsList[i].displayColor,
+          color: bl.buttonsList[i].displayColor,
+          disabledColor: bl.buttonsList[i].displayColor,
         ),
       ),
     );

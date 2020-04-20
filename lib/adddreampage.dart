@@ -4,9 +4,11 @@ import 'dart:core';
 import 'package:dreamjournal/models/dreamentrypage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'models/ButtonList.dart';
 import 'models/dreamentrypage.dart';
 import 'models/dreamentry.dart';
 import 'models/dbmanager.dart';
+import 'models/emotebuttonbuilder.dart';
 
 class DreamEntryPage extends StatefulWidget{
 
@@ -71,12 +73,12 @@ class _DreamEntryPageState extends State<DreamEntryPage> {
     dreamentries = dreamlisted;
   }
 
-
+ButtonList bl;   // the class in emotebuttonbuilder (why the name is different confuses me) needed to access the buttonsList
 
   @override
   Widget build(BuildContext context) {
     return DreamEntryForm("New Dream Entry" , _adddreamKey , _submit,
-        control1, control2, control3);
+        control1, control2, control3, bl.buttonsList);
   }
 }
 

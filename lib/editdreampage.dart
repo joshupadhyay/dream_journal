@@ -1,5 +1,6 @@
 import 'package:dreamjournal/models/dreamentrypage.dart';
 import 'package:flutter/material.dart';
+import 'models/ButtonList.dart';
 import 'models/dreamentry.dart';
 import 'models/dbmanager.dart';
 
@@ -45,9 +46,11 @@ class _EditDreamPageState extends State<EditDreamPage>{
 
 
 
+  ButtonList bl;
+
   @override
   Widget build(BuildContext context) {
     return DreamEntryForm("Edit Dream", _editingKey,_submit,
-    control1, control2, control3);
+    control1, control2, control3, bl.buttonsList);
   }
 }

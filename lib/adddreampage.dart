@@ -20,12 +20,13 @@ class _DreamEntryPageState extends State<DreamEntryPage> {
 
   final _adddreamKey = GlobalKey<FormState>();
 
+  var dbmanager = new DBManager();
+
   //make a class that holds the data of the 3 controllers
   //then use the model observer to pass around instead of the text controllers
 
-  bool _submit(GlobalKey<FormState> _formKey) {
 
-    var dbmanager = new DBManager();
+  bool _submit(GlobalKey<FormState> _formKey) {
 
     dbmanager.openDB();
 
@@ -42,13 +43,24 @@ class _DreamEntryPageState extends State<DreamEntryPage> {
           dreamLocation: control2.toString(),
           dreamPeople: control3.toString());
 
-      dbmanager.insertDream(dream_submission); //see dbmanager.dart for dream
+     dbmanager.insertDream(dream_submission); //see dbmanager.dart for dream
 
-      dbmanager.dreamList(); //should spit out a list of the dreams (?)
+      testfunc(); //see below, just a work in progress.
+
 
       return true;
     }
     return false;
+  }
+
+  //function that takes the dreamlist, finds the dreamentry at a specific index, and makes the dreamtitle a string and prints it out.
+
+  //for a given index [i], we'll need to instantiate a dreamentry class and print it out on edit dream
+
+  Future <void> testfunc() async {
+    var dreamlisted = await dbmanager.dreamList();
+
+    print(dreamlisted[19].dreamTitle.toString());
   }
 
   @override

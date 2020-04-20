@@ -5,6 +5,9 @@ import 'package:path/path.dart';
 
 //TODO: call openDB somewhere ONCE instead of inside each command!
 
+
+//TODO: follow the tutorial again to match id, so instead of matching by dreamtitle, we match by id
+
 class DBManager{
 
   Database _database;
@@ -53,7 +56,7 @@ class DBManager{
       );
     }
 
-    Future<List<DreamEntry>> dreamList() async {
+    Future <List<DreamEntry>> dreamList() async {
       await openDB();
 
       // Get a reference to the database.
@@ -88,8 +91,6 @@ class DBManager{
         dream.toMap(),
         // Ensure that the Dog has a matching id.
         where: "dreamtitle = ?",
-
-        ///USING DREAMTITLE INSTEAD OF DREAM_ID. when people click on the dream we'll hand the title.
 
         // Pass the Dog's id as a whereArg to prevent SQL injection.
         whereArgs: [dream.dreamTitle],

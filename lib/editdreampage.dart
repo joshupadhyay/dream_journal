@@ -17,6 +17,9 @@ class _EditDreamPageState extends State<EditDreamPage>{
   final control2 = TextEditingController();
   final control3 = TextEditingController();
 
+  var dbmanager = new DBManager();
+
+
 
   bool _submit(GlobalKey<FormState> _formKey) {
     if (_formKey.currentState.validate()) {

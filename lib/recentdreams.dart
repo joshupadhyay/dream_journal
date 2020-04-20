@@ -50,6 +50,7 @@ class _RecentDreamsState extends State<RecentDreams> {
     DreamEntry(isHappy: 1,
         dreamTitle: 'Singing Kareoke',
         dreamPeople: 'Josh, Federico, IU'),
+
     DreamEntry(isHappy: 1,
         dreamTitle: 'Missed Flight and Granola',
         dreamPeople: 'Josh, Liam, Shafim'),
@@ -74,6 +75,8 @@ class _RecentDreamsState extends State<RecentDreams> {
 
       child: FlatButton(
         onPressed: (){
+
+
           Navigator.push(context,
               MaterialPageRoute(
                 builder: (context) => EditDreamPage()

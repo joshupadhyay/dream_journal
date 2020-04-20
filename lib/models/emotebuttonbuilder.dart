@@ -12,14 +12,13 @@ class buttonEmotionBuilder extends StatefulWidget{
 
 class _ButtonEmotionState extends State<buttonEmotionBuilder>{
 
-
-  ButtonList bl;
+  ButtonList bl;  // used to access the ButtonList class, which has a field buttonsList which is the actual list
 
   @override
   void initState() {
     super.initState();
-    bl = new ButtonList();
-    bl.init();
+    bl = new ButtonList();  //initializing ButtonList class
+    bl.init();  // using a method in ButtonList class to initialize the other classes
   }
 
   void switchState(EmoteButton b) {

@@ -19,6 +19,7 @@ class ButtonList{
     return buttonsList;
   }
 
+  // has to be called to make sure the lists are filled
   void init(){
     emotionsList = <Emotion>[
       // angry

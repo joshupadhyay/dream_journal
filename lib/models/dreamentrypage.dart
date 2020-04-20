@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'dreamentry.dart';
 import 'emotebuttonbuilder.dart';
 import '../recentdreams.dart';
 
@@ -51,6 +52,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
               Flexible(
                   child:  _submissionbutton(context), flex: 1 //submission button
+
               ),
             ])
     );
@@ -195,6 +197,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
     return RaisedButton(//submission button
         onPressed: () {
           if (widget.submit(widget.submissionKey) == true)  {
+
             ///Submission functions are in adddreampage, editdreampage.
             return Navigator.push(context ,
                 new MaterialPageRoute(
@@ -205,6 +208,8 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
         } ,
         child: Text('submit'));
   }
+
+
 
 }
 

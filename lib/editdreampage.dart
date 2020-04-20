@@ -13,9 +13,9 @@ class _EditDreamPageState extends State<EditDreamPage>{
 
   final _editingKey = new GlobalKey<FormState>();
 
-  final control1 = TextEditingController();
-  final control2 = TextEditingController();
-  final control3 = TextEditingController();
+  final control1 = TextEditingController(text: "Title");
+  final control2 = TextEditingController(text: "Location");
+  final control3 = TextEditingController(text: "People");
 
   var dbmanager = new DBManager();
 

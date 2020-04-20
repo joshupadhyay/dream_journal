@@ -1,3 +1,6 @@
+import 'dart:core';
+import 'dart:core';
+
 import 'package:dreamjournal/models/dreamentrypage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +25,8 @@ class _DreamEntryPageState extends State<DreamEntryPage> {
 
   var dbmanager = new DBManager();
 
+  List<DreamEntry> dreamentries;
+
   //make a class that holds the data of the 3 controllers
   //then use the model observer to pass around instead of the text controllers
 
@@ -43,9 +48,13 @@ class _DreamEntryPageState extends State<DreamEntryPage> {
           dreamLocation: control2.toString(),
           dreamPeople: control3.toString());
 
+
+
      dbmanager.insertDream(dream_submission); //see dbmanager.dart for dream
 
-      testfunc(); //see below, just a work in progress.
+      showdreams(); //see below, just a work in progress.
+
+
 
 
       return true;
@@ -57,11 +66,12 @@ class _DreamEntryPageState extends State<DreamEntryPage> {
 
   //for a given index [i], we'll need to instantiate a dreamentry class and print it out on edit dream
 
-  Future <void> testfunc() async {
-    var dreamlisted = await dbmanager.dreamList();
-
-    print(dreamlisted[19].dreamTitle.toString());
+  Future <void> showdreams() async {
+    List<DreamEntry> dreamlisted = await dbmanager.dreamList();
+    dreamentries = dreamlisted;
   }
+
+
 
   @override
   Widget build(BuildContext context) {

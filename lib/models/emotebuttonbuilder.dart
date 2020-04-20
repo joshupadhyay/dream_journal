@@ -12,12 +12,15 @@ class buttonEmotionBuilder extends StatefulWidget{
 
 class _ButtonEmotionState extends State<buttonEmotionBuilder>{
 
+
+  ButtonList bl;
+
   @override
   void initState() {
     super.initState();
+    bl = new ButtonList();
+    bl.init();
   }
-
-  ButtonList bl;
 
   void switchState(EmoteButton b) {
 
@@ -44,7 +47,7 @@ class _ButtonEmotionState extends State<buttonEmotionBuilder>{
         crossAxisSpacing: 18.0, // this num and num below should be the same for padding
         mainAxisSpacing: 18.0,
       ),
-      itemCount: bl.buttonsList.length,
+      itemCount: bl.getButtonList().length,
       itemBuilder: (context, i) => SizedBox(
         width: 100.0,
         height: 100.0,

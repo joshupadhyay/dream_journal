@@ -23,6 +23,8 @@ class _DreamEntryPageState extends State<DreamEntryPage> {
   final control2 = TextEditingController();
   final control3 = TextEditingController();
 
+  ButtonList bl;   // the class in emotebuttonbuilder (why the name is different confuses me) needed to access the buttonsList
+
   final _adddreamKey = GlobalKey<FormState>();
 
   var dbmanager = new DBManager();
@@ -32,6 +34,12 @@ class _DreamEntryPageState extends State<DreamEntryPage> {
   //make a class that holds the data of the 3 controllers
   //then use the model observer to pass around instead of the text controllers
 
+
+  @override
+  void initState() {
+    super.initState();
+    bl = new ButtonList();
+  }
 
   bool _submit(GlobalKey<FormState> _formKey) {
 
@@ -73,12 +81,10 @@ class _DreamEntryPageState extends State<DreamEntryPage> {
     dreamentries = dreamlisted;
   }
 
-ButtonList bl;   // the class in emotebuttonbuilder (why the name is different confuses me) needed to access the buttonsList
-
   @override
   Widget build(BuildContext context) {
     return DreamEntryForm("New Dream Entry" , _adddreamKey , _submit,
-        control1, control2, control3, bl.buttonsList);
+        control1, control2, control3, bl.getButtonList());
   }
 }
 

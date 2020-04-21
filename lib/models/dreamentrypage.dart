@@ -26,7 +26,7 @@ class DreamEntryForm extends StatefulWidget {
   List<EmoteButton> buttonList;   // I think that you can access the actual list (found in emotebuttonbuilder) by doing emotebuttonbuilder.buttonslist
 
   DreamEntryForm(this.title, this.submissionKey,
-      this.submit, this.control1, this.control2, this.control3, this.buttonList); //required args
+      this.submit, this.control1, this.control2, this.control3); //this.buttonList); //required args
 
   @override
   _DreamEntryFormState createState() => _DreamEntryFormState();
@@ -46,7 +46,11 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
         body: Column(
             children: <Widget>[
               _calendarbutton(context), //date entry button and calendar functionality
-              textFieldsBuilder(context), //controls each of the textfields
+
+              Center(
+                child:
+                textFieldsBuilder(context),
+              ), //controls each of the textfields
 
               Flexible(
                 //TODO add borders, make the scrolling look nicer
@@ -54,7 +58,9 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
               ),
 
               Flexible(
-                  child:  _submissionbutton(context), flex: 1 //submission button
+                  child:  Center(
+                    child:_submissionbutton(context)
+                  ), flex: 1,//submission button
 
               ),
             ])
@@ -98,10 +104,12 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
             child: Column( //container for all our form fields to be aligned vertically
               children: [
 
-                TextFormField(
-                    decoration: baselineInputDecorator("What shall we call your dream?",
-                        "'Josh Singing Kpop'", widget.control1),
-                    controller: widget.control1,
+                Center(
+                    child:
+                    TextFormField(
+                  decoration: baselineInputDecorator("What shall we call your dream?",
+                      "'Josh Singing Kpop'", widget.control1),
+                  controller: widget.control1,
 
 //                    validator: (String value) { //template validator method, this is title specific
 //                      if (value.isEmpty) {
@@ -111,13 +119,15 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 //                      }
 //                      return null;
 //                    }
-                    ),
+                )),
 
 
-                TextFormField(
-                  decoration: baselineInputDecorator("Where were you?",
-                      "'Federico's House'", widget.control2),
-                  controller: widget.control2,
+                Center(
+                  child:
+                  TextFormField(
+                    decoration: baselineInputDecorator("Where were you?",
+                        "'Federico's House'", widget.control2),
+                    controller: widget.control2,
 
 //                  validator: (String value) {
 //                    if (value.isEmpty) {
@@ -129,10 +139,14 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 //                  },
                   ),
 
-                TextFormField(
-                  decoration: baselineInputDecorator("Who was with you?",
-                      "'Kpop star IU'", widget.control3),
-                  controller: widget.control3,
+                ),
+
+                Center(
+                  child:
+                  TextFormField(
+                    decoration: baselineInputDecorator("Who was with you?",
+                        "'Kpop star IU'", widget.control3),
+                    controller: widget.control3,
 //                  validator: (String value) {
 //                    if (value.isEmpty) {
 //                      return 'Please enter a name.';
@@ -143,19 +157,22 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 //                  }
 
                   ),
+                ),
 
                 Container(
                     padding: const EdgeInsets.fromLTRB(0 , 50 , 0 , 20) ,
-                    child: RichText(
-                        text: TextSpan(
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: headingcolor
-                          ),
-                          text: "What emotions did you experience? Press all that apply:",
+                    child: Center(
+                        child:RichText(
+                            text: TextSpan(
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: headingcolor
+                              ),
+                              text: "What emotions did you experience? Press all that apply:",
+                            )
                         )
-                    )
+                    ),
                 ),
               ] ,
             ) ,
@@ -169,7 +186,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
   Widget _calendarbutton(BuildContext context){
     var dateformat = new DateFormat('MMMMd'); //for nice date formatting
 
-    return OutlineButton(color: Colors.tealAccent,
+    return FlatButton(color: Colors.tealAccent,
         shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(30.0)) ,
         child: Text('Date: ${dateformat.format(_datetime)}' ,
@@ -177,7 +194,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
             style: TextStyle(
                 fontWeight: FontWeight.bold ,
                 fontSize: 14 ,
-                color: Colors.lightGreen)) ,
+                color: Colors.black87)) ,
         onPressed: () {
           _popupSelectDate(context);
         });

@@ -116,6 +116,14 @@ class DBManager{
       );
     }
 
+//    Future<void> deleteAll() async{
+//      await openDB();
+//
+//      final db = await _database;
+//
+//      db.rawDelete("Delete * from dreams");
+//    }
+
 }
 
 ///These are the database functions. Note how they're structured!

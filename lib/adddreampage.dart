@@ -84,7 +84,7 @@ class _DreamEntryPageState extends State<DreamEntryPage> {
   @override
   Widget build(BuildContext context) {
     return DreamEntryForm("New Dream Entry" , _adddreamKey , _submit,
-        control1, control2, control3, bl.getButtonList());
+        control1, control2, control3); //,bl.getButtonList());
   }
 }
 

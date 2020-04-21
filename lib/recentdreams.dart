@@ -1,3 +1,4 @@
+import 'package:dreamjournal/homepage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -49,7 +50,8 @@ class _RecentDreamsState extends State<RecentDreams> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Recent Dreams'),
-          actions: <Widget>[//buttons we want to add to the appbar
+          actions: <Widget>[
+            homepage(context)//buttons we want to add to the appbar
           ],
         ),
         body: FutureBuilder(
@@ -65,7 +67,7 @@ class _RecentDreamsState extends State<RecentDreams> {
                   return ListView.builder(
                     itemCount: dream_entry.data.length,
                     itemBuilder: (context, index){
-                      final dream = dream_entry.data[index];
+
                       return Column(
                         children: dream_entry.data.map<Widget>((dreamentry) => dreamTemplate(dreamentry)).toList(),
                       );
@@ -216,7 +218,15 @@ class _RecentDreamsState extends State<RecentDreams> {
 
   Widget newDeleteIcon(dreamentry) {
     return FlatButton.icon(onPressed: () {
-      dbmanager.deleteDream(dreamentry.dreamTitle.toString());
+      dbmanager.deleteDream(dreamentry.id);
+      print(dreamentry.id);
+
+      Navigator.push(context,
+          MaterialPageRoute(
+              builder: (context) => RecentDreams() //index add
+          ));
+
+
     },
         icon: Icon(
           FontAwesomeIcons.trashAlt,
@@ -225,6 +235,23 @@ class _RecentDreamsState extends State<RecentDreams> {
               .of(context)
               .size
               .width * 0.05,),
+        label: Text("")
+    );
+  }
+
+  Widget homepage(BuildContext context) {
+    return FlatButton.icon(onPressed: () {
+      Navigator.push(
+        context,
+        new MaterialPageRoute(builder: (context) => new HomePage()),
+      );
+    }, icon: Icon(
+      FontAwesomeIcons.home,
+      color: Colors.white54,
+      size: MediaQuery
+          .of(context)
+          .size
+          .width * 0.05,),
         label: Text("")
     );
   }

@@ -7,6 +7,7 @@ import 'package:path/path.dart';
 
 
 class DreamEntry {
+  int id;
   String dreamTitle;
   String dreamPeople;
   String dreamLocation;
@@ -14,16 +15,17 @@ class DreamEntry {
   ///add other emotions here
 
 
-  DreamEntry({int isHappy, String dreamTitle, String dreamPeople, String dreamLocation}){
+  DreamEntry({int isHappy, String dreamTitle, String dreamPeople, String dreamLocation, int id}){
     this.dreamPeople = dreamPeople;
     this.dreamTitle = dreamTitle;
     this.dreamLocation = dreamLocation;
     this.isHappy = isHappy;
+    this.id = id;
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'id': null, //null so id will autoincrement, see database.dart file
+      'id': id, //null so id will autoincrement, see database.dart file
       'dreamtitle': dreamTitle,
       'dreamlocation': dreamLocation,
       'dreampeople': dreamPeople,

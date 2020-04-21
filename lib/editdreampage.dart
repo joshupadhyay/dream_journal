@@ -12,13 +12,32 @@ class EditDreamPage extends StatefulWidget {
 
 class _EditDreamPageState extends State<EditDreamPage>{
 
+  DBManager dbmanager = DBManager();
+  List<DreamEntry> dreamentries;
+
+  // List<DreamEntry> dreamentries;
+  Future data;
+
+  @override
+  void initState() {
+    super.initState();
+    data = showdreams();
+  }
+
+  Future <void> showdreams() async {
+    dbmanager = this.dbmanager;
+    List<DreamEntry> dreamlisted = await dbmanager.dreamList();
+    dreamentries=dreamlisted;
+  }
+
+  final control1_dreamTitle = dreamentries[0].dreamTitle.toString();
+
   final _editingKey = new GlobalKey<FormState>();
 
-  final control1 = TextEditingController(text: "Title");
+  final control1 = TextEditingController(text: );
   final control2 = TextEditingController(text: "Location");
   final control3 = TextEditingController(text: "People");
 
-  var dbmanager = new DBManager();
 
 
 

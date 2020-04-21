@@ -72,7 +72,8 @@ class DBManager{
           dreamLocation: maps[i]['dreamlocation'],
           dreamPeople: maps[i]['dreampeople'],
           dreamTitle: maps[i]['dreamtitle'],
-          isHappy: maps[i]['ishappy']
+          isHappy: maps[i]['ishappy'],
+          id: maps[i]['id']
         );
       });
     }
@@ -100,19 +101,19 @@ class DBManager{
 
     ///when delete method is
 
-    Future<void> deleteDream(String selectedtitle) async {
+    Future<void> deleteDream(int id) async {
       await openDB();
 
       // Get a reference to the database.
       final db = await _database;
 
-      // Remove the Dog from the database.
+      // Remove the Dream from the database.
       await db.delete(
         'dreams',
         // Use a `where` clause to delete a specific dog.
-        where: "dreamtitle = ?",
+        where: "id = ?",
         // Pass the Dog's id as a whereArg to prevent SQL injection.
-        whereArgs: [selectedtitle],
+        whereArgs: [id],
       );
     }
 

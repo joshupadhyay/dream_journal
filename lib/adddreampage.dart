@@ -17,7 +17,6 @@ class DreamEntryPage extends StatefulWidget{
   _DreamEntryPageState createState() => _DreamEntryPageState();
 
 }
-
 class _DreamEntryPageState extends State<DreamEntryPage> {
 
   final control1 = TextEditingController();

@@ -1,6 +1,7 @@
 import 'dart:core';
 import 'dart:core';
 
+import 'package:dreamjournal/models/EmoteButton.dart';
 import 'package:dreamjournal/models/dreamentrypage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -26,14 +27,12 @@ class _DreamEntryPageState extends State<DreamEntryPage> {
   ButtonList bl;   // the class in emotebuttonbuilder (why the name is different confuses me) needed to access the buttonsList
 
   final _adddreamKey = GlobalKey<FormState>();
-
   var dbmanager = new DBManager();
 
   List<DreamEntry> dreamentries;
 
   //make a class that holds the data of the 3 controllers
   //then use the model observer to pass around instead of the text controllers
-
 
   @override
   void initState() {
@@ -45,26 +44,30 @@ class _DreamEntryPageState extends State<DreamEntryPage> {
 
     dbmanager.openDB();
 
+    //couldn't find a way to easily cast the boolean to int! :(
+    int booltoint(bool_result) {
+      if (bool_result == true){
+        return 1;
+      } else{
+        return 0;
+      }
+    }
+
     if (_formKey.currentState.validate()) {
       //checks if everything has been filled out properly, see dreamentrypage for validators
 
-      _formKey.currentState.save();
-      //not sure if this .save() is needed, or what it does
-
-
       //creates a new dreamEntry init, saving the data from the textfields into the dream entry instantiation.
-      DreamEntry dream_submission = new DreamEntry(isHappy: 1,
-          dreamTitle: control1.toString(),
-          dreamLocation: control2.toString(),
-          dreamPeople: control3.toString());
+      DreamEntry dream_submission = new DreamEntry(
+          isHappy: 1,
+          dreamTitle: control1.text, //we need
+          dreamLocation: control2.text,
+          dreamPeople: control3.text);
 
-
+          //print(booltoint(bl.getButtonList()[4].enabled));
 
      dbmanager.insertDream(dream_submission); //see dbmanager.dart for dream
 
       showdreams(); //see below, just a work in progress.
-
-
 
 
       return true;

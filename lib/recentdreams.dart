@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'models/dbmanager.dart';
 import 'models/dreamentry.dart';
 import 'editdreampage.dart';
@@ -48,7 +49,8 @@ class _RecentDreamsState extends State<RecentDreams> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Recent Dreams'),
-          centerTitle: true,
+          actions: <Widget>[//buttons we want to add to the appbar
+          ],
         ),
         body: FutureBuilder(
             future: data,
@@ -61,14 +63,34 @@ class _RecentDreamsState extends State<RecentDreams> {
                 case ConnectionState.active:
                 case ConnectionState.done:
                   return ListView.builder(
-                      itemCount: dream_entry.data.length,
-                      itemBuilder: (context, index){
-                        DreamEntry dreamEntry = dream_entry.data[index];
-                        return Column(
-                            children: dream_entry.data.map<Widget>((dreamentry) => dreamTemplate(dreamentry)).toList()
-                        );
+                    itemCount: dream_entry.data.length,
+                    itemBuilder: (context, index){
+                      final dream = dream_entry.data[index];
+                      return Column(
+                        children: dream_entry.data.map<Widget>((dreamentry) => dreamTemplate(dreamentry)).toList(),
+                      );
+//                        return Dismissible(
+//                          key: Key(dream),
+//                          onDismissed: (direction){
+//                            setState(() {
+//                              dbmanager.deleteDream(dream_entry.data[index].dreamTitle.toString());
+//                            });
+//                            Scaffold.of(context)
+//                                .showSnackBar(SnackBar(content: Text("$dream deleted")));
+//
+//                          },
+//                          background: Container(color: Colors.red),
+//                          child:
+// Column(
+//                        children: dream_entry.data.map<Widget>((dreamentry) => dreamTemplate(dreamentry)).toList(),
+//                        );,
+//
+//                        )
+//                        DreamEntry dreamEntry = dream_entry.data[index];
+//                        return
+//
 
-                  },
+                    },
                   );
 
               }
@@ -120,43 +142,91 @@ class _RecentDreamsState extends State<RecentDreams> {
     return
       Center(
           child: Container(
-              width: 390,
-              height: 70,
-              child: Card(
-                  margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(2)
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width * 0.9,
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height * 0.08,
+              child: Row(
+                children: <Widget>[
+                  Flexible(
+                      child:newCards(dreamentry) ,
+                      flex: 5
                   ),
+                  Flexible(
+                    child:newDeleteIcon(dreamentry),
+                    flex: 1,
+                  )
 
-                  child: FlatButton(
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(
-                                builder: (context) => EditDreamPage() //index add
-                            ));
-                      },
-                      child: Column(
-                        children: <Widget>[
-                          Flexible(
-                              child: Text(
-                                  dreamentry.dreamTitle.toString(),
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    color: Colors.blue,
-                                  ))),
-                          Flexible(
-                              child: SizedBox(height: 6))
-                          ,
-                          Flexible(
-                              child: Text(
-                                  dreamentry.dreamPeople.toString(),
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.teal
-                                  )
-                              ))
-                        ],
-                      )))));
+
+                ],
+
+              )
+          )
+      );
+
+  }
+
+  Widget newCards(dreamentry) {
+    return Card(
+        margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(2)
+        ),
+        color: Colors.white70,
+
+        child: FlatButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(
+                      builder: (context) => EditDreamPage() //index add
+                  ));
+            },
+            child:
+            Column(
+                children: <Widget>[
+                  Flexible(
+                      child: Text(
+                          dreamentry.dreamTitle.toString(),
+                          style: TextStyle(
+                            fontSize: 17,
+                            color: Colors.blue,
+                          ))),
+                  Flexible(
+                      child: SizedBox(height: 6))
+                  ,
+                  Flexible(
+                      child: Text(
+                          dreamentry.dreamPeople.toString(),
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.teal
+                          )
+                      )),
+                ]
+            )
+        )
+    );
+
+
+  }
+
+  Widget newDeleteIcon(dreamentry) {
+    return FlatButton.icon(onPressed: () {
+      dbmanager.deleteDream(dreamentry.dreamTitle.toString());
+    },
+        icon: Icon(
+          FontAwesomeIcons.trashAlt,
+          color: Colors.white54,
+          size: MediaQuery
+              .of(context)
+              .size
+              .width * 0.05,),
+        label: Text("")
+    );
   }
 
 

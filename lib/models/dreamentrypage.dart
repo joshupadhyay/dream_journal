@@ -1,3 +1,4 @@
+import 'package:dreamjournal/models/ButtonList.dart';
 import 'package:dreamjournal/models/EmoteButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'dreamentry.dart';
 import 'emotebuttonbuilder.dart';
 import '../recentdreams.dart';
+import 'package:dreamjournal/models/ButtonList.dart';
 
 
 final _adddreamKey = GlobalKey<FormState>(); //for add, edit dreampages
@@ -23,7 +25,8 @@ class DreamEntryForm extends StatefulWidget {
   final TextEditingController control2;
   final TextEditingController control3;
 
-  List<EmoteButton> buttonList;   // I think that you can access the actual list (found in emotebuttonbuilder) by doing emotebuttonbuilder.buttonslist
+  final bl = new ButtonList();
+  // I think that you can access the actual list (found in emotebuttonbuilder) by doing emotebuttonbuilder.buttonslist
 
   DreamEntryForm(this.title, this.submissionKey,
       this.submit, this.control1, this.control2, this.control3); //this.buttonList); //required args

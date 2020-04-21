@@ -28,7 +28,6 @@ class _ButtonEmotionState extends State<buttonEmotionBuilder>{
       if (b.on) {
         b.displayColor = b.emotion.onColor; // bg is the actual displayed color, color1 and color2 are just the on/off colors respectively
 
-        //TODO: how can we use switchState() from here to change boolean values in DreamEntry class?
       }
       else {
         b.displayColor = b.emotion.offColor;

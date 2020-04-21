@@ -30,11 +30,11 @@ class _EditDreamPageState extends State<EditDreamPage>{
     dreamentries=dreamlisted;
   }
 
-  final control1_dreamTitle = dreamentries[0].dreamTitle.toString();
+//  final control1_dreamTitle = dreamentries[0].dreamTitle.toString();
 
   final _editingKey = new GlobalKey<FormState>();
 
-  final control1 = TextEditingController(text: );
+  final control1 = TextEditingController(text: "Title");
   final control2 = TextEditingController(text: "Location");
   final control3 = TextEditingController(text: "People");
 

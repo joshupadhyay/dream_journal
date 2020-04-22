@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'models/dbmanager.dart';
-import 'models/dreamentry.dart';
+import 'models/dreamentryclass.dart';
 import 'editdreampage.dart';
 
 
@@ -39,7 +39,7 @@ class _RecentDreamsState extends State<RecentDreams> {
 
   Future <void> showdreams() async {
     dbmanager = this.dbmanager;
-    List<DreamEntry> dreamlisted = await dbmanager.dreamList();
+    List<DreamEntryClass> dreamlisted = await dbmanager.dreamList();
     return dreamlisted;
   }
 
@@ -182,9 +182,10 @@ class _RecentDreamsState extends State<RecentDreams> {
 
         child: FlatButton(
             onPressed: () {
+
               Navigator.push(context,
                   MaterialPageRoute(
-                      builder: (context) => EditDreamPage() //index add
+                      builder: (context) => EditDreamPage(dreamentry: dreamentry) //index add
                   ));
             },
             child:

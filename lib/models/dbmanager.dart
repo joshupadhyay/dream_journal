@@ -1,4 +1,4 @@
-import 'package:dreamjournal/models/dreamentry.dart';
+import 'package:dreamjournal/models/dreamentryclass.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'package:path/path.dart';
@@ -39,7 +39,7 @@ class DBManager{
       }
     }
 
-    Future<void> insertDream(DreamEntry newdream) async {
+    Future<void> insertDream(DreamEntryClass newdream) async {
 
       await openDB();
 
@@ -56,7 +56,7 @@ class DBManager{
       );
     }
 
-    Future <List<DreamEntry>> dreamList() async {
+    Future <List<DreamEntryClass>> dreamList() async {
       await openDB();
 
       // Get a reference to the database.
@@ -68,7 +68,7 @@ class DBManager{
 
       // Convert the List<Map<String, dynamic> into a List<Dog>.
       return List.generate(maps.length, (i) {
-        return DreamEntry(
+        return DreamEntryClass(
           dreamLocation: maps[i]['dreamlocation'],
           dreamPeople: maps[i]['dreampeople'],
           dreamTitle: maps[i]['dreamtitle'],
@@ -79,7 +79,7 @@ class DBManager{
     }
 
 
-    Future<void> updateDream(DreamEntry dream) async {
+    Future<void> updateDream(DreamEntryClass dream) async {
 
       await openDB();
 
@@ -91,10 +91,10 @@ class DBManager{
         'dreams',
         dream.toMap(),
         // Ensure that the Dog has a matching id.
-        where: "dreamtitle = ?",
+        where: "id = ?",
 
         // Pass the Dog's id as a whereArg to prevent SQL injection.
-        whereArgs: [dream.dreamTitle],
+        whereArgs: [dream.id],
       );
     }
 

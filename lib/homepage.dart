@@ -158,7 +158,7 @@ Widget newDreamEntryButton(BuildContext context) {
   return FlatButton.icon(onPressed: () {
     Navigator.push(
       context,
-      new MaterialPageRoute(builder: (context) => new DreamEntryPage()),
+      new MaterialPageRoute(builder: (context) => new AddDreamPage()),
     );
   }, icon: Icon(
     FontAwesomeIcons.plus,

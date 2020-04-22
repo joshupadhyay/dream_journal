@@ -2,33 +2,40 @@ import 'dart:core';
 import 'dart:core';
 
 import 'package:dreamjournal/models/EmoteButton.dart';
-import 'package:dreamjournal/models/dreamentrypage.dart';
+import 'package:dreamjournal/models/dreamentryform.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'models/ButtonList.dart';
-import 'models/dreamentrypage.dart';
-import 'models/dreamentry.dart';
+import 'models/dreamentryform.dart';
+import 'models/dreamentryclass.dart';
 import 'models/dbmanager.dart';
 import 'models/emotebuttonbuilder.dart';
 
-class DreamEntryPage extends StatefulWidget{
+class AddDreamPage extends StatefulWidget{
 
   @override
-  _DreamEntryPageState createState() => _DreamEntryPageState();
+  _AddDreamPageState createState() => _AddDreamPageState();
+
+  DreamEntryClass dream_init;
+
+  AddDreamPage({this.dream_init}): super();
 
 }
-class _DreamEntryPageState extends State<DreamEntryPage> {
+
+class _AddDreamPageState extends State<AddDreamPage> {
 
   final control1 = TextEditingController();
   final control2 = TextEditingController();
   final control3 = TextEditingController();
 
-  ButtonList bl;   // the class in emotebuttonbuilder (why the name is different confuses me) needed to access the buttonsList
+
+  ButtonList bl= new ButtonList();   // the class in emotebuttonbuilder (why the name is different confuses me) needed to access the buttonsList
+
 
   final _adddreamKey = GlobalKey<FormState>();
   var dbmanager = new DBManager();
 
-  List<DreamEntry> dreamentries;
+  List<DreamEntryClass> dreamentries;
 
   //make a class that holds the data of the 3 controllers
   //then use the model observer to pass around instead of the text controllers
@@ -37,11 +44,11 @@ class _DreamEntryPageState extends State<DreamEntryPage> {
   void initState() {
     super.initState();
     bl = new ButtonList();
+    bl.init();
   }
 
-  bool _submit(GlobalKey<FormState> _formKey) {
 
-    dbmanager.openDB();
+  bool _submit(GlobalKey<FormState> _formKey) {
 
     //couldn't find a way to easily cast the boolean to int! :(
     int booltoint(bool_result) {
@@ -56,18 +63,18 @@ class _DreamEntryPageState extends State<DreamEntryPage> {
       //checks if everything has been filled out properly, see dreamentrypage for validators
 
       //creates a new dreamEntry init, saving the data from the textfields into the dream entry instantiation.
-      DreamEntry dream_submission = new DreamEntry(
-          isHappy: 1,
-          dreamTitle: control1.text, //we need
-          dreamLocation: control2.text,
-          dreamPeople: control3.text);
 
-          //print(booltoint(bl.getButtonList()[4].enabled));
+      widget.dream_init = new DreamEntryClass(
+        dreamPeople: control3.text,
+        dreamTitle: control1.text,
+        dreamLocation: control2.text,
+        isHappy: 1
+          //GET BUTTONLIST 
+      );
 
-     dbmanager.insertDream(dream_submission); //see dbmanager.dart for dream
+      dbmanager.insertDream(widget.dream_init); //see dbmanager.dart for dream
 
       showdreams(); //see below, just a work in progress.
-
 
       return true;
     }
@@ -79,14 +86,16 @@ class _DreamEntryPageState extends State<DreamEntryPage> {
   //for a given index [i], we'll need to instantiate a dreamentry class and print it out on edit dream
 
   Future <void> showdreams() async {
-    List<DreamEntry> dreamlisted = await dbmanager.dreamList();
+    List<DreamEntryClass> dreamlisted = await dbmanager.dreamList();
     dreamentries = dreamlisted;
+
+    print(dreamentries.length);
   }
 
   @override
   Widget build(BuildContext context) {
     return DreamEntryForm("New Dream Entry" , _adddreamKey , _submit,
-        control1, control2, control3); //,bl.getButtonList());
+        control1, control2, control3, widget.dream_init); //,bl.getButtonList());
   }
 }
 

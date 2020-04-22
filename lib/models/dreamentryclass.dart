@@ -6,7 +6,7 @@ import 'package:path/path.dart';
 //emotionbuilder then just gets passed that list
 
 
-class DreamEntry {
+class DreamEntryClass {
   int id;
   String dreamTitle;
   String dreamPeople;
@@ -15,7 +15,7 @@ class DreamEntry {
   ///add other emotions here
 
 
-  DreamEntry({int isHappy, String dreamTitle, String dreamPeople, String dreamLocation, int id}){
+  DreamEntryClass({int isHappy, String dreamTitle, String dreamPeople, String dreamLocation, int id}){
     this.dreamPeople = dreamPeople;
     this.dreamTitle = dreamTitle;
     this.dreamLocation = dreamLocation;

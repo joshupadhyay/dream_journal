@@ -24,17 +24,17 @@ class DBManager{
             await db.execute(
               "CREATE TABLE dreams(id INTEGER PRIMARY KEY, "
                   "dreamtitle TEXT, dreamplace TEXT, dreampeople TEXT,"
-                  "dreamlocation TEXT, ishappy INTEGER)" ,
+                  "dreamlocation TEXT, ishappy INTEGER, isangry INTEGER, iscontemplative INTEGER, "
+                  "issad INTEGER, isexcited INTEGER, iscool INTEGER, isscared INTEGER)" ,
 
               ///if you add a new column, change the version of the database so it actually updates
 
-              //INTEGER PRIMARY KEY will automatically autoincrement, as long as we pass null into id. That's that I've done
             );
 
           } ,
           // Set the version. This executes the onCreate function and provides a
           // path to perform database upgrades and downgrades.
-          version: 2,
+          version: 3,
         );
       }
     }
@@ -73,6 +73,7 @@ class DBManager{
           dreamPeople: maps[i]['dreampeople'],
           dreamTitle: maps[i]['dreamtitle'],
           isHappy: maps[i]['ishappy'],
+          //TODO: need to add the additional emotions here once they are added to DreamEntryClass constructor
           id: maps[i]['id']
         );
       });

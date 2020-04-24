@@ -2,6 +2,7 @@ import 'package:dreamjournal/models/dreamentryclass.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'package:path/path.dart';
+import 'package:async/async.dart';
 
 //TODO: call openDB somewhere ONCE instead of inside each command!
 
@@ -9,114 +10,125 @@ import 'package:path/path.dart';
 //TODO: follow the tutorial again to match id, so instead of matching by dreamtitle, we match by id
 
 class DBManager{
+  static final DBManager _instance = DBManager._internal();
+  DBManager._internal();
 
-  Database _database;
+  static Database _database;
+  final _openDBMemoizer = AsyncMemoizer<Database>();
 
-    Future openDB () async {
+  factory DBManager() {
+    return _instance;
+  }
 
-      if (_database == null) {
-
-        _database = await openDatabase(
-          // Set the path to the database.
-          join(await getDatabasesPath() , 'dreamdatabase.db') ,
-          // When the database is first created, create a table to store
-          onCreate: (Database db , version) async {
-            await db.execute(
-              "CREATE TABLE dreams(id INTEGER PRIMARY KEY, "
-                  "dreamtitle TEXT, dreamplace TEXT, dreampeople TEXT,"
-                  "dreamlocation TEXT, ishappy INTEGER, isangry INTEGER, iscontemplative INTEGER, "
-                  "issad INTEGER, isexcited INTEGER, iscool INTEGER, isscared INTEGER)" ,
-
-              ///if you add a new column, change the version of the database so it actually updates
-
-            );
-
-          } ,
-          // Set the version. This executes the onCreate function and provides a
-          // path to perform database upgrades and downgrades.
-          version: 3,
-        );
-      }
+  Future<Database> get database async {
+    if (_database != null){
+      return _database;
     }
+    _database = await _openDBMemoizer.runOnce(()  async {
+      return await _openDB();
+    });
+    return _database;
+  }
 
-    Future<void> insertDream(DreamEntryClass newdream) async {
+  Future _openDB () async {
 
-      await openDB();
+    if (_database == null) {
 
-      // Get a reference to the database.
-      final Database db = await _database;
+      _database = await openDatabase(
+        // Set the path to the database.
+        join(await getDatabasesPath() , 'dreamdatabase.db') ,
+        // When the database is first created, create a table to store
+        onCreate: (Database db , version) async {
+          await db.execute(
+            "CREATE TABLE dreams(id INTEGER PRIMARY KEY, "
+                "dreamtitle TEXT, dreamplace TEXT, dreampeople TEXT,"
+                "dreamlocation TEXT, ishappy INTEGER, isangry INTEGER, iscontemplative INTEGER, "
+                "issad INTEGER, isexcited INTEGER, iscool INTEGER, isscared INTEGER)" ,
 
-      // Insert the Dog into the correct table. Also specify the
-      // `conflictAlgorithm`. In this case, if the same dog is inserted
-      // multiple times, it replaces the previous data.
-      await db.insert(
-        'dreams',
-        newdream.toMap(),
-        //conflictAlgorithm: ConflictAlgorithm.replace,
+            ///if you add a new column, change the version of the database so it actually updates
+
+          );
+
+        } ,
+        // Set the version. This executes the onCreate function and provides a
+        // path to perform database upgrades and downgrades.
+        version: 3,
       );
     }
+  }
 
-    Future <List<DreamEntryClass>> dreamList() async {
-      await openDB();
+  Future<void> insertDream(DreamEntryClass newdream) async {
 
-      // Get a reference to the database.
+    // Get a reference to the database.
+    final Database db = await database;
 
-      final Database db = await _database;
+    // Insert the Dog into the correct table. Also specify the
+    // `conflictAlgorithm`. In this case, if the same dog is inserted
+    // multiple times, it replaces the previous data.
+    await db.insert(
+      'dreams',
+      newdream.toMap(),
+      //conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
 
-      // Query the table for all The Dogs.
-      final List<Map<String, dynamic>> maps = await db.query('dreams');
+  Future <List<DreamEntryClass>> dreamList() async {
 
-      // Convert the List<Map<String, dynamic> into a List<Dog>.
-      return List.generate(maps.length, (i) {
-        return DreamEntryClass(
-          dreamLocation: maps[i]['dreamlocation'],
-          dreamPeople: maps[i]['dreampeople'],
-          dreamTitle: maps[i]['dreamtitle'],
-          isHappy: maps[i]['ishappy'],
-          //TODO: need to add the additional emotions here once they are added to DreamEntryClass constructor
-          id: maps[i]['id']
-        );
-      });
-    }
+    // Get a reference to the database.
 
+    final Database db = await database;
 
-    Future<void> updateDream(DreamEntryClass dream) async {
+    // Query the table for all The Dogs.
+    final List<Map<String, dynamic>> maps = await db.query('dreams');
 
-      await openDB();
-
-      // Get a reference to the database.
-      final db = await _database;
-
-      // Update the given Dog.
-      await db.update(
-        'dreams',
-        dream.toMap(),
-        // Ensure that the Dog has a matching id.
-        where: "id = ?",
-
-        // Pass the Dog's id as a whereArg to prevent SQL injection.
-        whereArgs: [dream.id],
+    // Convert the List<Map<String, dynamic> into a List<Dog>.
+    return List.generate(maps.length, (i) {
+      return DreamEntryClass(
+        dreamLocation: maps[i]['dreamlocation'],
+        dreamPeople: maps[i]['dreampeople'],
+        dreamTitle: maps[i]['dreamtitle'],
+        isHappy: maps[i]['ishappy'],
+        //TODO: need to add the additional emotions here once they are added to DreamEntryClass constructor
+        id: maps[i]['id']
       );
-    }
+    });
+  }
 
 
-    ///when delete method is
+  Future<void> updateDream(DreamEntryClass dream) async {
 
-    Future<void> deleteDream(int id) async {
-      await openDB();
+    // Get a reference to the database.
+    final db = await database;
 
-      // Get a reference to the database.
-      final db = await _database;
+    // Update the given Dog.
+    await db.update(
+      'dreams',
+      dream.toMap(),
+      // Ensure that the Dog has a matching id.
+      where: "id = ?",
 
-      // Remove the Dream from the database.
-      await db.delete(
-        'dreams',
-        // Use a `where` clause to delete a specific dog.
-        where: "id = ?",
-        // Pass the Dog's id as a whereArg to prevent SQL injection.
-        whereArgs: [id],
-      );
-    }
+      // Pass the Dog's id as a whereArg to prevent SQL injection.
+      whereArgs: [dream.id],
+    );
+  }
+
+
+  ///when delete method is
+
+  Future<void> deleteDream(int id) async {
+
+    // Get a reference to the database.
+    final db = await database;
+
+    // Remove the Dream from the database.
+    await db.delete(
+      'dreams',
+      // Use a `where` clause to delete a specific dog.
+      where: "id = ?",
+      // Pass the Dog's id as a whereArg to prevent SQL injection.
+      whereArgs: [id],
+    );
+  }
 
 //    Future<void> deleteAll() async{
 //      await openDB();

@@ -40,7 +40,6 @@ class _EditDreamPageState extends State<EditDreamPage>{
 
 
   bool _submit(GlobalKey<FormState> _formKey) {
-    dbmanager.openDB();
 
     if (_formKey.currentState.validate()) {
       //checks if everything has been filled out properly

@@ -30,11 +30,11 @@ class DBManager{
     return _database;
   }
 
-  Future _openDB () async {
+  Future<Database> _openDB () async {
 
     if (_database == null) {
 
-      _database = await openDatabase(
+      return await openDatabase(
         // Set the path to the database.
         join(await getDatabasesPath() , 'dreamdatabase.db') ,
         // When the database is first created, create a table to store

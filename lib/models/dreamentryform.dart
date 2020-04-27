@@ -18,15 +18,20 @@ class DreamEntryForm extends StatefulWidget {
   final Function submit;
   final DreamEntryClass dreamentry;
 
-  final TextEditingController control1;
-  final TextEditingController control2;
-  final TextEditingController control3;
+  TextEditingController controlTitle;
+  TextEditingController controlLocation;
+  TextEditingController controlPeople;
 
   final bl = new ButtonList();
-  // I think that you can access the actual list (found in emotebuttonbuilder) by doing emotebuttonbuilder.buttonslist
+
 
   DreamEntryForm(this.title, this.submissionKey,
-      this.submit, this.control1, this.control2, this.control3, this.dreamentry); //this.buttonList); //required args
+      this.submit, this.dreamentry) { //this.buttonList); //required args
+        controlTitle = TextEditingController(text: dreamentry.dreamTitle);
+        controlLocation = TextEditingController(text: dreamentry.dreamLocation);
+        controlPeople = TextEditingController(text: dreamentry.dreamPeople);
+
+      }
 
   @override
   _DreamEntryFormState createState() => _DreamEntryFormState();
@@ -108,8 +113,8 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
                     child:
                     TextFormField(
                   decoration: baselineInputDecorator("What shall we call your dream?",
-                      "'Josh Singing Kpop'", widget.control1),
-                  controller: widget.control1,
+                      "'Josh Singing Kpop'", widget.controlTitle),
+                  controller: widget.controlTitle,
 
 //                    validator: (String value) { //template validator method, this is title specific
 //                      if (value.isEmpty) {
@@ -126,8 +131,8 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
                   child:
                   TextFormField(
                     decoration: baselineInputDecorator("Where were you?",
-                        "'Federico's House'", widget.control2),
-                    controller: widget.control2,
+                        "'Federico's House'", widget.controlLocation),
+                    controller: widget.controlLocation,
 
 //                  validator: (String value) {
 //                    if (value.isEmpty) {
@@ -145,8 +150,8 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
                   child:
                   TextFormField(
                     decoration: baselineInputDecorator("Who was with you?",
-                        "'Kpop star IU'", widget.control3),
-                    controller: widget.control3,
+                        "'Kpop star IU'", widget.controlPeople),
+                    controller: widget.controlPeople,
 //                  validator: (String value) {
 //                    if (value.isEmpty) {
 //                      return 'Please enter a name.';
@@ -216,6 +221,10 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
     return RaisedButton(//submission button
         onPressed: () {
+          widget.dreamentry.dreamPeople = widget.controlPeople.text;
+          widget.dreamentry. dreamTitle = widget.controlTitle.text;
+          widget.dreamentry.dreamLocation = widget.controlLocation.text;
+          widget.dreamentry.isHappy = 1;
           if (widget.submit(widget.submissionKey) == true)  {
 
             ///Submission functions are in adddreampage, editdreampage.

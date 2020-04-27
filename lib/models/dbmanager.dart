@@ -31,30 +31,26 @@ class DBManager{
   }
 
   Future<Database> _openDB () async {
+    return await openDatabase(
+      // Set the path to the database.
+      join(await getDatabasesPath() , 'dreamdatabase.db') ,
+      // When the database is first created, create a table to store
+      onCreate: (Database db , version) async {
+        await db.execute(
+          "CREATE TABLE dreams(id INTEGER PRIMARY KEY, "
+              "dreamtitle TEXT, dreamplace TEXT, dreampeople TEXT,"
+              "dreamlocation TEXT, ishappy INTEGER, isangry INTEGER, iscontemplative INTEGER, "
+              "issad INTEGER, isexcited INTEGER, iscool INTEGER, isscared INTEGER)" ,
 
-    if (_database == null) {
+          ///if you add a new column, change the version of the database so it actually updates
 
-      return await openDatabase(
-        // Set the path to the database.
-        join(await getDatabasesPath() , 'dreamdatabase.db') ,
-        // When the database is first created, create a table to store
-        onCreate: (Database db , version) async {
-          await db.execute(
-            "CREATE TABLE dreams(id INTEGER PRIMARY KEY, "
-                "dreamtitle TEXT, dreamplace TEXT, dreampeople TEXT,"
-                "dreamlocation TEXT, ishappy INTEGER, isangry INTEGER, iscontemplative INTEGER, "
-                "issad INTEGER, isexcited INTEGER, iscool INTEGER, isscared INTEGER)" ,
+        );
 
-            ///if you add a new column, change the version of the database so it actually updates
-
-          );
-
-        } ,
-        // Set the version. This executes the onCreate function and provides a
-        // path to perform database upgrades and downgrades.
-        version: 3,
-      );
-    }
+      } ,
+      // Set the version. This executes the onCreate function and provides a
+      // path to perform database upgrades and downgrades.
+      version: 3,
+    );
   }
 
   Future<void> insertDream(DreamEntryClass newdream) async {

@@ -16,7 +16,7 @@ class AddDreamPage extends StatefulWidget{
   @override
   _AddDreamPageState createState() => _AddDreamPageState();
 
-  DreamEntryClass dream_init = new DreamEntryClass(dreamTitle: "", dreamPeople: "", dreamLocation: "");
+  DreamEntryClass dream_init;
 
   AddDreamPage({this.dream_init}): super();
 
@@ -27,9 +27,6 @@ class _AddDreamPageState extends State<AddDreamPage> {
   // final control1 = TextEditingController();
   // final control2 = TextEditingController();
   // final control3 = TextEditingController();
-
-
-  ButtonList bl = ButtonList();   // the class in emotebuttonbuilder (why the name is different confuses me) needed to access the buttonsList
 
 
   final _adddreamKey = GlobalKey<FormState>();
@@ -43,8 +40,8 @@ class _AddDreamPageState extends State<AddDreamPage> {
   @override
   void initState() {
     super.initState();
-    bl = new ButtonList();
-    bl.init();
+    ButtonList bl = new ButtonList();
+    widget.dream_init = DreamEntryClass(dreamTitle: "", dreamPeople: "", dreamLocation: "", bl: bl);
   }
 
 
@@ -78,7 +75,7 @@ class _AddDreamPageState extends State<AddDreamPage> {
   @override
   Widget build(BuildContext context) {
     return DreamEntryForm("New Dream Entry" , _adddreamKey , _submit,
-        widget.dream_init, bl);
+        widget.dream_init);
   }
 }
 

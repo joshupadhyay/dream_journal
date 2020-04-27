@@ -55,9 +55,7 @@ class _EditDreamPageState extends State<EditDreamPage>{
 
   @override
   Widget build(BuildContext context) {
-    return DreamEntryForm("Edit Dream", _editingKey,_submit,
-        widget.dreamentry, widget.dreamentry.bl);
-
+    return DreamEntryForm("Edit Dream", _editingKey,_submit, widget.dreamentry);
   }
 
 }

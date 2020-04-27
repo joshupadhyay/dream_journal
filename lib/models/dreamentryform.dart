@@ -27,11 +27,11 @@ class DreamEntryForm extends StatefulWidget {
 
 
   DreamEntryForm(this.title, this.submissionKey,
-      this.submit, this.dreamentry, this.bl) { //this.buttonList); //required args
+      this.submit, this.dreamentry) { //this.buttonList); //required args
         controlTitle = TextEditingController(text: dreamentry.dreamTitle);
         controlLocation = TextEditingController(text: dreamentry.dreamLocation);
         controlPeople = TextEditingController(text: dreamentry.dreamPeople);
-
+        bl = dreamentry.bl;
       }
 
   @override

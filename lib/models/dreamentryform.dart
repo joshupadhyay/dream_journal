@@ -22,11 +22,12 @@ class DreamEntryForm extends StatefulWidget {
   TextEditingController controlLocation;
   TextEditingController controlPeople;
 
-  final bl = new ButtonList();
+
+  ButtonList bl;
 
 
   DreamEntryForm(this.title, this.submissionKey,
-      this.submit, this.dreamentry) { //this.buttonList); //required args
+      this.submit, this.dreamentry, this.bl) { //this.buttonList); //required args
         controlTitle = TextEditingController(text: dreamentry.dreamTitle);
         controlLocation = TextEditingController(text: dreamentry.dreamLocation);
         controlPeople = TextEditingController(text: dreamentry.dreamPeople);
@@ -217,6 +218,14 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
     }
   }
 
+  int booltoint(bool_result) {
+    if (bool_result == true){
+      return 1;
+    } else{
+      return 0;
+    }
+  }
+
   Widget _submissionbutton(BuildContext context){
 
     return RaisedButton(//submission button
@@ -224,7 +233,14 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
           widget.dreamentry.dreamPeople = widget.controlPeople.text;
           widget.dreamentry. dreamTitle = widget.controlTitle.text;
           widget.dreamentry.dreamLocation = widget.controlLocation.text;
-          widget.dreamentry.isHappy = 1;
+          widget.dreamentry.isAngry = booltoint(widget.bl.buttonsList[0].on);
+          widget.dreamentry.isEmbarassed = booltoint(widget.bl.buttonsList[1].on);
+          widget.dreamentry.isContemplative = booltoint(widget.bl.buttonsList[2].on);
+          widget.dreamentry.isExcited = booltoint(widget.bl.buttonsList[3].on);
+          widget.dreamentry.isHappy = booltoint(widget.bl.buttonsList[4].on);
+          widget.dreamentry.isCool = booltoint(widget.bl.buttonsList[5].on);
+          widget.dreamentry.isSad = booltoint(widget.bl.buttonsList[6].on);
+          widget.dreamentry.isScared = booltoint(widget.bl.buttonsList[7].on);
           if (widget.submit(widget.submissionKey) == true)  {
 
             ///Submission functions are in adddreampage, editdreampage.

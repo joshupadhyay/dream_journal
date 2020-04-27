@@ -18,7 +18,7 @@ class _ButtonEmotionState extends State<buttonEmotionBuilder>{
   void initState() {
     super.initState();
     bl = new ButtonList();  //initializing ButtonList class
-    bl.init();  // using a method in ButtonList class to initialize the other classes
+    //bl.init();  // using a method in ButtonList class to initialize the other classes
   }
 
   void switchState(EmoteButton b) {

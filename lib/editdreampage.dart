@@ -56,11 +56,8 @@ class _EditDreamPageState extends State<EditDreamPage>{
   @override
   Widget build(BuildContext context) {
     return DreamEntryForm("Edit Dream", _editingKey,_submit,
-        // TextEditingController(text: widget.dreamentry.dreamTitle), //control 1
-        // TextEditingController(text: widget.dreamentry.dreamLocation), //control 2
-        // TextEditingController(text: widget.dreamentry.dreamPeople), //control 3
-        widget.dreamentry); //bl.buttonsList);
+        widget.dreamentry, widget.dreamentry.bl);
+
   }
 
-  //get rid of controls, just pass in dreamentry
 }

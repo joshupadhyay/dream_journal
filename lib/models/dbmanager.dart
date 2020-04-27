@@ -83,8 +83,14 @@ class DBManager{
         dreamLocation: maps[i]['dreamlocation'],
         dreamPeople: maps[i]['dreampeople'],
         dreamTitle: maps[i]['dreamtitle'],
-        isHappy: maps[i]['ishappy'],
-        //TODO: need to add the additional emotions here once they are added to DreamEntryClass constructor
+        isAngry: maps[i]['isAngry'],
+        isEmbarassed: maps[i]['isEmbarassed'],
+        isContemplative: maps[i]['isContemplative'],
+        isExcited: maps[i]['isExcited'],
+        isHappy: maps[i]['isHappy'],
+        isCool: maps[i]['isCool'],
+        isSad: maps[i]['isSad'],
+        isScared: maps[i]['isScared'],
         id: maps[i]['id']
       );
     });

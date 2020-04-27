@@ -9,7 +9,9 @@ class ButtonList{
   var emotionsList;
   var buttonsList;
 
-  ButtonList({this.emotionsList, this.buttonsList});
+  ButtonList({this.emotionsList, this.buttonsList}){
+    init();
+  }
 
   List<Emotion> getEmotionsList(){
     return emotionsList;

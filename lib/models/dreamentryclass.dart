@@ -11,23 +11,33 @@ class DreamEntryClass {
   String dreamTitle;
   String dreamPeople;
   String dreamLocation;
+
+  ButtonList bl = new ButtonList();
+
   int isAngry;
   int isEmbarassed;
-  int isHappy;
   int isContemplative;
-  int isSad;
   int isExcited;
+  int isHappy;
   int isCool;
+  int isSad;
   int isScared;
 
 
-
-
-  DreamEntryClass({int isHappy, String dreamTitle, String dreamPeople, String dreamLocation, int id}){
+  DreamEntryClass({String dreamTitle, String dreamPeople, String dreamLocation, ButtonList bl, int isAngry, int isEmbarassed,
+  int isContemplative, int isExcited, int isHappy, int isCool, int isSad, int isScared, int id}){
     this.dreamPeople = dreamPeople;
     this.dreamTitle = dreamTitle;
     this.dreamLocation = dreamLocation;
-    this.isHappy = isHappy;
+    this.bl = bl;
+    this.isAngry = booltoint(bl.buttonsList[0].on);
+    this.isEmbarassed = booltoint(bl.buttonsList[1].on);
+    this.isContemplative = booltoint(bl.buttonsList[2].on);
+    this.isExcited = booltoint(bl.buttonsList[3].on);
+    this.isHappy = booltoint(bl.buttonsList[4].on);
+    this.isCool = booltoint(bl.buttonsList[5].on);
+    this.isSad = booltoint(bl.buttonsList[6].on);
+    this.isScared = booltoint(bl.buttonsList[7].on);
     this.id = id;
   }
 
@@ -39,12 +49,25 @@ class DreamEntryClass {
       'dreamtitle': dreamTitle,
       'dreamlocation': dreamLocation,
       'dreampeople': dreamPeople,
-      'ishappy': isHappy
+      'isAngry': isAngry,
+      'isEmbarassed': isEmbarassed,
+      'isContemplative': isContemplative,
+      'isExcited': isExcited,
+      'ishappy': isHappy,
+      'isCool': isCool,
+      'isSad': isSad,
+      'isScared': isScared
       ///add other emotions here
 
     };
   }
-
+  int booltoint(bool_result) {
+    if (bool_result == true){
+      return 1;
+    } else{
+      return 0;
+    }
+  }
 
 }
 

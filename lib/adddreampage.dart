@@ -29,7 +29,7 @@ class _AddDreamPageState extends State<AddDreamPage> {
   // final control3 = TextEditingController();
 
 
-  ButtonList bl= new ButtonList();   // the class in emotebuttonbuilder (why the name is different confuses me) needed to access the buttonsList
+  ButtonList bl = ButtonList();   // the class in emotebuttonbuilder (why the name is different confuses me) needed to access the buttonsList
 
 
   final _adddreamKey = GlobalKey<FormState>();
@@ -50,27 +50,10 @@ class _AddDreamPageState extends State<AddDreamPage> {
 
   bool _submit(GlobalKey<FormState> _formKey) {
 
-    //couldn't find a way to easily cast the boolean to int! :(
-    int booltoint(bool_result) {
-      if (bool_result == true){
-        return 1;
-      } else{
-        return 0;
-      }
-    }
-
     if (_formKey.currentState.validate()) {
       //checks if everything has been filled out properly, see dreamentrypage for validators
 
       //creates a new dreamEntry init, saving the data from the textfields into the dream entry instantiation.
-
-      // widget.dream_init = new DreamEntryClass(
-      //   dreamPeople: control3.text,
-      //   dreamTitle: control1.text,
-      //   dreamLocation: control2.text,
-      //   isHappy: 1
-      //     //GET BUTTONLIST 
-      // );
 
       dbmanager.insertDream(widget.dream_init); //see dbmanager.dart for dream
 
@@ -95,7 +78,7 @@ class _AddDreamPageState extends State<AddDreamPage> {
   @override
   Widget build(BuildContext context) {
     return DreamEntryForm("New Dream Entry" , _adddreamKey , _submit,
-        widget.dream_init); //,bl.getButtonList());
+        widget.dream_init, bl);
   }
 }
 

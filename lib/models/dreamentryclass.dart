@@ -53,7 +53,7 @@ class DreamEntryClass {
       'isEmbarassed': isEmbarassed,
       'isContemplative': isContemplative,
       'isExcited': isExcited,
-      'ishappy': isHappy,
+      'isHappy': isHappy,
       'isCool': isCool,
       'isSad': isSad,
       'isScared': isScared

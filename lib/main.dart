@@ -2,7 +2,7 @@ import 'package:dreamjournal/adddreampage.dart';
 import 'package:dreamjournal/homepage.dart';
 import 'package:dreamjournal/recentdreams.dart';
 import 'package:flutter/material.dart';
-//import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 void main() => runApp(MyApp());
 

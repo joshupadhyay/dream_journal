@@ -1,5 +1,4 @@
 import 'dart:core';
-import 'dart:core';
 
 import 'package:dreamjournal/models/EmoteButton.dart';
 import 'package:dreamjournal/models/dreamentryform.dart';
@@ -53,8 +52,6 @@ class _AddDreamPageState extends State<AddDreamPage> {
       //creates a new dreamEntry init, saving the data from the textfields into the dream entry instantiation.
 
       dbmanager.insertDream(widget.dream_init); //see dbmanager.dart for dream
-
-      showdreams(); //see below, just a work in progress.
 
       return true;
     }

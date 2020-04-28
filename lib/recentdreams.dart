@@ -57,6 +57,9 @@ class _RecentDreamsState extends State<RecentDreams> {
         body: FutureBuilder(
             future: data,
             builder: (_, dream_entry) {
+              if(dream_entry == null){
+                return CircularProgressIndicator();
+              }
               switch (dream_entry.connectionState) {
                 case ConnectionState.none:
                   return Container();

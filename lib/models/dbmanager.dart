@@ -4,9 +4,6 @@ import 'dart:async';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
 
-//TODO: call openDB somewhere ONCE instead of inside each command!
-
-
 //TODO: follow the tutorial again to match id, so instead of matching by dreamtitle, we match by id
 
 class DBManager{
@@ -39,10 +36,9 @@ class DBManager{
         await db.execute(
           "CREATE TABLE dreams(id INTEGER PRIMARY KEY, "
               "dreamtitle TEXT, dreamplace TEXT, dreampeople TEXT,"
-              "dreamlocation TEXT, ishappy INTEGER, isangry INTEGER, iscontemplative INTEGER, "
-              "issad INTEGER, isexcited INTEGER, iscool INTEGER, isscared INTEGER)" ,
+              "dreamlocation TEXT, isHappy INTEGER, isAngry INTEGER, isContemplative INTEGER, "
+              "isSad INTEGER, isExcited INTEGER, isCool INTEGER, isScared INTEGER)" ,
 
-          ///if you add a new column, change the version of the database so it actually updates
 
         );
 

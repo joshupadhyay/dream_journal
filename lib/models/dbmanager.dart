@@ -36,8 +36,8 @@ class DBManager{
         await db.execute(
           "CREATE TABLE dreams(id INTEGER PRIMARY KEY, "
               "dreamtitle TEXT, dreamplace TEXT, dreampeople TEXT,"
-              "dreamlocation TEXT, isHappy INTEGER, isAngry INTEGER, isContemplative INTEGER, "
-              "isSad INTEGER, isExcited INTEGER, isCool INTEGER, isScared INTEGER)" ,
+              "dreamlocation TEXT, isAngry INTEGER, isEmbarassed INTEGER, isContemplative INTEGER, "
+              "isExcited INTEGER, isHappy INTEGER, isCool INTEGER, isSad INTEGER, isScared INTEGER)" ,
 
 
         );

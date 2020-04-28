@@ -12,7 +12,7 @@ class DreamEntryClass {
   String dreamPeople;
   String dreamLocation;
 
-  ButtonList bl = new ButtonList();
+  ButtonList bl;
 
   int isAngry;
   int isEmbarassed;

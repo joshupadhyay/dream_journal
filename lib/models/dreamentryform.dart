@@ -60,7 +60,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
               Flexible(
                 //TODO add borders, make the scrolling look nicer
-                child: buttonEmotionBuilder(), flex: 5 //controls emoji clicking
+                child: buttonEmotionBuilder(widget.bl), flex: 5 //controls emoji clicking
               ),
 
               Flexible(

@@ -12,12 +12,12 @@ import 'models/emotebuttonbuilder.dart';
 
 class AddDreamPage extends StatefulWidget{
 
-  @override
-  _AddDreamPageState createState() => _AddDreamPageState();
-
   DreamEntryClass dream_init;
 
   AddDreamPage({this.dream_init}): super();
+
+  @override
+  _AddDreamPageState createState() => _AddDreamPageState();
 
 }
 

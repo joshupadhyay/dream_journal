@@ -1,11 +1,12 @@
-
-import 'package:dreamjournal/ui//ButtonList.dart';
-import 'package:dreamjournal/ui/EmoteButton.dart';
+import 'package:dreamjournal/models/ButtonList.dart';
+import 'package:dreamjournal/models/EmoteButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dreamentryclass.dart';
+import 'emotebuttonbuilder.dart';
 import '../recentdreams.dart';
+import 'package:dreamjournal/models/ButtonList.dart';
 
 /*
 DreamEntryForm is the class for creating add and edit dream entry pages (adddreampage, editdreampage)
@@ -15,18 +16,19 @@ class DreamEntryForm extends StatefulWidget {
   final String title;
   final GlobalKey submissionKey;
   final Function submit;
-  DreamEntryClass dreamentry;
-
+  final DreamEntryClass dreamentry;
   TextEditingController controlTitle;
   TextEditingController controlLocation;
   TextEditingController controlPeople;
+  DateTime date_set;
 
 
   ButtonList bl;
 
 
   DreamEntryForm(this.title, this.submissionKey,
-      this.submit, this.dreamentry) { //this.buttonList); //required args
+      this.submit, this.dreamentry)
+  { //this.buttonList); //required args
         controlTitle = TextEditingController(text: dreamentry.dreamTitle);
         controlLocation = TextEditingController(text: dreamentry.dreamLocation);
         controlPeople = TextEditingController(text: dreamentry.dreamPeople);
@@ -76,7 +78,6 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
   //controllers to grab textfield entry from textfields
 
   Widget textFieldsBuilder (BuildContext context) {
-
 
     final headingcolor = Colors.greenAccent; //used in TextStyle() and InputDecoration() to set question colors
 
@@ -186,7 +187,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
   }
 
 
-  DateTime _datetime = DateTime.now(); //to display today's date by default
+  DateTime _displayTime = DateTime.now(); //to display today's date by default
 
   Widget _calendarbutton(BuildContext context){
     var dateformat = new DateFormat('MMMMd'); //for nice date formatting
@@ -194,7 +195,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
     return FlatButton(color: Colors.tealAccent,
         shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(30.0)) ,
-        child: Text('Date: ${dateformat.format(_datetime)}' ,
+        child: Text('Date: ${dateformat.format(_displayTime)}' ,
             //formatting for how the calendar font shows up in the page
             style: TextStyle(
                 fontWeight: FontWeight.bold ,
@@ -205,16 +206,26 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
         });
   }
 
-  Future<Null> _popupSelectDate(BuildContext context) async{
-    final DateTime date_picked = await showDatePicker(context: context,
-        initialDate: _datetime, //
+  Future<void> _popupSelectDate(BuildContext context) async{
+
+    ///I wrote this if statement, so assuming we're calling in a dream with a date set already, the previous date should show,
+    ///not the current time when someone opens that dream
+
+    if (widget.date_set != null){
+      _displayTime = widget.date_set;
+    }
+
+    DateTime date_picked = await showDatePicker(context: context,
+        initialDate: _displayTime,
         firstDate: DateTime(2020,2),
         lastDate: DateTime(2025));
     if (date_picked != null){
           setState(() {
-            _datetime = date_picked;
+            _displayTime = date_picked;
           });
     }
+
+    widget.date_set = _displayTime; //updating date
   }
 
   int booltoint(bool_result) {
@@ -240,6 +251,8 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
           widget.dreamentry.isCool = booltoint(widget.bl.buttonsList[5].on);
           widget.dreamentry.isSad = booltoint(widget.bl.buttonsList[6].on);
           widget.dreamentry.isScared = booltoint(widget.bl.buttonsList[7].on);
+          widget.dreamentry.date = widget.date_set; //date is stored in dreamentry class as a DateTime Object
+
           if (widget.submit(widget.submissionKey) == true)  {
 
             ///Submission functions are in adddreampage, editdreampage.

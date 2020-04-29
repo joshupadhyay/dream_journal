@@ -4,7 +4,6 @@ import 'dart:async';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
 
-//TODO: follow the tutorial again to match id, so instead of matching by dreamtitle, we match by id
 
 class DBManager{
   static final DBManager _instance = DBManager._internal();
@@ -36,16 +35,15 @@ class DBManager{
         await db.execute(
           "CREATE TABLE dreams(id INTEGER PRIMARY KEY, "
               "dreamtitle TEXT, dreamplace TEXT, dreampeople TEXT,"
-              "dreamlocation TEXT, isAngry INTEGER, isEmbarassed INTEGER, isContemplative INTEGER, "
-              "isExcited INTEGER, isHappy INTEGER, isCool INTEGER, isSad INTEGER, isScared INTEGER)" ,
-
+              "dreamlocation TEXT, isHappy INTEGER, isAngry INTEGER, isContemplative INTEGER, "
+              "isSad INTEGER, isExcited INTEGER, isCool INTEGER, isScared INTEGER, date INTEGER)" ,
 
         );
 
       } ,
       // Set the version. This executes the onCreate function and provides a
       // path to perform database upgrades and downgrades.
-      version: 3,
+      version: 4,
     );
   }
 
@@ -67,13 +65,14 @@ class DBManager{
   Future <List<DreamEntryClass>> dreamList() async {
 
     // Get a reference to the database.
-
     final Database db = await database;
 
-    // Query the table for all The Dogs.
+    // Query the table for all dreams
     final List<Map<String, dynamic>> maps = await db.query('dreams');
 
-    // Convert the List<Map<String, dynamic> into a List<Dog>.
+
+    //generate list (DONT STORE THE BUTTONLIST)
+
     return List.generate(maps.length, (i) {
       return DreamEntryClass(
         dreamLocation: maps[i]['dreamlocation'],
@@ -87,7 +86,9 @@ class DBManager{
         isCool: maps[i]['isCool'],
         isSad: maps[i]['isSad'],
         isScared: maps[i]['isScared'],
-        id: maps[i]['id']
+        id: maps[i]['id'],
+        date: DateTime.fromMicrosecondsSinceEpoch(maps[i]['date']) //converts stored format back into DateTime
+
       );
     });
   }
@@ -121,20 +122,13 @@ class DBManager{
     // Remove the Dream from the database.
     await db.delete(
       'dreams',
-      // Use a `where` clause to delete a specific dog.
+      // Use a `where` clause to delete a specific dream.
       where: "id = ?",
-      // Pass the Dog's id as a whereArg to prevent SQL injection.
+      // Pass the dream's id as a whereArg to prevent SQL injection.
       whereArgs: [id],
     );
   }
 
-//    Future<void> deleteAll() async{
-//      await openDB();
-//
-//      final db = await _database;
-//
-//      db.rawDelete("Delete * from dreams");
-//    }
 
 }
 

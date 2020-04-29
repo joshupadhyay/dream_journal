@@ -1,14 +1,11 @@
-import 'dart:core';
 
-import 'package:dreamjournal/models/EmoteButton.dart';
+import 'dart:core';
 import 'package:dreamjournal/models/dreamentryform.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:dreamjournal/ui//ButtonList.dart';
-import 'models/dreamentryform.dart';
+import 'package:dreamjournal/ui/ButtonList.dart';
 import 'models/dreamentryclass.dart';
 import 'models/dbmanager.dart';
-import 'models/emotebuttonbuilder.dart';
 
 class AddDreamPage extends StatefulWidget{
 

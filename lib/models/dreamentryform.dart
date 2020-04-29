@@ -1,12 +1,10 @@
-import 'package:dreamjournal/models/ButtonList.dart';
-import 'package:dreamjournal/models/EmoteButton.dart';
+import 'package:dreamjournal/ui/ButtonList.dart';
+import 'package:dreamjournal/ui/EmoteButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dreamentryclass.dart';
-import 'emotebuttonbuilder.dart';
 import '../recentdreams.dart';
-import 'package:dreamjournal/models/ButtonList.dart';
 
 /*
 DreamEntryForm is the class for creating add and edit dream entry pages (adddreampage, editdreampage)

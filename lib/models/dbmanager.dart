@@ -78,6 +78,7 @@ class DBManager{
         dreamLocation: maps[i]['dreamlocation'],
         dreamPeople: maps[i]['dreampeople'],
         dreamTitle: maps[i]['dreamtitle'],
+        date: DateTime.fromMicrosecondsSinceEpoch(maps[i]['date']), //converts stored format back into DateTime
         isAngry: maps[i]['isAngry'],
         isEmbarassed: maps[i]['isEmbarassed'],
         isContemplative: maps[i]['isContemplative'],
@@ -87,7 +88,6 @@ class DBManager{
         isSad: maps[i]['isSad'],
         isScared: maps[i]['isScared'],
         id: maps[i]['id'],
-        date: DateTime.fromMicrosecondsSinceEpoch(maps[i]['date']) //converts stored format back into DateTime
 
       );
     });

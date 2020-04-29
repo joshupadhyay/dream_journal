@@ -1,6 +1,6 @@
-import 'package:dreamjournal/models/Emotion.dart';
+import 'package:dreamjournal/ui/Emotion.dart';
+import 'package:dreamjournal/ui/ButtonList.dart';
 
-import 'package:dreamjournal/ui//ButtonList.dart';
 //make an emotion class - icon, name of emotion
 //dreamentry has a list of emotions, so you only have to add a new emotion once (to the list)
 //emotionbuilder then just gets passed that list
@@ -23,7 +23,7 @@ class DreamEntryClass {
   int isScared;
 
 
-  DreamEntryClass({this.dreamTitle, this.dreamPeople, this.dreamLocation, this.bl, this.isAngry, this.isEmbarassed,
+  DreamEntryClass({this.dreamTitle, this.dreamPeople, this.dreamLocation, this.date, this.bl, this.isAngry, this.isEmbarassed,
   this.isContemplative, this.isExcited, this.isHappy, this.isCool, this.isSad, this.isScared, this.id}){
 //    this.dreamPeople = dreamPeople;
 //    this.dreamTitle = dreamTitle;

@@ -1,6 +1,6 @@
 import 'package:dreamjournal/models/Emotion.dart';
 
-import 'ButtonList.dart';
+import 'package:dreamjournal/ui//ButtonList.dart';
 //make an emotion class - icon, name of emotion
 //dreamentry has a list of emotions, so you only have to add a new emotion once (to the list)
 //emotionbuilder then just gets passed that list

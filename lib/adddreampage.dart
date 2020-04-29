@@ -4,7 +4,7 @@ import 'package:dreamjournal/models/EmoteButton.dart';
 import 'package:dreamjournal/models/dreamentryform.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'models/ButtonList.dart';
+import 'package:dreamjournal/ui//ButtonList.dart';
 import 'models/dreamentryform.dart';
 import 'models/dreamentryclass.dart';
 import 'models/dbmanager.dart';

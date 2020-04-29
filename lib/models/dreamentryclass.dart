@@ -43,6 +43,8 @@ class DreamEntryClass {
 
   //TODO: once new emotions are added to DreamEntryClass constructor, see TODO in dreamList() in dbmanager.dart
 
+  //TODO: remove bl from entry.
+
   Map<String, dynamic> toMap() {
     return {
       'id': id, //null so id will autoincrement, see database.dart file

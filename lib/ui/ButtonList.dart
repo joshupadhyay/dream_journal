@@ -3,8 +3,10 @@ import 'package:dreamjournal/models/Emotion.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// Make this a statefull widget that renders each button.
+// i.e. does what emotebuttonbuilder currently does
 
-class ButtonList{
+class ButtonList extends StatefulWidget{{
 
   var emotionsList;
   var buttonsList;

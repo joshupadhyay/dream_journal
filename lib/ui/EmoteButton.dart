@@ -1,4 +1,4 @@
-import 'package:dreamjournal/models/Emotion.dart';
+import 'package:dreamjournal/ui/Emotion.dart';
 import 'package:flutter/material.dart';
 
 //TODO: Make this a widget that renders itself

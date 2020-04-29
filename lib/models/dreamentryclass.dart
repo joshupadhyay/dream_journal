@@ -1,4 +1,4 @@
-import 'package:dreamjournal/models/Emotion.dart';
+import 'package:dreamjournal/ui/Emotion.dart';
 
 import 'package:dreamjournal/ui//ButtonList.dart';
 //make an emotion class - icon, name of emotion
@@ -11,9 +11,8 @@ class DreamEntryClass {
   String dreamTitle;
   String dreamPeople;
   String dreamLocation;
-
+  DateTime date;
   ButtonList bl;
-
   int isAngry;
   int isEmbarassed;
   int isContemplative;
@@ -25,7 +24,7 @@ class DreamEntryClass {
 
 
   DreamEntryClass({String dreamTitle, String dreamPeople, String dreamLocation, ButtonList bl, int isAngry, int isEmbarassed,
-  int isContemplative, int isExcited, int isHappy, int isCool, int isSad, int isScared, int id}){
+  int isContemplative, int isExcited, int isHappy, int isCool, int isSad, int isScared, int id, DateTime date}){ //date stored as datetime
     this.dreamPeople = dreamPeople;
     this.dreamTitle = dreamTitle;
     this.dreamLocation = dreamLocation;
@@ -39,6 +38,7 @@ class DreamEntryClass {
     this.isSad = booltoint(bl.buttonsList[6].on);
     this.isScared = booltoint(bl.buttonsList[7].on);
     this.id = id;
+    this.date = date;
   }
 
   //TODO: once new emotions are added to DreamEntryClass constructor, see TODO in dreamList() in dbmanager.dart
@@ -47,7 +47,7 @@ class DreamEntryClass {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id, //null so id will autoincrement, see database.dart file
+      'id': id,
       'dreamtitle': dreamTitle,
       'dreamlocation': dreamLocation,
       'dreampeople': dreamPeople,
@@ -58,8 +58,8 @@ class DreamEntryClass {
       'isHappy': isHappy,
       'isCool': isCool,
       'isSad': isSad,
-      'isScared': isScared
-      ///add other emotions here
+      'isScared': isScared,
+      'date': date.microsecondsSinceEpoch //DateTime as an INT for SQLite Storing
 
     };
   }

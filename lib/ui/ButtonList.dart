@@ -1,4 +1,4 @@
-import 'package:dreamjournal/models/EmoteButton.dart';
+import 'package:dreamjournal/ui/EmoteButton.dart';
 import 'package:dreamjournal/models/Emotion.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 // Make this a statefull widget that renders each button.
 // i.e. does what emotebuttonbuilder currently does
 
-class ButtonList extends StatefulWidget{{
+class ButtonList extends StatefulWidget{
 
   var emotionsList;
   var buttonsList;
@@ -39,7 +39,7 @@ class ButtonList extends StatefulWidget{{
       //relaxed
       new Emotion(name:"Cool", emoji:AssetImage("lib/assets/images/RelaxedEmoji.png"), onColor: Colors.lightBlueAccent),
       //sad
-      new Emotion(name:"Sad", emoji:AssetImage("lib/assets/images/SadEmoji.png"), onColor:Colors.blueAccent),
+      new Emotion(name:"Sad", emoji:AssetImage("lib/assets/images/SadEmoji.png"), onColor: Colors.blueAccent),
       //scared
       new Emotion(name:"Scared", emoji:AssetImage("lib/assets/images/ScaredEmoji.png"), onColor: Colors.purpleAccent),
 
@@ -65,6 +65,32 @@ class ButtonList extends StatefulWidget{{
 
     ];
 
+  }
+
+  @override
+  ButtonListState createState() => ButtonListState();
+
+}
+
+class ButtonListState extends State<ButtonList>{
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      padding: const EdgeInsets.all(18.0),  // padding from edge of screen
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 4,  // how many across
+        childAspectRatio: 1.0,  //increase to make squashed
+        crossAxisSpacing: 18.0, // this num and num below should be the same for padding
+        mainAxisSpacing: 18.0,
+      ),
+      itemCount: widget.getButtonList().length,
+      itemBuilder: (context, i) => SizedBox(
+          width: 100.0,
+          height: 100.0,
+          child:
+          widget.getButtonList()[i]
+      ),
+    );
   }
 
 }

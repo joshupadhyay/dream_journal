@@ -36,7 +36,7 @@ class EmoteButtonState extends State<EmoteButton>{
 
   @override
   Widget build(BuildContext context) {
-    RaisedButton(
+    return RaisedButton(
       padding: const EdgeInsets.all(18.0),
       shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(50.0)),
       onPressed: widget.enabled?()=>switchState():null, // if the button is enabled, call switchState, else do null

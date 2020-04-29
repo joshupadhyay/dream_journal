@@ -83,12 +83,12 @@ class ButtonListState extends State<ButtonList>{
         crossAxisSpacing: 18.0, // this num and num below should be the same for padding
         mainAxisSpacing: 18.0,
       ),
-      itemCount: widget.getButtonList().length,
+      itemCount: widget.buttonsList.length,
       itemBuilder: (context, i) => SizedBox(
           width: 100.0,
           height: 100.0,
           child:
-          widget.getButtonList()[i]
+          widget.buttonsList[i]
       ),
     );
   }

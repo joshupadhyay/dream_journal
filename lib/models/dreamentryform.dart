@@ -1,12 +1,11 @@
-import 'package:dreamjournal/models/ButtonList.dart';
-import 'package:dreamjournal/models/EmoteButton.dart';
+
+import 'package:dreamjournal/ui//ButtonList.dart';
+import 'package:dreamjournal/ui/EmoteButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dreamentryclass.dart';
-import 'emotebuttonbuilder.dart';
 import '../recentdreams.dart';
-import 'package:dreamjournal/models/ButtonList.dart';
 
 /*
 DreamEntryForm is the class for creating add and edit dream entry pages (adddreampage, editdreampage)
@@ -16,7 +15,7 @@ class DreamEntryForm extends StatefulWidget {
   final String title;
   final GlobalKey submissionKey;
   final Function submit;
-  final DreamEntryClass dreamentry;
+  DreamEntryClass dreamentry;
 
   TextEditingController controlTitle;
   TextEditingController controlLocation;
@@ -60,7 +59,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
               Flexible(
                 //TODO add borders, make the scrolling look nicer
-                child: buttonEmotionBuilder(widget.bl), flex: 5 //controls emoji clicking
+                child: widget.bl, flex: 5 //controls emoji clicking
               ),
 
               Flexible(

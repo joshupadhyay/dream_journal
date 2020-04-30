@@ -11,10 +11,9 @@ class ButtonList extends StatefulWidget{
 
   var emotionsList;
   var buttonsList;
-  DreamEntryClass dreamEntry;
 
-  ButtonList({this.emotionsList, this.buttonsList, this.dreamEntry}){
-    init();
+  ButtonList(DreamEntryClass dreamEntry){
+    init(dreamEntry);
   }
 
   List<Emotion> getEmotionsList(){
@@ -26,7 +25,7 @@ class ButtonList extends StatefulWidget{
   }
 
   // has to be called to make sure the lists are filled
-  void init(){
+  void init(DreamEntryClass dreamEntry){
     emotionsList = <Emotion>[
       // angry
       new Emotion(name:"Angry", emoji:AssetImage("lib/assets/images/AngryEmoji.png"), onColor: Colors.deepOrange),

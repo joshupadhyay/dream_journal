@@ -22,7 +22,7 @@ class DreamEntryForm extends StatefulWidget {
   ButtonList bl;
 
   DreamEntryForm(this.title, this.submissionKey,
-      this.submit, this.dreamEntry, this.bl)
+      this.submit, this.dreamEntry)
   { //required args
         controlTitle = TextEditingController(text: dreamEntry.dreamTitle);
         controlLocation = TextEditingController(text: dreamEntry.dreamLocation);
@@ -30,7 +30,7 @@ class DreamEntryForm extends StatefulWidget {
 
         //checks if a date has been declared (if editing a dream), else grabs current date
         dreamEntry.date != null ? dateSet = dreamEntry.date : dateSet = DateTime.now();
-
+        bl = ButtonList(dreamEntry);
   }
 
   @override

@@ -8,7 +8,6 @@ import 'models/dbmanager.dart';
 class EditDreamPage extends StatefulWidget {
 
   DreamEntryClass dreamentry;
-  ButtonList bl;
 
   EditDreamPage({this.dreamentry}): super();
 
@@ -29,7 +28,6 @@ class _EditDreamPageState extends State<EditDreamPage>{
   void initState() {
     super.initState();
     data = showdreams();
-    widget.bl = new ButtonList(dreamEntry: widget.dreamentry);
   }
 
   Future <void> showdreams() async {
@@ -56,7 +54,7 @@ class _EditDreamPageState extends State<EditDreamPage>{
 
   @override
   Widget build(BuildContext context) {
-    return DreamEntryForm("Edit Dream", _editingKey,_submit, widget.dreamentry, widget.bl);
+    return DreamEntryForm("Edit Dream", _editingKey,_submit, widget.dreamentry);
   }
 
 }

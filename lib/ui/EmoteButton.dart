@@ -25,7 +25,15 @@ class EmoteButton extends StatefulWidget{
   bool enabled;
   bool on;
 
-  EmoteButton({this.id, this.emotion, this.displayColor = Colors.grey, this.enabled = true, this.on = false});
+  EmoteButton({this.id, this.emotion, this.displayColor = Colors.grey, this.enabled = true, this.on = false}){
+    if (this.on) {
+        displayColor = emotion.onColor; // bg is the actual displayed color, color1 and color2 are just the on/off colors respectively
+
+      }
+      else {
+        displayColor = emotion.offColor;
+      }
+  }
 
   @override
   EmoteButtonState createState() => EmoteButtonState();

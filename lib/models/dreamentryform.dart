@@ -20,9 +20,7 @@ class DreamEntryForm extends StatefulWidget {
   TextEditingController controlPeople;
   DateTime date_set;
 
-
   ButtonList bl;
-
 
   DreamEntryForm(this.title, this.submissionKey,
       this.submit, this.dreamentry, this.bl)
@@ -30,6 +28,12 @@ class DreamEntryForm extends StatefulWidget {
         controlTitle = TextEditingController(text: dreamentry.dreamTitle);
         controlLocation = TextEditingController(text: dreamentry.dreamLocation);
         controlPeople = TextEditingController(text: dreamentry.dreamPeople);
+
+        if(dreamentry.date != null){
+          date_set = dreamentry.date;
+        }else{
+          date_set = DateTime.now();
+        }
       }
 
   @override
@@ -183,8 +187,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
     );
   }
 
-
-  DateTime _displayTime = DateTime.now(); //to display today's date by default
+  //DateTime _displayTime = DateTime.now(); //to display today's date by default
 
   Widget _calendarbutton(BuildContext context){
     var dateformat = new DateFormat('MMMMd'); //for nice date formatting
@@ -192,7 +195,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
     return FlatButton(color: Colors.tealAccent,
         shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(30.0)) ,
-        child: Text('Date: ${dateformat.format(_displayTime)}' ,
+        child: Text('Date: ${dateformat.format(widget.date_set)}' ,
             //formatting for how the calendar font shows up in the page
             style: TextStyle(
                 fontWeight: FontWeight.bold ,
@@ -205,24 +208,17 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
   Future<void> _popupSelectDate(BuildContext context) async{
 
-    ///I wrote this if statement, so assuming we're calling in a dream with a date set already, the previous date should show,
-    ///not the current time when someone opens that dream
-
-    if (widget.date_set != null){
-      _displayTime = widget.date_set;
-    }
-
     DateTime date_picked = await showDatePicker(context: context,
-        initialDate: _displayTime,
+        initialDate: widget.date_set,
         firstDate: DateTime(2020,2),
         lastDate: DateTime(2025));
     if (date_picked != null){
           setState(() {
-            _displayTime = date_picked;
+            widget.date_set = date_picked;
           });
     }
 
-    widget.date_set = _displayTime; //updating date
+    //widget.date_set = _displayTime; //updating date
   }
 
   int booltoint(bool_result) {

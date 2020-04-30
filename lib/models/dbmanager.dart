@@ -29,13 +29,13 @@ class DBManager{
   Future<Database> _openDB () async {
     return await openDatabase(
       // Set the path to the database.
-      join(await getDatabasesPath() , 'dreamdatabase.db') ,
+      join(await getDatabasesPath() , 'dreamdatabase2.db') ,
       // When the database is first created, create a table to store
       onCreate: (Database db , version) async {
         await db.execute(
           "CREATE TABLE dreams(id INTEGER PRIMARY KEY, "
-              "dreamtitle TEXT, dreamplace TEXT, dreampeople TEXT,"
-              "dreamlocation TEXT, isHappy INTEGER, isAngry INTEGER, isContemplative INTEGER, "
+              "dreamtitle TEXT, dreamlocation TEXT, dreampeople TEXT,"
+              "isHappy INTEGER, isAngry INTEGER, isEmbarassed INTEGER, isContemplative INTEGER, "
               "isSad INTEGER, isExcited INTEGER, isCool INTEGER, isScared INTEGER, date INTEGER)" ,
 
         );
@@ -43,7 +43,7 @@ class DBManager{
       } ,
       // Set the version. This executes the onCreate function and provides a
       // path to perform database upgrades and downgrades.
-      version: 4,
+      version: 5,
     );
   }
 
@@ -75,19 +75,19 @@ class DBManager{
 
     return List.generate(maps.length, (i) {
       return DreamEntryClass(
+        id: maps[i]['id'],
+        dreamTitle: maps[i]['dreamtitle'],
         dreamLocation: maps[i]['dreamlocation'],
         dreamPeople: maps[i]['dreampeople'],
-        dreamTitle: maps[i]['dreamtitle'],
-        date: DateTime.fromMicrosecondsSinceEpoch(maps[i]['date']), //converts stored format back into DateTime
+        isHappy: maps[i]['isHappy'],
         isAngry: maps[i]['isAngry'],
         isEmbarassed: maps[i]['isEmbarassed'],
         isContemplative: maps[i]['isContemplative'],
-        isExcited: maps[i]['isExcited'],
-        isHappy: maps[i]['isHappy'],
-        isCool: maps[i]['isCool'],
         isSad: maps[i]['isSad'],
+        isExcited: maps[i]['isExcited'],
+        isCool: maps[i]['isCool'],
         isScared: maps[i]['isScared'],
-        id: maps[i]['id'],
+        date: DateTime.fromMicrosecondsSinceEpoch(maps[i]['date'])
 
       );
     });

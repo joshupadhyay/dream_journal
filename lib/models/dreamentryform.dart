@@ -1,40 +1,37 @@
 import 'package:dreamjournal/ui/ButtonList.dart';
-import 'package:dreamjournal/ui/EmoteButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dreamentryclass.dart';
 import '../recentdreams.dart';
 
-/*
-DreamEntryForm is the class for creating add and edit dream entry pages (adddreampage, editdreampage)
- */
+
+///DreamEntryForm is the class for creating add and edit dream entry pages (adddreampage, editdreampage)
+
 
 class DreamEntryForm extends StatefulWidget {
   final String title;
   final GlobalKey submissionKey;
   final Function submit;
-  final DreamEntryClass dreamentry;
+  final DreamEntryClass dreamEntry;
   TextEditingController controlTitle;
   TextEditingController controlLocation;
   TextEditingController controlPeople;
-  DateTime date_set;
+  DateTime dateSet;
 
   ButtonList bl;
 
   DreamEntryForm(this.title, this.submissionKey,
-      this.submit, this.dreamentry, this.bl)
-  { //this.buttonList); //required args
-        controlTitle = TextEditingController(text: dreamentry.dreamTitle);
-        controlLocation = TextEditingController(text: dreamentry.dreamLocation);
-        controlPeople = TextEditingController(text: dreamentry.dreamPeople);
+      this.submit, this.dreamEntry, this.bl)
+  { //required args
+        controlTitle = TextEditingController(text: dreamEntry.dreamTitle);
+        controlLocation = TextEditingController(text: dreamEntry.dreamLocation);
+        controlPeople = TextEditingController(text: dreamEntry.dreamPeople);
 
-        if(dreamentry.date != null){
-          date_set = dreamentry.date;
-        }else{
-          date_set = DateTime.now();
-        }
-      }
+        //checks if a date has been declared (if editing a dream), else grabs current date
+        dreamEntry.date != null ? dateSet = dreamEntry.date : dateSet = DateTime.now();
+
+  }
 
   @override
   _DreamEntryFormState createState() => _DreamEntryFormState();
@@ -76,7 +73,6 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
   }
 
 
-  //controllers to grab textfield entry from textfields
 
   Widget textFieldsBuilder (BuildContext context) {
 
@@ -106,7 +102,6 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
       builder: (context) =>
           Form( //contains all logical stuff
             key: widget.submissionKey,
-
             //will be using formkey to get access to form data
             child: Column( //container for all our form fields to be aligned vertically
               children: [
@@ -118,14 +113,14 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
                       "'Josh Singing Kpop'", widget.controlTitle),
                   controller: widget.controlTitle,
 
-//                    validator: (String value) { //template validator method, this is title specific
-//                      if (value.isEmpty) {
-//                        return 'Please enter a title.';
-//                      }else if (value.length > 30){
-//                        return 'Shorter title needed.';
-//                      }
-//                      return null;
-//                    }
+                    validator: (String value) {
+                      if (value.isEmpty) {
+                        return 'Please enter a title.';
+                      }else if (value.length > 30){
+                        return 'Shorter title needed.';
+                      }
+                      return null;
+                    }
                 )),
 
 
@@ -136,14 +131,14 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
                         "'Federico's House'", widget.controlLocation),
                     controller: widget.controlLocation,
 
-//                  validator: (String value) {
-//                    if (value.isEmpty) {
-//                      return 'Please enter location(s).';
-//                    }else if (value.length > 30){
-//                      return 'Shorter entry please!';
-//                    }
-//                    return null;
-//                  },
+                  validator: (String value) {
+                    if (value.isEmpty) {
+                      return 'Please enter location(s).';
+                    }else if (value.length > 30){
+                      return 'Shorter entry please!';
+                    }
+                    return null;
+                  },
                   ),
 
                 ),
@@ -154,15 +149,14 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
                     decoration: baselineInputDecorator("Who was with you?",
                         "'Kpop star IU'", widget.controlPeople),
                     controller: widget.controlPeople,
-//                  validator: (String value) {
-//                    if (value.isEmpty) {
-//                      return 'Please enter a name.';
-//                    }else if (value.length > 30){
-//                      return 'Shorter / less names please!';
-//                    }
-//                    return null;
-//                  }
-
+                  validator: (String value) {
+                    if (value.isEmpty) {
+                      return 'Please enter a name.';
+                    }else if (value.length > 30){
+                      return 'Shorter / less names please!';
+                    }
+                    return null;
+                  }
                   ),
                 ),
 
@@ -187,7 +181,8 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
     );
   }
 
-  //DateTime _displayTime = DateTime.now(); //to display today's date by default
+
+  ///builds the calendar pressable widget
 
   Widget _calendarbutton(BuildContext context){
     var dateformat = new DateFormat('MMMMd'); //for nice date formatting
@@ -195,7 +190,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
     return FlatButton(color: Colors.tealAccent,
         shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(30.0)) ,
-        child: Text('Date: ${dateformat.format(widget.date_set)}' ,
+        child: Text('Date: ${dateformat.format(widget.dateSet)}' ,
             //formatting for how the calendar font shows up in the page
             style: TextStyle(
                 fontWeight: FontWeight.bold ,
@@ -206,56 +201,52 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
         });
   }
 
+  ///Calendar pop-up once calendar button is selected.
   Future<void> _popupSelectDate(BuildContext context) async{
 
     DateTime date_picked = await showDatePicker(context: context,
-        initialDate: widget.date_set,
+        initialDate: widget.dateSet,
         firstDate: DateTime(2020,2),
         lastDate: DateTime(2025));
     if (date_picked != null){
           setState(() {
-            widget.date_set = date_picked;
+            widget.dateSet = date_picked;
           });
     }
-
-    //widget.date_set = _displayTime; //updating date
   }
 
-  int booltoint(bool_result) {
-    if (bool_result == true){
-      return 1;
-    } else{
-      return 0;
-    }
-  }
+  int boolToInt(bool a) => a == false ? 0 : 1; //because for some reason we can't cast!
 
   Widget _submissionbutton(BuildContext context){
 
     return RaisedButton(//submission button
         onPressed: () {
-          widget.dreamentry.dreamPeople = widget.controlPeople.text;
-          widget.dreamentry. dreamTitle = widget.controlTitle.text;
-          widget.dreamentry.dreamLocation = widget.controlLocation.text;
-          widget.dreamentry.isAngry = booltoint(widget.bl.buttonsList[0].on);
-          widget.dreamentry.isEmbarassed = booltoint(widget.bl.buttonsList[1].on);
-          widget.dreamentry.isContemplative = booltoint(widget.bl.buttonsList[2].on);
-          widget.dreamentry.isExcited = booltoint(widget.bl.buttonsList[3].on);
-          widget.dreamentry.isHappy = booltoint(widget.bl.buttonsList[4].on);
-          widget.dreamentry.isCool = booltoint(widget.bl.buttonsList[5].on);
-          widget.dreamentry.isSad = booltoint(widget.bl.buttonsList[6].on);
-          widget.dreamentry.isScared = booltoint(widget.bl.buttonsList[7].on);
-          widget.dreamentry.date = widget.date_set; //date is stored in dreamentry class as a DateTime Object
+          widget.dreamEntry.dreamPeople = widget.controlPeople.text;
+          widget.dreamEntry.dreamTitle = widget.controlTitle.text;
+          widget.dreamEntry.dreamLocation = widget.controlLocation.text;
+          widget.dreamEntry.isAngry = boolToInt(widget.bl.buttonsList[0].on);
+          widget.dreamEntry.isEmbarassed = boolToInt(widget.bl.buttonsList[1].on);
+          widget.dreamEntry.isContemplative = boolToInt(widget.bl.buttonsList[2].on);
+          widget.dreamEntry.isExcited = boolToInt(widget.bl.buttonsList[3].on);
+          widget.dreamEntry.isHappy = boolToInt(widget.bl.buttonsList[4].on);
+          widget.dreamEntry.isCool = boolToInt(widget.bl.buttonsList[5].on);
+          widget.dreamEntry.isSad = boolToInt(widget.bl.buttonsList[6].on);
+          widget.dreamEntry.isScared = boolToInt(widget.bl.buttonsList[7].on);
+          widget.dreamEntry.date = widget.dateSet; //date is stored in dreamentry class as a DateTime Object
 
           if (widget.submit(widget.submissionKey) == true)  {
 
-            ///Submission functions are in adddreampage, editdreampage.
+            ///Submission functions are in adddreampage, editdreampage (widget.submit)
+
             return Navigator.push(context ,
                 new MaterialPageRoute(
                     builder: (context) => new RecentDreams()));
             //if all OK submitting, open recent dreams page (successful submit only, validator will catch errors otherwise)
           }
           return null;
-        } ,
+        },
+
+        //text shown on submitbutton
         child: Text('submit'));
   }
 

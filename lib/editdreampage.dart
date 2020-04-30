@@ -1,17 +1,19 @@
 import 'package:dreamjournal/models/dreamentryform.dart';
 import 'package:flutter/material.dart';
-import 'package:dreamjournal/ui//ButtonList.dart';
+import 'package:dreamjournal/ui/ButtonList.dart';
 import 'models/dreamentryclass.dart';
 import 'models/dbmanager.dart';
 
 
 class EditDreamPage extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() =>_EditDreamPageState();
 
-  final DreamEntryClass dreamentry;
+  DreamEntryClass dreamentry;
+  ButtonList bl;
 
   EditDreamPage({this.dreamentry}): super();
+
+  @override
+  State<StatefulWidget> createState() =>_EditDreamPageState();
 
 }
 
@@ -27,6 +29,7 @@ class _EditDreamPageState extends State<EditDreamPage>{
   void initState() {
     super.initState();
     data = showdreams();
+    widget.bl = new ButtonList(dreamEntry: widget.dreamentry);
   }
 
   Future <void> showdreams() async {
@@ -51,11 +54,9 @@ class _EditDreamPageState extends State<EditDreamPage>{
     return false;
   }
 
-  ButtonList bl;
-
   @override
   Widget build(BuildContext context) {
-    return DreamEntryForm("Edit Dream", _editingKey,_submit, widget.dreamentry);
+    return DreamEntryForm("Edit Dream", _editingKey,_submit, widget.dreamentry, widget.bl);
   }
 
 }

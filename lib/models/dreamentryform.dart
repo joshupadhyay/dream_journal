@@ -25,12 +25,11 @@ class DreamEntryForm extends StatefulWidget {
 
 
   DreamEntryForm(this.title, this.submissionKey,
-      this.submit, this.dreamentry)
+      this.submit, this.dreamentry, this.bl)
   { //this.buttonList); //required args
         controlTitle = TextEditingController(text: dreamentry.dreamTitle);
         controlLocation = TextEditingController(text: dreamentry.dreamLocation);
         controlPeople = TextEditingController(text: dreamentry.dreamPeople);
-        bl = dreamentry.bl;
       }
 
   @override
@@ -47,7 +46,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(widget.title) , centerTitle: true) ,
+        appBar: AppBar(title: Text(widget.title), centerTitle: true),
         body: Column(
             children: <Widget>[
               _calendarbutton(context), //date entry button and calendar functionality
@@ -59,13 +58,13 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
               Flexible(
                 //TODO add borders, make the scrolling look nicer
-                child: widget.bl, flex: 5 //controls emoji clicking
+                  child: widget.bl, flex: 5 //controls emoji clicking
               ),
 
               Flexible(
-                  child:  Center(
+                child:  Center(
                     child:_submissionbutton(context)
-                  ), flex: 1,//submission button
+                ), flex: 1,//submission button
 
               ),
             ])

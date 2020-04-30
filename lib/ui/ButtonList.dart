@@ -1,3 +1,4 @@
+import 'package:dreamjournal/models/dreamentryclass.dart';
 import 'package:dreamjournal/ui/EmoteButton.dart';
 import 'package:dreamjournal/ui/Emotion.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,8 +11,9 @@ class ButtonList extends StatefulWidget{
 
   var emotionsList;
   var buttonsList;
+  DreamEntryClass dreamEntry;
 
-  ButtonList({this.emotionsList, this.buttonsList}){
+  ButtonList({this.emotionsList, this.buttonsList, this.dreamEntry}){
     init();
   }
 
@@ -47,21 +49,21 @@ class ButtonList extends StatefulWidget{
 
     buttonsList = <EmoteButton>[
       //angry
-      new EmoteButton(id:1, emotion: emotionsList[0]),
+      new EmoteButton(id:1, emotion: emotionsList[0], on: intToBool(dreamEntry.isAngry)),
       //embarrassed
-      new EmoteButton(id:2, emotion: emotionsList[1]),
+      new EmoteButton(id:2, emotion: emotionsList[1], on: intToBool(dreamEntry.isEmbarassed)),
       //confused
-      new EmoteButton(id:3, emotion: emotionsList[2]),
+      new EmoteButton(id:3, emotion: emotionsList[2], on: intToBool(dreamEntry.isContemplative)),
       //excited
-      new EmoteButton(id:4, emotion: emotionsList[3]),
+      new EmoteButton(id:4, emotion: emotionsList[3], on: intToBool(dreamEntry.isExcited)),
       //happy
-      new EmoteButton(id:5, emotion: emotionsList[4]),
+      new EmoteButton(id:5, emotion: emotionsList[4], on: intToBool(dreamEntry.isHappy)),
       //relaxed
-      new EmoteButton(id:6, emotion: emotionsList[5]),
+      new EmoteButton(id:6, emotion: emotionsList[5], on: intToBool(dreamEntry.isCool)),
       //sad
-      new EmoteButton(id:7, emotion: emotionsList[6]),
+      new EmoteButton(id:7, emotion: emotionsList[6], on: intToBool(dreamEntry.isSad)),
       //scared
-      new EmoteButton(id:8, emotion: emotionsList[7]),
+      new EmoteButton(id:8, emotion: emotionsList[7], on: intToBool(dreamEntry.isScared)),
 
     ];
 
@@ -70,6 +72,13 @@ class ButtonList extends StatefulWidget{
   @override
   ButtonListState createState() => ButtonListState();
 
+}
+
+bool intToBool(int num){  //converts a bool to an int. 1 returns true, everything else returns false
+  if (num == 1){
+    return true;
+  }
+  return false;
 }
 
 class ButtonListState extends State<ButtonList>{

@@ -12,7 +12,6 @@ class DreamEntryClass {
   String dreamPeople;
   String dreamLocation;
   DateTime date;
-  ButtonList bl;
   int isAngry;
   int isEmbarassed;
   int isContemplative;
@@ -23,20 +22,19 @@ class DreamEntryClass {
   int isScared;
 
 
-  DreamEntryClass({this.dreamTitle, this.dreamPeople, this.dreamLocation, this.date, this.bl, this.isAngry, this.isEmbarassed,
+  DreamEntryClass({this.dreamTitle, this.dreamPeople, this.dreamLocation, this.date,this.isAngry, this.isEmbarassed,
   this.isContemplative, this.isExcited, this.isHappy, this.isCool, this.isSad, this.isScared, this.id}){
 //    this.dreamPeople = dreamPeople;
 //    this.dreamTitle = dreamTitle;
 //    this.dreamLocation = dreamLocation;
-//    this.bl = bl;
-    this.isAngry = booltoint(bl.buttonsList[0].on);
-    this.isEmbarassed = booltoint(bl.buttonsList[1].on);
-    this.isContemplative = booltoint(bl.buttonsList[2].on);
-    this.isExcited = booltoint(bl.buttonsList[3].on);
-    this.isHappy = booltoint(bl.buttonsList[4].on);
-    this.isCool = booltoint(bl.buttonsList[5].on);
-    this.isSad = booltoint(bl.buttonsList[6].on);
-    this.isScared = booltoint(bl.buttonsList[7].on);
+//    this.isAngry = booltoint(bl.buttonsList[0].on);
+//    this.isEmbarassed = booltoint(bl.buttonsList[1].on);
+//    this.isContemplative = booltoint(bl.buttonsList[2].on);
+//    this.isExcited = booltoint(bl.buttonsList[3].on);
+//    this.isHappy = booltoint(bl.buttonsList[4].on);
+//    this.isCool = booltoint(bl.buttonsList[5].on);
+//    this.isSad = booltoint(bl.buttonsList[6].on);
+//    this.isScared = booltoint(bl.buttonsList[7].on);
 //    this.id = id;
   }
 
@@ -65,7 +63,7 @@ class DreamEntryClass {
   int booltoint(bool_result) {
     if (bool_result == true){
       return 1;
-    } else{
+    } else {
       return 0;
     }
   }

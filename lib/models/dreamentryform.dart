@@ -5,9 +5,7 @@ import 'package:intl/intl.dart';
 import 'dreamentryclass.dart';
 import '../recentdreams.dart';
 
-
 ///DreamEntryForm is the class for creating add and edit dream entry pages (adddreampage, editdreampage)
-
 
 class DreamEntryForm extends StatefulWidget {
   final String title;
@@ -59,19 +57,18 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
               Flexible(
                 //TODO add borders, make the scrolling look nicer
-                  child: widget.bl, flex: 5 //controls emoji clicking
+                  child: widget.bl, flex: 3 //controls emoji clicking
               ),
 
               Flexible(
                 child:  Center(
                     child:_submissionbutton(context)
-                ), flex: 1,//submission button
+                ), flex: 2,//submission button
 
               ),
             ])
     );
   }
-
 
 
   Widget textFieldsBuilder (BuildContext context) {
@@ -97,7 +94,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
       );
     }
     /*NOTE:
-  * each text field will get it's own validator, right now the only one is defined for the 'dream title' field*/
+  * only 'dream title' has a validator*/
     return Builder(
       builder: (context) =>
           Form( //contains all logical stuff
@@ -131,14 +128,14 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
                         "'Federico's House'", widget.controlLocation),
                     controller: widget.controlLocation,
 
-                  validator: (String value) {
-                    if (value.isEmpty) {
-                      return 'Please enter location(s).';
-                    }else if (value.length > 30){
-                      return 'Shorter entry please!';
-                    }
-                    return null;
-                  },
+//                  validator: (String value) {
+//                    if (value.isEmpty) {
+//                      return 'Please enter location(s).';
+//                    }else if (value.length > 30){
+//                      return 'Shorter entry please!';
+//                    }
+//                    return null;
+//                  },
                   ),
 
                 ),
@@ -149,14 +146,14 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
                     decoration: baselineInputDecorator("Who was with you?",
                         "'Kpop star IU'", widget.controlPeople),
                     controller: widget.controlPeople,
-                  validator: (String value) {
-                    if (value.isEmpty) {
-                      return 'Please enter a name.';
-                    }else if (value.length > 30){
-                      return 'Shorter / less names please!';
-                    }
-                    return null;
-                  }
+//                  validator: (String value) {
+//                    if (value.isEmpty) {
+//                      return 'Please enter a name.';
+//                    }else if (value.length > 30){
+//                      return 'Shorter / less names please!';
+//                    }
+//                    return null;
+//                  }
                   ),
                 ),
 
@@ -220,6 +217,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
   Widget _submissionbutton(BuildContext context){
 
     return RaisedButton(//submission button
+
         onPressed: () {
           widget.dreamEntry.dreamPeople = widget.controlPeople.text;
           widget.dreamEntry.dreamTitle = widget.controlTitle.text;

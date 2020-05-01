@@ -73,12 +73,9 @@ class ButtonList extends StatefulWidget{
 
 }
 
-bool intToBool(int num){  //converts a bool to an int. 1 returns true, everything else returns false
-  if (num == 1){
-    return true;
-  }
-  return false;
-}
+
+bool intToBool(int a) => a == 1 ? true : false; //because for some reason we can't cast!//converts a bool to an int. 1 returns true, everything else returns false
+
 
 class ButtonListState extends State<ButtonList>{
   @override

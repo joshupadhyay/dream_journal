@@ -68,7 +68,8 @@ class DBManager{
     final Database db = await database;
 
     // Query the table for all dreams
-    final List<Map<String, dynamic>> maps = await db.query('dreams');
+    final List<Map<String, dynamic>> maps = await db.query('dreams',
+    orderBy: "date DESC");
 
 
     //generate list (DONT STORE THE BUTTONLIST)

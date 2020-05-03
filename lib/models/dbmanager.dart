@@ -52,9 +52,7 @@ class DBManager{
     // Get a reference to the database.
     final Database db = await database;
 
-    // Insert the Dog into the correct table. Also specify the
-    // `conflictAlgorithm`. In this case, if the same dog is inserted
-    // multiple times, it replaces the previous data.
+    // Insert the Dream into the correct table.
     await db.insert(
       'dreams',
       newdream.toMap(),
@@ -72,27 +70,16 @@ class DBManager{
     orderBy: "date DESC");
 
 
-    //generate list (DONT STORE THE BUTTONLIST)
+//    List<DreamEntryClass> dreamlist = maps.map((c) => DreamEntryClass.fromMap(c, maps.length)).toList();
+
+//    return dreamlist;
 
     return List.generate(maps.length, (i) {
-      return DreamEntryClass(
-        id: maps[i]['id'],
-        dreamTitle: maps[i]['dreamtitle'],
-        dreamLocation: maps[i]['dreamlocation'],
-        dreamPeople: maps[i]['dreampeople'],
-        isHappy: maps[i]['isHappy'],
-        isAngry: maps[i]['isAngry'],
-        isEmbarassed: maps[i]['isEmbarassed'],
-        isContemplative: maps[i]['isContemplative'],
-        isSad: maps[i]['isSad'],
-        isExcited: maps[i]['isExcited'],
-        isCool: maps[i]['isCool'],
-        isScared: maps[i]['isScared'],
-        date: DateTime.fromMicrosecondsSinceEpoch(maps[i]['date'])
-
-      );
-    });
+      return DreamEntryClass.fromMap(maps , i);
+    }
+    );
   }
+
 
 
   Future<void> updateDream(DreamEntryClass dream) async {

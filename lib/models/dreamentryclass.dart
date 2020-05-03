@@ -37,7 +37,29 @@ class DreamEntryClass {
     };
   }
 
+  factory DreamEntryClass.fromMap(List<Map<String, dynamic>> maps, int i) {
+    return DreamEntryClass(
+        id: maps[i]['id'],
+        dreamTitle: maps[i]['dreamtitle'],
+        dreamLocation: maps[i]['dreamlocation'],
+        dreamPeople: maps[i]['dreampeople'],
+        isHappy: maps[i]['isHappy'],
+        isAngry: maps[i]['isAngry'],
+        isEmbarassed: maps[i]['isEmbarassed'],
+        isContemplative: maps[i]['isContemplative'],
+        isSad: maps[i]['isSad'],
+        isExcited: maps[i]['isExcited'],
+        isCool: maps[i]['isCool'],
+        isScared: maps[i]['isScared'],
+        date: DateTime.fromMicrosecondsSinceEpoch(maps[i]['date'])
+
+    );
+  }
+
 
 }
+
+
+
 
 

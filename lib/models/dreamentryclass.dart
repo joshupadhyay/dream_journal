@@ -37,21 +37,21 @@ class DreamEntryClass {
     };
   }
 
-  factory DreamEntryClass.fromMap(List<Map<String, dynamic>> maps, int i) {
+  factory DreamEntryClass.fromMap(Map<String, dynamic> maps) {
     return DreamEntryClass(
-        id: maps[i]['id'],
-        dreamTitle: maps[i]['dreamtitle'],
-        dreamLocation: maps[i]['dreamlocation'],
-        dreamPeople: maps[i]['dreampeople'],
-        isHappy: maps[i]['isHappy'],
-        isAngry: maps[i]['isAngry'],
-        isEmbarassed: maps[i]['isEmbarassed'],
-        isContemplative: maps[i]['isContemplative'],
-        isSad: maps[i]['isSad'],
-        isExcited: maps[i]['isExcited'],
-        isCool: maps[i]['isCool'],
-        isScared: maps[i]['isScared'],
-        date: DateTime.fromMicrosecondsSinceEpoch(maps[i]['date'])
+        id: maps['id'],
+        dreamTitle: maps['dreamtitle'],
+        dreamLocation: maps['dreamlocation'],
+        dreamPeople: maps['dreampeople'],
+        isHappy: maps['isHappy'],
+        isAngry: maps['isAngry'],
+        isEmbarassed: maps['isEmbarassed'],
+        isContemplative: maps['isContemplative'],
+        isSad: maps['isSad'],
+        isExcited: maps['isExcited'],
+        isCool: maps['isCool'],
+        isScared: maps['isScared'],
+        date: DateTime.fromMicrosecondsSinceEpoch(maps['date'])
 
     );
   }

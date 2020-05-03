@@ -4,7 +4,7 @@ import 'package:dreamjournal/ui/Emotion.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Make this a statefull widget that renders each button.
+// Make this a stateful widget that renders each button.
 // i.e. does what emotebuttonbuilder currently does
 
 class ButtonList extends StatefulWidget{
@@ -74,7 +74,7 @@ class ButtonList extends StatefulWidget{
 }
 
 
-bool intToBool(int a) => a == 1 ? true : false; //because for some reason we can't cast!//converts a bool to an int. 1 returns true, everything else returns false
+bool intToBool(int a) => a == 1 ? true : false; //converts a bool to an int. 1 returns true, everything else returns false
 
 
 class ButtonListState extends State<ButtonList>{

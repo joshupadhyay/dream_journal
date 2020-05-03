@@ -2,9 +2,11 @@ import 'package:dreamjournal/homepage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'models/dbmanager.dart';
 import 'models/dreamentryclass.dart';
 import 'editdreampage.dart';
+import 'ui/ButtonList.dart';
 
 
 /*
@@ -16,50 +18,32 @@ class RecentDreams extends StatefulWidget {
   _RecentDreamsState createState() => _RecentDreamsState();
 }
 
-//Future<List<DreamEntry>> fetchDreamEntries() async{
-//  var dbmanager = new DBManager();
-//  List<DreamEntry> dreamentries = await dbmanager.dreamList();
-//  //print(dreamentries[0].dreamTitle.toString());
-//}
-
-//**to download a file**
-
-
 class _RecentDreamsState extends State<RecentDreams> {
   DBManager dbmanager = DBManager();
 
   // List<DreamEntry> dreamentries;
-  Future data;
+  Future<List<DreamEntryClass>> data;
 
   @override
   void initState() {
     super.initState();
-    data = showdreams();
+   data = dbmanager.dreamList();
   }
-
-  Future <void> showdreams() async {
-    dbmanager = this.dbmanager;
-    List<DreamEntryClass> dreamlisted = await dbmanager.dreamList();
-
-    if (dreamlisted == null){
-      print("THIS IS NULL");
-    }else {
-      return dreamlisted;
-    }
-  }
-
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Recent Dreams'),
+          title: Text('Recent Dreams') ,
           actions: <Widget>[
-            homepage(context)//buttons we want to add to the appbar
-          ],
-        ),
-        body: FutureBuilder(
+            homepage(context)] ) ,
+        body: fede_builder(context)
+    );
+}
+
+  Widget fede_builder(BuildContext context) {
+    return  FutureBuilder<List<DreamEntryClass>>(
             future: data,
             builder: (_, dream_entry) {
 
@@ -75,196 +59,192 @@ class _RecentDreamsState extends State<RecentDreams> {
                     itemBuilder: (context, index){
 
                       return Column(
-                        children: dream_entry.data.map<Widget>((dreamentry) => dreamTemplate(dreamentry)).toList(),
+                        children: dream_entry.data.map<Widget>((dreamentry) => dreamTemplate(dreamentry, context)).toList(),
                       );
-//                        return Dismissible(
-//                          key: Key(dream),
-//                          onDismissed: (direction){
-//                            setState(() {
-//                              dbmanager.deleteDream(dream_entry.data[index].dreamTitle.toString());
-//                            });
-//                            Scaffold.of(context)
-//                                .showSnackBar(SnackBar(content: Text("$dream deleted")));
-//
-//                          },
-//                          background: Container(color: Colors.red),
-//                          child:
-// Column(
-//                        children: dream_entry.data.map<Widget>((dreamentry) => dreamTemplate(dreamentry)).toList(),
-//                        );,
-//
-//                        )
-//                        DreamEntry dreamEntry = dream_entry.data[index];
-//                        return
-//
-
+                      
                     },
                   );
-
               }
             }
-        )
-    );
-  }
-
-  //children: dreamentries.map((dreamentry) => dreamTemplate(dreamentry)).toList()
-
-
-  //code for the text above the dream entry cards
-  Widget _helptext() {
-    return Container(
-      child: Text("Tap on any of the entries to edit them!",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 15,
-              color: Colors.greenAccent
-          )),
-    );
+        );
   }
 
 
-//  Currently just a list of dream summaries, based on dreamentry class
-
-//  List <DreamEntry> dreamentries = [
-//    DreamEntry(isHappy: 1,
-//        dreamTitle: 'Singing Kareoke',
-//        dreamPeople: 'Josh, Federico, IU'),][
-//
-//    DreamEntry(isHappy: 1,
-//        dreamTitle: 'Missed Flight and Granola',
-//        dreamPeople: 'Josh, Liam, Shafim'),
-//    DreamEntry(isHappy: 1,
-//        dreamTitle: 'Getting Stuck in the Basement, Parasite House ',
-//        dreamPeople: "Josh, Josh's Family, Izzy"),
-//  ];
-
-  expands(AsyncSnapshot dream_entry) {
-
-  }
+//code for the text above the dream entry cards
+Widget _helptext() {
+  return Container(
+    child: Text("Tap on any of the entries to edit them!" ,
+        textAlign: TextAlign.center ,
+        style: TextStyle(
+            fontWeight: FontWeight.bold ,
+            fontSize: 15 ,
+            color: Colors.greenAccent
+        )) ,
+  );
+}
 
 
-  //card template for displaying entries
-
-  Widget dreamTemplate(dreamentry) {
-    return
-      Center(
-          child: Container(
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width * 0.9,
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height * 0.08,
-              child: Row(
-                children: <Widget>[
-                  Flexible(
-                      child:newCards(dreamentry) ,
-                      flex: 5
-                  ),
-                  Flexible(
-                    child:newDeleteIcon(dreamentry),
-                    flex: 1,
-                  )
+//card template for displaying entries
 
 
-                ],
+  ///if you want to adjust height and width of the cards, do so right here
 
-              )
-          )
-      );
-
-  }
-
-  Widget newCards(dreamentry) {
-    return Card(
-        margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(2)
-        ),
-        color: Colors.white70,
-
-        child: FlatButton(
-            onPressed: () {
-
-              Navigator.push(context,
-                  MaterialPageRoute(
-                      builder: (context) => EditDreamPage(dreamentry: dreamentry) //index add
-                  ));
-            },
-            child:
-            Column(
-                children: <Widget>[
-                  Flexible(
-                      child: Text(
-                          dreamentry.dreamTitle.toString(),
-                          style: TextStyle(
-                            fontSize: 17,
-                            color: Colors.blue,
-                          ))),
-                  Flexible(
-                      child: SizedBox(height: 6))
-                  ,
-                  Flexible(
-                      child: Text(
-                          dreamentry.dreamPeople.toString(),
-                          style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.teal
-                          )
-                      )),
-                ]
+Widget dreamTemplate(dreamentry , BuildContext context) {
+  return
+    Center(
+        child: Container(
+            width: MediaQuery
+                .of(context)
+                .size
+                .width * 0.9 ,
+            height: MediaQuery
+                .of(context)
+                .size
+                .height * 0.2 ,
+            child: Row(
+              children: <Widget>[
+                Flexible(
+                    child: newCards(dreamentry, context) ,
+                    flex: 13
+                ) ,
+                Flexible(
+                  child: newDeleteIcon(dreamentry, context) ,
+                  flex: 1 ,
+                )
+              ] ,
             )
         )
     );
+}
 
 
-  }
+Widget newCards(dreamentry , BuildContext context) {
 
-  Widget newDeleteIcon(dreamentry) {
-    return FlatButton.icon(onPressed: () {
-      dbmanager.deleteDream(dreamentry.id);
-      print(dreamentry.id);
+  var dateformat = new DateFormat('MMMMd'); //for nice date formatting
 
-      Navigator.push(context,
-          MaterialPageRoute(
-              builder: (context) => RecentDreams() //index add
-          ));
+  return Container(
+    width: MediaQuery.of(context).size.width * 0.9,
+    child: Card(
+      margin: EdgeInsets.all(8),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+      ) ,
+      color: Colors.white70,
+      child: FlatButton(
+          onPressed: () {
+            Navigator.push(context ,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        EditDreamPage(dreamentry: dreamentry) //index add
+                ));
+          } ,
+
+          child: Column(
+              children: <Widget>[
+                Flexible(
+                    child: Text(
+                        dreamentry.dreamTitle.toString() ,
+                        style: TextStyle(
+                          fontSize: 20 ,
+                          color: Colors.blue ,
+                        ))),
+
+                Flexible(
+                  child:  Text('${dateformat.format(dreamentry.date)}',
+                        style: TextStyle(
+                          fontSize: 14 ,
+                          color: Colors.blue ,
+                        )
+                  )
+                ),
+
+                Flexible(
+                    child: Text(
+                        dreamentry.dreamPeople.toString() ,
+                        style: TextStyle(
+                            fontSize: 12 ,
+                            color: Colors.teal
+                        )
+                    )),
+
+                Flexible(
+                  child: ButtonList(dreamentry)
+                )
+              ]
+          )
+
+  )
+
+  )
+  );
+}
+
+Widget newDeleteIcon(DreamEntryClass dreamEntry , BuildContext context) {
+  return IconButton(onPressed: () {
+    dbmanager.deleteDream(dreamEntry.id);
+    print(dreamEntry.id);
+
+    Navigator.push(context ,
+        MaterialPageRoute(
+            builder: (context) => RecentDreams() //index add
+        ));
+  } ,
+      icon: Icon(
+        FontAwesomeIcons.trashAlt ,
+        color: Colors.white54 ,
+        size: MediaQuery
+            .of(context)
+            .size
+            .width * 0.05)
+  );
+}
+
+Widget homepage(BuildContext context) {
+  return FlatButton.icon(onPressed: () {
+    Navigator.push(
+      context ,
+      new MaterialPageRoute(builder: (context) => new HomePage()) ,
+    );
+  } , icon: Icon(
+    FontAwesomeIcons.home ,
+    color: Colors.white54 ,
+    size: MediaQuery
+        .of(context)
+        .size
+        .width * 0.05 ,) ,
+      label: Text("")
+  );
+}
+
+  //experimented with another future builder, didn't quite work
 
 
-    },
-        icon: Icon(
-          FontAwesomeIcons.trashAlt,
-          color: Colors.white54,
-          size: MediaQuery
-              .of(context)
-              .size
-              .width * 0.05,),
-        label: Text("")
+  Widget mock_future(){
+    return FutureBuilder<List<DreamEntryClass>>(
+        future: dbmanager.dreamList(),
+        builder: (BuildContext context, AsyncSnapshot<List<DreamEntryClass>> snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+              physics: BouncingScrollPhysics(),
+              itemCount: snapshot.data.length,
+              itemBuilder: (BuildContext context, int index) {
+                DreamEntryClass item = snapshot.data[index];
+                return Dismissible(
+                    key: UniqueKey(),
+                    background: Container(color: Colors.red),
+                    onDismissed: (direction) {
+                      dbmanager.deleteDream(item.id);
+                    },
+                    child: Text(snapshot.data.length.toString())
+                );
+              },
+            );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        }
     );
   }
-
-  Widget homepage(BuildContext context) {
-    return FlatButton.icon(onPressed: () {
-      Navigator.push(
-        context,
-        new MaterialPageRoute(builder: (context) => new HomePage()),
-      );
-    }, icon: Icon(
-      FontAwesomeIcons.home,
-      color: Colors.white54,
-      size: MediaQuery
-          .of(context)
-          .size
-          .width * 0.05,),
-        label: Text("")
-    );
-  }
-
-
-
 
 //  void _delete(BuildContext context, DreamEntry DreamEntry) async {
 //

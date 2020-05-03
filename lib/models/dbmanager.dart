@@ -66,18 +66,14 @@ class DBManager{
     final Database db = await database;
 
     // Query the table for all dreams
-    final List<Map<String, dynamic>> maps = await db.query('dreams',
-    orderBy: "date DESC");
-
-
-//    List<DreamEntryClass> dreamlist = maps.map((c) => DreamEntryClass.fromMap(c, maps.length)).toList();
-
-//    return dreamlist;
-
-    return List.generate(maps.length, (i) {
-      return DreamEntryClass.fromMap(maps , i);
+    var sqlMap = await db.query('dreams', orderBy: "date DESC");
+    
+    if (sqlMap.isNotEmpty){
+      return sqlMap.map((dream) => DreamEntryClass.fromMap(dream)).toList();
+    }else{
+      return [];
     }
-    );
+
   }
 
 

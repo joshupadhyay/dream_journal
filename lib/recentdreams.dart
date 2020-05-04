@@ -200,7 +200,7 @@ Widget newDeleteIcon(DreamEntryClass dreamEntry , BuildContext context) {
 }
 
 Widget homepage(BuildContext context) {
-  return FlatButton.icon(onPressed: () {
+  return IconButton(onPressed: () {
     Navigator.push(
       context ,
       new MaterialPageRoute(builder: (context) => new HomePage()) ,
@@ -211,8 +211,7 @@ Widget homepage(BuildContext context) {
     size: MediaQuery
         .of(context)
         .size
-        .width * 0.05 ,) ,
-      label: Text("")
+        .width * 0.05,)
   );
 }
 

@@ -99,31 +99,22 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                Positioned( // new dream entry placement
-                  left: 20,
-                  right: 10,
-                  top: MediaQuery
-                      .of(context)
-                      .size
-                      .height * 0.32, // double changes height, larger means lower
+                Align( // new dream entry placement
+                  alignment: Alignment.center,// double changes height, larger means lower
                   child: newDreamEntryButton(context),
                 ),
-
-                Positioned(       // new dream text
-                    left: 140,
-                    top: MediaQuery
-                        .of(context)
-                        .size
-                        .height * 0.55,
-                    child: Text(
-                      "new dream",
-                      style: TextStyle(
-                          fontFamily: "Permanent",
-                          fontSize: 25.0,
-                          color: Colors.black87
-                      ),
-                    )
+                Align(
+                  alignment: Alignment(0.0,0.3),
+                  child:Text(
+                    "new dream",
+                    style: TextStyle(
+                        fontFamily: "Permanent",
+                        fontSize: 25.0,
+                        color: Colors.black87
+                    ),
+                  )
                 ),
+
                 Positioned( // position for recent dreams button
                   left: 300,
                   right: 0,
@@ -146,7 +137,7 @@ class _HomePageState extends State<HomePage> {
 
 
 Widget newDreamEntryButton(BuildContext context) {        // new dream button
-  return FlatButton.icon(onPressed: () {
+  return IconButton(onPressed: () {
     Navigator.push(
       context,
       new MaterialPageRoute(builder: (context) => new AddDreamPage()),
@@ -159,13 +150,12 @@ Widget newDreamEntryButton(BuildContext context) {        // new dream button
         .size
         .width * 0.5,   //this double changes size of button
   ),
-      label: Text("")
   );
 }
 
 
 Widget newDreamViewerButton(BuildContext context) {     // recent dream page button
-  return FlatButton.icon(onPressed: () {
+  return IconButton(onPressed: () {
     Navigator.push(
       context,
       new MaterialPageRoute(builder: (context) => new RecentDreams()),
@@ -178,7 +168,6 @@ Widget newDreamViewerButton(BuildContext context) {     // recent dream page but
         .size
         .width * 0.1,
   ),
-      label: Text("")
   );
 }
 

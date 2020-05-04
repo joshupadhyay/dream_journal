@@ -100,7 +100,7 @@ Widget dreamTemplate(dreamentry , BuildContext context) {
             height: MediaQuery
                 .of(context)
                 .size
-                .height * 0.2 ,
+                .height * 0.127 ,
             child: Row(
               children: <Widget>[
                 Flexible(
@@ -125,7 +125,7 @@ Widget newCards(dreamentry , BuildContext context) {
   return Container(
     width: MediaQuery.of(context).size.width * 0.9,
     child: Card(
-      margin: EdgeInsets.all(8),
+      margin: EdgeInsets.fromLTRB(8,6,8,0),
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5),
       ) ,
@@ -160,7 +160,7 @@ Widget newCards(dreamentry , BuildContext context) {
 
                 Flexible(
                     child: Text(
-                        dreamentry.dreamPeople.toString() ,
+                        dreamentry.dreamPeople.toString(),
                         style: TextStyle(
                             fontSize: 12 ,
                             color: Colors.teal
@@ -168,7 +168,7 @@ Widget newCards(dreamentry , BuildContext context) {
                     )),
 
                 Flexible(
-                  child: ButtonList(dreamentry)
+                  child: ButtonList(dreamentry, numAcross: 8, isEnabled: false)
                 )
               ]
           )

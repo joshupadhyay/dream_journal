@@ -11,8 +11,10 @@ class ButtonList extends StatefulWidget{
 
   var emotionsList;
   var buttonsList;
+  int numAcross;
+  bool isEnabled;
 
-  ButtonList(DreamEntryClass dreamEntry){
+  ButtonList(DreamEntryClass dreamEntry, {this.numAcross = 4, this.isEnabled = true}){
     init(dreamEntry);
   }
 
@@ -48,21 +50,21 @@ class ButtonList extends StatefulWidget{
 
     buttonsList = <EmoteButton>[
       //angry
-      new EmoteButton(id:1, emotion: emotionsList[0], on: intToBool(dreamEntry.isAngry)),
+      new EmoteButton(id:1, emotion: emotionsList[0], on: intToBool(dreamEntry.isAngry), enabled: isEnabled),
       //embarrassed
-      new EmoteButton(id:2, emotion: emotionsList[1], on: intToBool(dreamEntry.isEmbarassed)),
+      new EmoteButton(id:2, emotion: emotionsList[1], on: intToBool(dreamEntry.isEmbarassed), enabled: isEnabled),
       //confused
-      new EmoteButton(id:3, emotion: emotionsList[2], on: intToBool(dreamEntry.isContemplative)),
+      new EmoteButton(id:3, emotion: emotionsList[2], on: intToBool(dreamEntry.isContemplative), enabled: isEnabled),
       //excited
-      new EmoteButton(id:4, emotion: emotionsList[3], on: intToBool(dreamEntry.isExcited)),
+      new EmoteButton(id:4, emotion: emotionsList[3], on: intToBool(dreamEntry.isExcited), enabled: isEnabled),
       //happy
-      new EmoteButton(id:5, emotion: emotionsList[4], on: intToBool(dreamEntry.isHappy)),
+      new EmoteButton(id:5, emotion: emotionsList[4], on: intToBool(dreamEntry.isHappy), enabled: isEnabled),
       //relaxed
-      new EmoteButton(id:6, emotion: emotionsList[5], on: intToBool(dreamEntry.isCool)),
+      new EmoteButton(id:6, emotion: emotionsList[5], on: intToBool(dreamEntry.isCool), enabled: isEnabled),
       //sad
-      new EmoteButton(id:7, emotion: emotionsList[6], on: intToBool(dreamEntry.isSad)),
+      new EmoteButton(id:7, emotion: emotionsList[6], on: intToBool(dreamEntry.isSad), enabled: isEnabled),
       //scared
-      new EmoteButton(id:8, emotion: emotionsList[7], on: intToBool(dreamEntry.isScared)),
+      new EmoteButton(id:8, emotion: emotionsList[7], on: intToBool(dreamEntry.isScared), enabled: isEnabled),
 
     ];
 
@@ -81,9 +83,9 @@ class ButtonListState extends State<ButtonList>{
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      padding: const EdgeInsets.all(18.0),  // padding from edge of screen
+      padding: const EdgeInsets.fromLTRB(18.0, 10.0, 18.0, 1.0),  // padding from edge of screen
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 4,  // how many across
+        crossAxisCount: widget.numAcross,  // how many across
         childAspectRatio: 1.0,  //increase to make squashed
         crossAxisSpacing: 18.0, // this num and num below should be the same for padding
         mainAxisSpacing: 18.0,
@@ -95,6 +97,7 @@ class ButtonListState extends State<ButtonList>{
           child:
           widget.buttonsList[i]
       ),
+      physics: NeverScrollableScrollPhysics(),
     );
   }
 

@@ -117,6 +117,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
                 Center(
                     child:
                     TextFormField(
+                      maxLines: null,
                   decoration: baselineInputDecorator("What shall we call your dream?",
                       "'Josh Singing Kpop'", widget.controlTitle),
                   controller: widget.controlTitle,
@@ -133,11 +134,11 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
 
                 Center(
-                  child:
-                  TextFormField(
-                    textAlign: TextAlign.center,
+                  child: TextFormField(
+                    maxLines: null,
                     decoration: baselineInputDecorator("Where were you?",
-                        "'Federico's House'", widget.controlLocation),
+                        "'Federico's House'",
+                        widget.controlLocation),
                     controller: widget.controlLocation,
 
 //                  validator: (String value) {
@@ -153,11 +154,13 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
                 ),
 
                 Center(
-                  child:
-                  TextFormField(
-                    textAlign: TextAlign.center,
-                    decoration: baselineInputDecorator("Who was with you?",
-                        "'Kpop star IU'", widget.controlPeople),
+                  child: TextFormField(
+                    maxLines: null,
+                    decoration:
+                    baselineInputDecorator(
+                        "Who was with you?",
+                        "'Kpop star IU'",
+                        widget.controlPeople),
                     controller: widget.controlPeople,
 //                  validator: (String value) {
 //                    if (value.isEmpty) {

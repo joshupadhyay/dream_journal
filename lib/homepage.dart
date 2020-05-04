@@ -29,8 +29,8 @@ class _HomePageState extends State<HomePage> {
                   alignment: Alignment(0,-0.8),
                   child: Image.asset(
                     "assets/images/Quill_Colored.png",
-                    height: MediaQuery.of(context).size.width*0.15,
-                    width: MediaQuery.of(context).size.width*0.15,
+                    height: MediaQuery.of(context).size.width*0.25,
+                    width: MediaQuery.of(context).size.width*0.25,
                   ) ,
                 ),
                 Positioned(
@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                           "Dream Log",
                           style: TextStyle(
                               fontFamily: "Permanent",
-                              fontSize: 10.0,
+                              fontSize: 14.0,
                               color: Colors.black87
                           ),
                         ),

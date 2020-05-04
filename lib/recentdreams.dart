@@ -48,13 +48,13 @@ class _RecentDreamsState extends State<RecentDreams> {
           title: Text('Recent Dreams') , automaticallyImplyLeading: false,
           actions: <Widget>[
             homepage(context), adddreampage(context)] ) ,
-        body: fede_builder(context)
+        body: dreamListBuilder(context)
     )
     ],
     );
 }
 
-  Widget fede_builder(BuildContext context) {
+  Widget dreamListBuilder(BuildContext context) {
     return  FutureBuilder<List<DreamEntryClass>>(
             future: data,
             builder: (_, dream_entry) {
@@ -109,7 +109,8 @@ Widget dreamTemplate(dreamentry , BuildContext context) {
             height: MediaQuery
                 .of(context)
                 .size
-                .height * 0.127 ,
+                .height * 0.17 ,
+            padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
             child: Row(
               children: <Widget>[
                 Flexible(
@@ -132,9 +133,7 @@ Widget newCards(dreamentry , BuildContext context) {
   var dateformat = new DateFormat('MMMMd'); //for nice date formatting
 
   return Container(
-    width: MediaQuery.of(context).size.width * 0.9,
     child: Card(
-      margin: EdgeInsets.fromLTRB(8,6,8,0),
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5),
       ) ,
@@ -154,30 +153,24 @@ Widget newCards(dreamentry , BuildContext context) {
                     child: Text(
                         dreamentry.dreamTitle.toString() ,
                         style: TextStyle(
-                          fontSize: 20 ,
-                          color: Colors.blue ,
+                          fontSize: MediaQuery.of(context).size.width*0.075 ,
+                          color: Colors.blueAccent,
+                          fontWeight: FontWeight.bold
                         ))),
 
                 Flexible(
                   child:  Text('${dateformat.format(dreamentry.date)}',
                         style: TextStyle(
-                          fontSize: 14 ,
-                          color: Colors.blue ,
+                          fontSize: MediaQuery.of(context).size.width*0.035 ,
+                          color: Colors.black,
                         )
                   )
                 ),
 
                 Flexible(
-                    child: Text(
-                        dreamentry.dreamPeople.toString(),
-                        style: TextStyle(
-                            fontSize: 12 ,
-                            color: Colors.teal
-                        )
-                    )),
-
-                Flexible(
-                  child: ButtonList(dreamentry, numAcross: 8, isEnabled: false)
+                  child: ButtonList(dreamentry, numAcross: 8,
+                      isEnabled: false,
+                  padding: EdgeInsets.fromLTRB(10, 5, 10, 0)),
                 )
               ]
           )

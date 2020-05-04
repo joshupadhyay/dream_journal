@@ -13,8 +13,10 @@ class ButtonList extends StatefulWidget{
   var buttonsList;
   int numAcross;
   bool isEnabled;
+  var padding;
 
-  ButtonList(DreamEntryClass dreamEntry, {this.numAcross = 4, this.isEnabled = true}){
+  ButtonList(DreamEntryClass dreamEntry, {this.numAcross = 4, this.isEnabled = true,
+  this.padding = const EdgeInsets.fromLTRB(18.0, 10.0, 18.0, 1.0)}){
     init(dreamEntry);
   }
 
@@ -83,7 +85,7 @@ class ButtonListState extends State<ButtonList>{
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      padding: const EdgeInsets.fromLTRB(18.0, 10.0, 18.0, 1.0),  // padding from edge of screen
+      padding: widget.padding,  // padding from edge of screen
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: widget.numAcross,  // how many across
         childAspectRatio: 1.0,  //increase to make squashed

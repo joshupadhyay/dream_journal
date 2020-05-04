@@ -37,7 +37,7 @@ class _RecentDreamsState extends State<RecentDreams> {
     return Stack(
       children: <Widget>[
     Image.asset(
-    "assets/images/Aidan_Dream_BG_1.jpg",
+    "assets/images/Aidan_BG_Muted.jpg",
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       fit: BoxFit.cover,
@@ -45,7 +45,7 @@ class _RecentDreamsState extends State<RecentDreams> {
     Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: Text('Recent Dreams') ,
+          title: Text('Recent Dreams') , automaticallyImplyLeading: false,
           actions: <Widget>[
             homepage(context), adddreampage(context)] ) ,
         body: fede_builder(context)

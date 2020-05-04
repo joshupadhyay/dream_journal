@@ -69,11 +69,8 @@ class _RecentDreamsState extends State<RecentDreams> {
                   return ListView.builder(
                     itemCount: dream_entry.data.length,
                     itemBuilder: (context, index){
-
-                      return Column(
-                        children: dream_entry.data.map<Widget>((dreamentry) => dreamTemplate(dreamentry, context)).toList(),
-                      );
-                      
+                      DreamEntryClass dreamentry = dream_entry.data[index];
+                      return dreamTemplate(dreamentry, context);
                     },
                   );
               }

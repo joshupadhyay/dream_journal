@@ -16,9 +16,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Dream Journal UI',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Colors.blueGrey,
-        accentColor: Color(0xFFB39DDB),
-        scaffoldBackgroundColor: Colors.grey[600],
+        primaryColor: Colors.orange[600], //appbar color
+        accentColor: Color(0xFFB39DDB), //
+        scaffoldBackgroundColor: Colors.pinkAccent,
 
       ),
       home: HomePage(),//change this to see how your page is... def some way to show other pages without home!

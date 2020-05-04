@@ -13,10 +13,14 @@ class ButtonList extends StatefulWidget{
   var buttonsList;
   int numAcross;
   bool isEnabled;
-  var padding;
+  var buttonPadding;
+  var buttonSpacing;
+  var buttonBuilderHeight;
 
   ButtonList(DreamEntryClass dreamEntry, {this.numAcross = 4, this.isEnabled = true,
-  this.padding = const EdgeInsets.fromLTRB(18.0, 10.0, 18.0, 1.0)}){
+  this.buttonPadding = const EdgeInsets.fromLTRB(18.0, 10.0, 18.0, 1.0),
+  this.buttonSpacing = 18.0, this.buttonBuilderHeight = 100.0}){
+    //optional arguments allow for buttonlist use in recentdreams/dreamentryform
     init(dreamEntry);
   }
 
@@ -85,17 +89,17 @@ class ButtonListState extends State<ButtonList>{
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      padding: widget.padding,  // padding from edge of screen
+      padding: widget.buttonPadding,  // padding from edge of screen
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: widget.numAcross,  // how many across
         childAspectRatio: 1.0,  //increase to make squashed
-        crossAxisSpacing: 18.0, // this num and num below should be the same for padding
-        mainAxisSpacing: 18.0,
+        crossAxisSpacing: widget.buttonSpacing, // this num and num below should be the same for padding
+        mainAxisSpacing: widget.buttonSpacing,
       ),
       itemCount: widget.buttonsList.length,
       itemBuilder: (context, i) => SizedBox(
           width: 100.0,
-          height: 100.0,
+          height: widget.buttonBuilderHeight,
           child:
           widget.buttonsList[i]
       ),

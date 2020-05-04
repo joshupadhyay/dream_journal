@@ -64,8 +64,8 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
                //controls each of the textfields
 
               Flexible(
-                //TODO add borders, make the scrolling look nicer
-                  child: widget.bl, flex: 3 //controls emoji clicking
+                  child: widget.bl,
+                  flex: 3 //controls emoji clicking
               ),
 
               Flexible(
@@ -239,7 +239,12 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
   Widget _submissionbutton(BuildContext context){
 
-    return RaisedButton(//submission button
+    return SizedBox(
+
+      width: MediaQuery.of(context).size.width *0.4,
+        height: MediaQuery.of(context).size.height *0.06,
+
+        child: RaisedButton(//submission button
 
         onPressed: () {
           widget.dreamEntry.dreamPeople = widget.controlPeople.text;
@@ -277,7 +282,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
             fontWeight: FontWeight.bold ,
             fontSize: 14 ,
             color: Colors.black87)),
-    );
+    ));
   }
 
 

@@ -45,7 +45,8 @@ class _RecentDreamsState extends State<RecentDreams> {
     Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: Text('Recent Dreams') , automaticallyImplyLeading: false,
+          title: Text('Recent Dreams'),
+            automaticallyImplyLeading: false,
           actions: <Widget>[
             homepage(context), adddreampage(context)] ) ,
         body: dreamListBuilder(context)
@@ -53,6 +54,8 @@ class _RecentDreamsState extends State<RecentDreams> {
     ],
     );
 }
+
+///grabs the data from the SQL database and builds it into dreamcard, dreamcardlayout
 
   Widget dreamListBuilder(BuildContext context) {
     return  FutureBuilder<List<DreamEntryClass>>(
@@ -70,7 +73,7 @@ class _RecentDreamsState extends State<RecentDreams> {
                     itemCount: dream_entry.data.length,
                     itemBuilder: (context, index){
                       DreamEntryClass dreamentry = dream_entry.data[index];
-                      return dreamTemplate(dreamentry, context);
+                      return dreamCardLayout(dreamentry, context);
                     },
                   );
               }
@@ -79,26 +82,9 @@ class _RecentDreamsState extends State<RecentDreams> {
   }
 
 
-//code for the text above the dream entry cards
-Widget _helptext() {
-  return Container(
-    child: Text("Tap on any of the entries to edit them!" ,
-        textAlign: TextAlign.center ,
-        style: TextStyle(
-            fontWeight: FontWeight.bold ,
-            fontSize: 15 ,
-            color: Colors.greenAccent
-        )) ,
-  );
-}
+///controls the layout, width and spacing of the dreamcards
 
-
-//card template for displaying entries
-
-
-  ///if you want to adjust height and width of the cards, do so right here
-
-Widget dreamTemplate(dreamentry , BuildContext context) {
+Widget dreamCardLayout(dreamentry , BuildContext context) {
   return
     Center(
         child: Container(
@@ -114,7 +100,7 @@ Widget dreamTemplate(dreamentry , BuildContext context) {
             child: Row(
               children: <Widget>[
                 Flexible(
-                    child: newCards(dreamentry, context) ,
+                    child: dreamCard(dreamentry, context) ,
                     flex: 13
                 ) ,
                 Flexible(
@@ -128,7 +114,9 @@ Widget dreamTemplate(dreamentry , BuildContext context) {
 }
 
 
-Widget newCards(dreamentry , BuildContext context) {
+///Builds each dream entry card to be displayed
+
+Widget dreamCard(dreamentry , BuildContext context) {
 
   var dateformat = new DateFormat('MMMMd'); //for nice date formatting
 
@@ -170,7 +158,12 @@ Widget newCards(dreamentry , BuildContext context) {
                 Flexible(
                   child: ButtonList(dreamentry, numAcross: 8,
                       isEnabled: false,
-                  padding: EdgeInsets.fromLTRB(10, 5, 10, 0)),
+
+                  //TODO: make the edgeinsets relative, using mediaquery calls
+                  buttonPadding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    buttonBuilderHeight: 80.0,
+                  ),
+
                 )
               ]
           )
@@ -180,6 +173,9 @@ Widget newCards(dreamentry , BuildContext context) {
   )
   );
 }
+
+
+///delete icon for each dreamcard
 
 Widget newDeleteIcon(DreamEntryClass dreamEntry , BuildContext context) {
   return IconButton(onPressed: () {
@@ -200,6 +196,8 @@ Widget newDeleteIcon(DreamEntryClass dreamEntry , BuildContext context) {
             .width * 0.05)
   );
 }
+
+  ///homepagebutton / adddreampage buttons in appbar
 
 Widget homepage(BuildContext context) {
   return IconButton(onPressed: () {

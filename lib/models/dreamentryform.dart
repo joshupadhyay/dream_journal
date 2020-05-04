@@ -84,6 +84,8 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
   Widget textFieldsBuilder (BuildContext context) {
 
+    var mqbuffer = MediaQuery.of(context).size.width*0.03;
+
     final headingcolor = Colors.greenAccent; //used in TextStyle() and InputDecoration() to set question colors
 
     //determines what headers, hints look like for textfield entry
@@ -112,30 +114,56 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
             key: widget.submissionKey,
             //will be using formkey to get access to form data
             child: Column( //container for all our form fields to be aligned vertically
+
               children: [
 
-                Center(
-                    child:
-                    TextFormField(
-                      maxLines: null,
-                  decoration: baselineInputDecorator("What shall we call your dream?",
-                      "'Josh Singing Kpop'", widget.controlTitle),
+                Container(
+                  margin: EdgeInsets.fromLTRB(
+                      mqbuffer,
+                      mqbuffer*.8, mqbuffer, mqbuffer*.8),
+                child: TextFormField(
+                  textAlign: TextAlign.center,
                   controller: widget.controlTitle,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black
+                  ),
 
-                    validator: (String value) {
-                      if (value.isEmpty) {
-                        return 'Please enter a title.';
-                      }else if (value.length > 30){
-                        return 'Shorter title needed.';
-                      }
-                      return null;
-                    }
-                )),
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: const BorderSide(
+                        color: Colors.black,
+                        width: 2
+                      )
+                    ),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: const BorderSide(
+                            color: Colors.tealAccent,
+                            width: .7
+                        )
+                    ),
+                    hintText: "What's your dream title?",
+                    hintStyle: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        color: headingcolor,
+                    ),
+                    suffixIcon: IconButton(
+                        icon: Icon(Icons.clear),
+                        onPressed: () => widget.controlTitle.clear()
+                    ))
+
+                  ),
 
 
-                Center(
-                  child: TextFormField(
-                    maxLines: null,
+                ),
+
+
+
+                   TextFormField(
                     decoration: baselineInputDecorator("Where were you?",
                         "'Federico's House'",
                         widget.controlLocation),
@@ -151,10 +179,10 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 //                  },
                   ),
 
-                ),
 
-                Center(
-                  child: TextFormField(
+
+
+                  TextFormField(
                     maxLines: null,
                     decoration:
                     baselineInputDecorator(
@@ -171,10 +199,10 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 //                    return null;
 //                  }
                   ),
-                ),
+
 
                 Container(
-                    padding: const EdgeInsets.fromLTRB(0 , 50 , 0 , 20) ,
+                    padding: const EdgeInsets.fromLTRB(0 , 20 , 0 , 20) ,
                     child: Center(
                         child:RichText(
                           textAlign: TextAlign.center,
@@ -195,6 +223,24 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
     );
   }
 
+
+//  Widget oldText (BuildContext context){
+//    return TextFormField(
+//        maxLines: null,
+//        decoration: baselineInputDecorator("What shall we call your dream?",
+//            "'Josh Singing Kpop'", widget.controlTitle),
+//        controller: widget.controlTitle,
+//
+//        validator: (String value) {
+//          if (value.isEmpty) {
+//            return 'Please enter a title.';
+//          }else if (value.length > 30){
+//            return 'Shorter title needed.';
+//          }
+//          return null;
+//        }
+//    );
+//  }
 
   ///builds the calendar pressable widget
 
@@ -272,7 +318,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
           return null;
         },
 
-      color: Colors.tealAccent,
+      color: Colors.pinkAccent,
       shape: new RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(30.0)) ,
 

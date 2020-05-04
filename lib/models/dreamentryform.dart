@@ -44,7 +44,15 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Stack(
+      children: <Widget>[
+    Image.asset(
+    "assets/images/Aidan_BG_Muted.jpg",
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      fit: BoxFit.cover,
+    ),
+    Scaffold(
         appBar: AppBar(title: Text(widget.title), centerTitle: true, automaticallyImplyLeading: false,),
     body: Column(
             children: <Widget>[
@@ -66,7 +74,10 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
               ),
             ])
+           )
+      ],
     );
+
   }
 
 

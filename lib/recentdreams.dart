@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'adddreampage.dart';
 import 'models/dbmanager.dart';
 import 'models/dreamentryclass.dart';
 import 'editdreampage.dart';
@@ -33,12 +34,22 @@ class _RecentDreamsState extends State<RecentDreams> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Stack(
+      children: <Widget>[
+    Image.asset(
+    "assets/images/Aidan_Dream_BG_1.jpg",
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      fit: BoxFit.cover,
+    ),
+    Scaffold(
         appBar: AppBar(
           title: Text('Recent Dreams') ,
           actions: <Widget>[
-            homepage(context)] ) ,
+            homepage(context), adddreampage(context)] ) ,
         body: fede_builder(context)
+    )
+    ],
     );
 }
 
@@ -213,5 +224,20 @@ Widget homepage(BuildContext context) {
         .size
         .width * 0.05)
   );
+}
+  Widget adddreampage(BuildContext context) {
+    return IconButton(onPressed: () {
+      Navigator.push(
+        context ,
+        new MaterialPageRoute(builder: (context) => new AddDreamPage()) ,
+      );
+    } , icon: Icon(
+        FontAwesomeIcons.plusCircle ,
+        color: Colors.white54 ,
+        size: MediaQuery
+            .of(context)
+            .size
+            .width * 0.05)
+    );
 }
 }

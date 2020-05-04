@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'adddreampage.dart';
+import 'adddreampage.dart';
 import 'models/dbmanager.dart';
 import 'models/dreamentryclass.dart';
 import 'editdreampage.dart';
@@ -35,9 +37,9 @@ class _RecentDreamsState extends State<RecentDreams> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Recent Dreams') ,
+          title: Text('Recent Dreams') , automaticallyImplyLeading: false,
           actions: <Widget>[
-            homepage(context)] ) ,
+            homepage(context), addDreamPage(context)] ) ,
         body: fede_builder(context)
     );
 }
@@ -214,6 +216,22 @@ Widget homepage(BuildContext context) {
         .width * 0.05,)
   );
 }
+
+  Widget addDreamPage(BuildContext context) {
+    return IconButton(onPressed: () {
+      Navigator.push(
+        context ,
+        new MaterialPageRoute(builder: (context) => new AddDreamPage()) ,
+      );
+    } , icon: Icon(
+      FontAwesomeIcons.plusCircle ,
+      color: Colors.white54 ,
+      size: MediaQuery
+          .of(context)
+          .size
+          .width * 0.05,)
+    );
+  }
 
   //experimented with another future builder, didn't quite work
 

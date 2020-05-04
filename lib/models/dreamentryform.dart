@@ -124,6 +124,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
                 Center(
                   child:
                   TextFormField(
+                    textAlign: TextAlign.center,
                     decoration: baselineInputDecorator("Where were you?",
                         "'Federico's House'", widget.controlLocation),
                     controller: widget.controlLocation,
@@ -143,6 +144,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
                 Center(
                   child:
                   TextFormField(
+                    textAlign: TextAlign.center,
                     decoration: baselineInputDecorator("Who was with you?",
                         "'Kpop star IU'", widget.controlPeople),
                     controller: widget.controlPeople,
@@ -161,6 +163,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
                     padding: const EdgeInsets.fromLTRB(0 , 50 , 0 , 20) ,
                     child: Center(
                         child:RichText(
+                          textAlign: TextAlign.center,
                             text: TextSpan(
                               style: TextStyle(
                                   fontSize: 16,
@@ -218,6 +221,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
     return RaisedButton(//submission button
 
+
         onPressed: () {
           widget.dreamEntry.dreamPeople = widget.controlPeople.text;
           widget.dreamEntry.dreamTitle = widget.controlTitle.text;
@@ -244,8 +248,17 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
           return null;
         },
 
+      color: Colors.tealAccent,
+      shape: new RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(30.0)) ,
+
         //text shown on submitbutton
-        child: Text('submit'));
+        child: Text('SUBMIT',
+        style: TextStyle(
+            fontWeight: FontWeight.bold ,
+            fontSize: 14 ,
+            color: Colors.black87)),
+    );
   }
 
 

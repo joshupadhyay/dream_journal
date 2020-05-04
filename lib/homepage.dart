@@ -3,15 +3,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'adddreampage.dart';
 import 'recentdreams.dart';
 
-
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-
 class _HomePageState extends State<HomePage> {
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -19,109 +16,78 @@ class _HomePageState extends State<HomePage> {
       children: <Widget>[
         Image.asset(
           "assets/images/Aidan_Dream_BG_1.jpg",
-          height: MediaQuery
-              .of(context)
-              .size
-              .height,
-          width: MediaQuery
-              .of(context)
-              .size
-              .width,
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           fit: BoxFit.cover,
-
         ),
         Scaffold(
           backgroundColor: Colors.transparent,
           body: SafeArea(
             child: Stack(
               children: <Widget>[
-                Positioned( // open book icon placement
+                Positioned(
+                  // open book icon placement
                   left: 0,
                   right: 0,
-                  top: MediaQuery
-                      .of(context)
-                      .size
-                      .height * 0.05,
+                  top: MediaQuery.of(context).size.height * 0.05,
                   child: Icon(
                     FontAwesomeIcons.bookOpen,
                     color: Colors.black54,
-                    size: MediaQuery
-                        .of(context)
-                        .size
-                        .width * 0.2,
+                    size: MediaQuery.of(context).size.width * 0.2,
                   ),
                 ),
-                Positioned( // "D" placement
-                  left: 0 - MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.125,
+                Positioned(
+                  // "D" placement
+                  left: 0 - MediaQuery.of(context).size.width * 0.125,
                   right: 0,
-                  top: MediaQuery
-                      .of(context)
-                      .size
-                      .height * 0.07,
+                  top: MediaQuery.of(context).size.height * 0.07,
                   child: Text(
                     "D",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: "Pacifico",
-                      fontSize: MediaQuery
-                          .of(context)
-                          .size
-                          .width * 0.08,
+                      fontSize: MediaQuery.of(context).size.width * 0.08,
                       color: Colors.white70,
-
                     ),
                   ),
                 ),
-                Positioned(  // "J" placement
-                  left: 0 + MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.125,
+                Positioned(
+                  // "J" placement
+                  left: 0 + MediaQuery.of(context).size.width * 0.125,
                   right: 0,
-                  top: MediaQuery
-                      .of(context)
-                      .size
-                      .height * 0.07,
+                  top: MediaQuery.of(context).size.height * 0.07,
                   child: Text(
                     "J",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: "Pacifico",
-                      fontSize: MediaQuery
-                          .of(context)
-                          .size
-                          .width * 0.08,
+                      fontSize: MediaQuery.of(context).size.width * 0.08,
                       color: Colors.blueGrey[200],
-
                     ),
                   ),
                 ),
-                Align( // new dream entry placement
-                  alignment: Alignment.center,// double changes height, larger means lower
-                  child: newDreamEntryButton(context),
-                ),
-                Align(
-                  alignment: Alignment(0.0,0.3),
-                  child:Text(
-                    "new dream",
-                    style: TextStyle(
-                        fontFamily: "Permanent",
-                        fontSize: 25.0,
-                        color: Colors.black87
-                    ),
-                  )
-                ),
-
-                Positioned( // position for recent dreams button
-                  left: 300,
-                  right: 0,
+                Positioned(
+                  left: 20,
+                  right: 10,
                   top: MediaQuery
                       .of(context)
                       .size
-                      .height * 0.85,
+                      .height * 0.32,
+                  // new dream entry placement// double changes height, larger means lower
+                  child: newDreamEntryButton(context),
+                ),
+                Align(
+                    alignment: Alignment(0.0, 0.3),
+                    child: Text(
+                      "new dream",
+                      style: TextStyle(
+                          fontFamily: "Permanent",
+                          fontSize: 25.0,
+                          color: Colors.black87),
+                    )),
+                Align(
+                  // position for recent dreams button
+                  alignment: Alignment(0.85, 0.85),
                   child: newDreamViewerButton(context),
                 ),
               ],
@@ -135,42 +101,42 @@ class _HomePageState extends State<HomePage> {
 
 //newDreamEntryButton(context),
 
-
-Widget newDreamEntryButton(BuildContext context) {        // new dream button
-  return IconButton(onPressed: () {
-    Navigator.push(
-      context,
-      new MaterialPageRoute(builder: (context) => new AddDreamPage()),
-    );
-  }, icon: Icon(
-    Icons.add_circle_outline,
-    color: Colors.black87,
-    size: MediaQuery
-        .of(context)
-        .size
-        .width * 0.5,   //this double changes size of button
-  ),
+Widget newDreamEntryButton(BuildContext context) {
+  // new dream button
+  return IconButton(
+    iconSize: MediaQuery.of(context).size.width *
+        0.5,
+    icon:Icon(
+      Icons.add_circle_outline,
+      color: Colors.black87,
+      size: MediaQuery.of(context).size.width *
+          0.5, //this double changes size of button
+    ),
+    onPressed: () {
+      Navigator.push(
+        context,
+        new MaterialPageRoute(builder: (context) => new AddDreamPage()),
+      );
+    },
   );
 }
 
-
-Widget newDreamViewerButton(BuildContext context) {     // recent dream page button
-  return IconButton(onPressed: () {
-    Navigator.push(
-      context,
-      new MaterialPageRoute(builder: (context) => new RecentDreams()),
-    );
-  }, icon: Icon(
-    FontAwesomeIcons.book,
-    color: Colors.black87,
-    size: MediaQuery
-        .of(context)
-        .size
-        .width * 0.1,
-  ),
+Widget newDreamViewerButton(BuildContext context) {
+  // recent dream page button
+  return IconButton(
+    onPressed: () {
+      Navigator.push(
+        context,
+        new MaterialPageRoute(builder: (context) => new RecentDreams()),
+      );
+    },
+    icon: Icon(
+      FontAwesomeIcons.book,
+      color: Colors.black87,
+      size: MediaQuery.of(context).size.width * 0.1,
+    ),
   );
 }
-
 
 //Text("",
 //textAlign: TextAlign.left,

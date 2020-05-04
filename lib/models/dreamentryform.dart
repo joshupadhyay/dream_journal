@@ -1,6 +1,7 @@
 import 'package:dreamjournal/ui/ButtonList.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'dreamentryclass.dart';
 import '../recentdreams.dart';
@@ -16,7 +17,6 @@ class DreamEntryForm extends StatefulWidget {
   TextEditingController controlLocation;
   TextEditingController controlPeople;
   DateTime dateSet;
-
   ButtonList bl;
 
   DreamEntryForm(this.title, this.submissionKey,
@@ -48,12 +48,11 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
         appBar: AppBar(title: Text(widget.title), centerTitle: true),
         body: Column(
             children: <Widget>[
+
               _calendarbutton(context), //date entry button and calendar functionality
 
-              Center(
-                child:
-                textFieldsBuilder(context),
-              ), //controls each of the textfields
+             textFieldsBuilder(context),
+               //controls each of the textfields
 
               Flexible(
                 //TODO add borders, make the scrolling look nicer
@@ -187,30 +186,36 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
   Widget _calendarbutton(BuildContext context){
     var dateformat = new DateFormat('MMMMd'); //for nice date formatting
 
-    return FlatButton(color: Colors.tealAccent,
-        shape: new RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(30.0)) ,
-        child: Text('Date: ${dateformat.format(widget.dateSet)}' ,
-            //formatting for how the calendar font shows up in the page
-            style: TextStyle(
-                fontWeight: FontWeight.bold ,
-                fontSize: 14 ,
-                color: Colors.black87)) ,
-        onPressed: () {
-          _popupSelectDate(context);
-        });
+    return RaisedButton.icon(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
+                label: Text(dateformat.format(widget.dateSet) ,
+    //formatting for how the calendar font shows up in the page
+    style: TextStyle(
+    fontWeight: FontWeight.bold ,
+    fontSize: 18 ,
+    color: Colors.black87)),
+                icon: Icon(Icons.calendar_today),
+                color: Colors.blueAccent,                 ///to change background color of calendar text
+                onPressed: (){
+                  _popupSelectDate(context);
+                },
+
+    );
+
   }
+
 
   ///Calendar pop-up once calendar button is selected.
   Future<void> _popupSelectDate(BuildContext context) async{
 
-    DateTime date_picked = await showDatePicker(context: context,
+    DateTime datePicked = await showDatePicker(context: context,
         initialDate: widget.dateSet,
-        firstDate: DateTime(2020,2),
-        lastDate: DateTime(2025));
-    if (date_picked != null){
+        firstDate: DateTime(2019,2),
+        lastDate: DateTime.now());
+    if (datePicked != null){
           setState(() {
-            widget.dateSet = date_picked;
+            widget.dateSet = datePicked;
           });
     }
   }
@@ -220,7 +225,6 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
   Widget _submissionbutton(BuildContext context){
 
     return RaisedButton(//submission button
-
 
         onPressed: () {
           widget.dreamEntry.dreamPeople = widget.controlPeople.text;

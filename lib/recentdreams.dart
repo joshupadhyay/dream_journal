@@ -38,11 +38,11 @@ class _RecentDreamsState extends State<RecentDreams> {
           title: Text('Recent Dreams') ,
           actions: <Widget>[
             homepage(context)] ) ,
-        body: fede_builder(context)
+        body: dreamCardsBuilder(context)
     );
 }
 
-  Widget fede_builder(BuildContext context) {
+  Widget dreamCardsBuilder(BuildContext context) {
     return  FutureBuilder<List<DreamEntryClass>>(
             future: data,
             builder: (_, dream_entry) {
@@ -66,6 +66,7 @@ class _RecentDreamsState extends State<RecentDreams> {
                   );
               }
             }
+            
         );
   }
 
@@ -83,8 +84,6 @@ Widget _helptext() {
   );
 }
 
-
-//card template for displaying entries
 
 
   ///if you want to adjust height and width of the cards, do so right here
@@ -135,7 +134,7 @@ Widget newCards(dreamentry , BuildContext context) {
             Navigator.push(context ,
                 MaterialPageRoute(
                     builder: (context) =>
-                        EditDreamPage(dreamentry: dreamentry) //index add
+                        EditDreamPage(dreamEntry: dreamentry) //index add
                 ));
           } ,
 
@@ -211,77 +210,7 @@ Widget homepage(BuildContext context) {
     size: MediaQuery
         .of(context)
         .size
-        .width * 0.05,)
+        .width * 0.05)
   );
 }
-
-  //experimented with another future builder, didn't quite work
-
-
-  Widget mock_future(){
-    return FutureBuilder<List<DreamEntryClass>>(
-        future: dbmanager.dreamList(),
-        builder: (BuildContext context, AsyncSnapshot<List<DreamEntryClass>> snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              physics: BouncingScrollPhysics(),
-              itemCount: snapshot.data.length,
-              itemBuilder: (BuildContext context, int index) {
-                DreamEntryClass item = snapshot.data[index];
-                return Dismissible(
-                    key: UniqueKey(),
-                    background: Container(color: Colors.red),
-                    onDismissed: (direction) {
-                      dbmanager.deleteDream(item.id);
-                    },
-                    child: Text(snapshot.data.length.toString())
-                );
-              },
-            );
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        }
-    );
-  }
-
-//  void _delete(BuildContext context, DreamEntry DreamEntry) async {
-//
-//    int result = await DBManager.deleteDream();
-//    if (result != 0) {
-//      _showSnackBar(context, 'DreamEntry Deleted Successfully');
-//      updateListView();
-//    }
-//  }
-//
-//  void _showSnackBar(BuildContext context, String message) {
-//
-//    final snackBar = SnackBar(content: Text(message));
-//    Scaffold.of(context).showSnackBar(snackBar);
-//  }
-//
-//  void navigateToDetail(DreamEntry DreamEntry, String title) async {
-//    bool result = await Navigator.push(context, MaterialPageRoute(builder: (context) {
-//      return DreamEntryDetail(DreamEntry, title);
-//    }));
-//
-//    if (result == true) {
-//      updateListView();
-//    }
-//  }
-//
-//  void updateListView() {
-//
-//    final Future<Database> dbFuture = DBManager.initializeDatabase();
-//    dbFuture.then((database) {
-//
-//      Future<List<DreamEntry>> DreamEntryListFuture = DBManager.getDreamEntryList();
-//      DreamEntryListFuture.then((DreamEntryList) {
-//        setState(() {
-//          this.DreamEntryList = DreamEntryList;
-//          this.count = DreamEntryList.length;
-//        });
-//      });
-//    });
-//  }
 }

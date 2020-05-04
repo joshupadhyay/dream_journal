@@ -16,7 +16,7 @@ class DreamEntryClass {
 
 
   DreamEntryClass({this.dreamTitle, this.dreamPeople, this.dreamLocation, this.date,this.isAngry, this.isEmbarassed,
-  this.isContemplative, this.isExcited, this.isHappy, this.isCool, this.isSad, this.isScared, this.id}){}
+  this.isContemplative, this.isExcited, this.isHappy, this.isCool, this.isSad, this.isScared, this.id});
 
 
   Map<String, dynamic> toMap() {

@@ -9,10 +9,10 @@ import 'models/dbmanager.dart';
 
 class AddDreamPage extends StatefulWidget{
 
-  DreamEntryClass dream_init;
+  DreamEntryClass dreamInit;
 
 
-  AddDreamPage({this.dream_init}): super();
+  AddDreamPage({this.dreamInit}): super();
 
   @override
   _AddDreamPageState createState() => _AddDreamPageState();
@@ -36,7 +36,7 @@ class _AddDreamPageState extends State<AddDreamPage> {
   @override
   void initState() {
     super.initState();
-    widget.dream_init = DreamEntryClass(dreamTitle: "", dreamPeople: "", dreamLocation: "");
+    widget.dreamInit = DreamEntryClass(dreamTitle: "", dreamPeople: "", dreamLocation: "");
   }
 
 
@@ -47,7 +47,7 @@ class _AddDreamPageState extends State<AddDreamPage> {
 
       //creates a new dreamEntry init, saving the data from the textfields into the dream entry instantiation.
 
-      dbmanager.insertDream(widget.dream_init); //see dbmanager.dart for dream
+      dbmanager.insertDream(widget.dreamInit); //see dbmanager.dart for dream
 
       return true;
     }
@@ -61,7 +61,7 @@ class _AddDreamPageState extends State<AddDreamPage> {
   @override
   Widget build(BuildContext context) {
     return DreamEntryForm("New Dream Entry" , _adddreamKey , _submit,
-        widget.dream_init);
+        widget.dreamInit);
   }
 }
 

@@ -1,6 +1,5 @@
-import 'package:dreamjournal/adddreampage.dart';
+
 import 'package:dreamjournal/homepage.dart';
-import 'package:dreamjournal/recentdreams.dart';
 import 'package:flutter/material.dart';
 
 
@@ -18,10 +17,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.orange[600], //appbar color
         accentColor: Color(0xFFB39DDB), //
-        scaffoldBackgroundColor: Colors.pinkAccent,
+        scaffoldBackgroundColor: Color.fromRGBO(255,102,153,0.85),
 
       ),
-      home: HomePage(),//change this to see how your page is... def some way to show other pages without home!
+      home: HomePage()
     );
   }
 }

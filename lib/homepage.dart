@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
     return Stack(
       children: <Widget>[
         Image.asset(
-          "assets/images/dreams.jpg",
+          "assets/images/Aidan_Dream_BG_1.jpg",
           height: MediaQuery
               .of(context)
               .size
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
           body: SafeArea(
             child: Stack(
               children: <Widget>[
-                Positioned(
+                Positioned( // open book icon placement
                   left: 0,
                   right: 0,
                   top: MediaQuery
@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
                         .width * 0.2,
                   ),
                 ),
-                Positioned(
+                Positioned( // "D" placement
                   left: 0 - MediaQuery
                       .of(context)
                       .size
@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                Positioned(
+                Positioned(  // "J" placement
                   left: 0 + MediaQuery
                       .of(context)
                       .size
@@ -99,22 +99,22 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                Positioned(
+                Positioned( // new dream entry placement
                   left: 20,
                   right: 10,
                   top: MediaQuery
                       .of(context)
                       .size
-                      .height * 0.35,
+                      .height * 0.32, // double changes height, larger means lower
                   child: newDreamEntryButton(context),
                 ),
 
-                Positioned(
+                Positioned(       // new dream text
                     left: 140,
                     top: MediaQuery
                         .of(context)
                         .size
-                        .height * 0.6,
+                        .height * 0.55,
                     child: Text(
                       "new dream",
                       style: TextStyle(
@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     )
                 ),
-                Positioned(
+                Positioned( // position for recent dreams button
                   left: 300,
                   right: 0,
                   top: MediaQuery
@@ -132,15 +132,6 @@ class _HomePageState extends State<HomePage> {
                       .size
                       .height * 0.85,
                   child: newDreamViewerButton(context),
-                ),
-                Positioned(
-                  left: -300,
-                  right: 0,
-                  top: MediaQuery
-                      .of(context)
-                      .size
-                      .height * 0.85,
-                  child: newDreamAnalysisTab(context),
                 ),
               ],
             ),
@@ -154,27 +145,26 @@ class _HomePageState extends State<HomePage> {
 //newDreamEntryButton(context),
 
 
-Widget newDreamEntryButton(BuildContext context) {
+Widget newDreamEntryButton(BuildContext context) {        // new dream button
   return FlatButton.icon(onPressed: () {
     Navigator.push(
       context,
       new MaterialPageRoute(builder: (context) => new AddDreamPage()),
     );
   }, icon: Icon(
-    FontAwesomeIcons.plus,
+    Icons.add_circle_outline,
     color: Colors.black87,
     size: MediaQuery
         .of(context)
         .size
-        .width * 0.40,
-
+        .width * 0.5,   //this double changes size of button
   ),
       label: Text("")
   );
 }
 
 
-Widget newDreamViewerButton(BuildContext context) {
+Widget newDreamViewerButton(BuildContext context) {     // recent dream page button
   return FlatButton.icon(onPressed: () {
     Navigator.push(
       context,
@@ -182,7 +172,7 @@ Widget newDreamViewerButton(BuildContext context) {
     );
   }, icon: Icon(
     FontAwesomeIcons.book,
-    color: Colors.white70,
+    color: Colors.black87,
     size: MediaQuery
         .of(context)
         .size
@@ -191,26 +181,6 @@ Widget newDreamViewerButton(BuildContext context) {
       label: Text("")
   );
 }
-
-
-Widget newDreamAnalysisTab(BuildContext context) {
-  return FlatButton.icon(onPressed: () {
-    Navigator.push(
-      context,
-      new MaterialPageRoute(builder: (context) => new RecentDreams()),
-    );
-  }, icon: Icon(
-    FontAwesomeIcons.chartLine,
-    color: Colors.white54,
-    size: MediaQuery
-        .of(context)
-        .size
-        .width * 0.1,),
-      label: Text("")
-  );
-}
-
-
 
 
 //Text("",

@@ -44,16 +44,8 @@ dev_dependencies:
 flutter:
 
   assets:
-    - lib/assets/images/AngryEmoji.png
-    - lib/assets/images/AnxiousEmoji.png
-    - lib/assets/images/ConfusedEmoji.png
-    - lib/assets/images/ExcitedEmoji.png
-    - lib/assets/images/HappyEmoji.png
-    - lib/assets/images/RelaxedEmoji.png
-    - lib/assets/images/SadEmoji.png
-    - lib/assets/images/ScaredEmoji.png
-    - assets/images/dreams.jpg
-    - assets/images/moon.flr
+    - lib/assets/
+    - assets/images/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

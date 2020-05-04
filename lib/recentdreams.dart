@@ -135,7 +135,7 @@ Widget newCards(dreamentry , BuildContext context) {
             Navigator.push(context ,
                 MaterialPageRoute(
                     builder: (context) =>
-                        EditDreamPage(dreamentry: dreamentry) //index add
+                        EditDreamPage(dreamEntry: dreamentry) //index add
                 ));
           } ,
 

@@ -1,6 +1,7 @@
 
 import 'package:dreamjournal/homepage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 
 void main() => runApp(MyApp());
@@ -11,6 +12,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([ // adds orientation lock
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MaterialApp(
       title: 'Flutter Dream Journal UI',
       debugShowCheckedModeBanner: false,

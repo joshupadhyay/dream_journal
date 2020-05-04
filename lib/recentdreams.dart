@@ -38,11 +38,11 @@ class _RecentDreamsState extends State<RecentDreams> {
           title: Text('Recent Dreams') ,
           actions: <Widget>[
             homepage(context)] ) ,
-        body: dreamCardsBuilder(context)
+        body: fede_builder(context)
     );
 }
 
-  Widget dreamCardsBuilder(BuildContext context) {
+  Widget fede_builder(BuildContext context) {
     return  FutureBuilder<List<DreamEntryClass>>(
             future: data,
             builder: (_, dream_entry) {
@@ -66,7 +66,6 @@ class _RecentDreamsState extends State<RecentDreams> {
                   );
               }
             }
-            
         );
   }
 
@@ -84,6 +83,8 @@ Widget _helptext() {
   );
 }
 
+
+//card template for displaying entries
 
 
   ///if you want to adjust height and width of the cards, do so right here
@@ -134,7 +135,7 @@ Widget newCards(dreamentry , BuildContext context) {
             Navigator.push(context ,
                 MaterialPageRoute(
                     builder: (context) =>
-                        EditDreamPage(dreamEntry: dreamentry) //index add
+                        EditDreamPage(dreamentry: dreamentry) //index add
                 ));
           } ,
 

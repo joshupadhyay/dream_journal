@@ -45,8 +45,8 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(widget.title), centerTitle: true),
-        body: Column(
+        appBar: AppBar(title: Text(widget.title), centerTitle: true, automaticallyImplyLeading: false,),
+    body: Column(
             children: <Widget>[
 
               _calendarbutton(context), //date entry button and calendar functionality

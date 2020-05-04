@@ -25,46 +25,13 @@ class _HomePageState extends State<HomePage> {
           body: SafeArea(
             child: Stack(
               children: <Widget>[
-                Positioned(
-                  // open book icon placement
-                  left: 0,
-                  right: 0,
-                  top: MediaQuery.of(context).size.height * 0.05,
-                  child: Icon(
-                    FontAwesomeIcons.bookOpen,
-                    color: Colors.black54,
-                    size: MediaQuery.of(context).size.width * 0.2,
-                  ),
-                ),
-                Positioned(
-                  // "D" placement
-                  left: 0 - MediaQuery.of(context).size.width * 0.125,
-                  right: 0,
-                  top: MediaQuery.of(context).size.height * 0.07,
-                  child: Text(
-                    "D",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: "Pacifico",
-                      fontSize: MediaQuery.of(context).size.width * 0.08,
-                      color: Colors.white70,
-                    ),
-                  ),
-                ),
-                Positioned(
-                  // "J" placement
-                  left: 0 + MediaQuery.of(context).size.width * 0.125,
-                  right: 0,
-                  top: MediaQuery.of(context).size.height * 0.07,
-                  child: Text(
-                    "J",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: "Pacifico",
-                      fontSize: MediaQuery.of(context).size.width * 0.08,
-                      color: Colors.blueGrey[200],
-                    ),
-                  ),
+                Align(
+                  alignment: Alignment(0,-0.8),
+                  child: Image.asset(
+                    "assets/images/Quill_Colored.png",
+                    height: MediaQuery.of(context).size.width*0.15,
+                    width: MediaQuery.of(context).size.width*0.15,
+                  ) ,
                 ),
                 Positioned(
                   left: 20,
@@ -85,11 +52,29 @@ class _HomePageState extends State<HomePage> {
                           fontSize: 25.0,
                           color: Colors.black87),
                     )),
-                Align(
-                  // position for recent dreams button
-                  alignment: Alignment(0.85, 0.85),
-                  child: newDreamViewerButton(context),
-                ),
+                Positioned(
+                  right:MediaQuery.of(context).size.width*0.05,
+                  top: MediaQuery.of(context).size.height*0.75,
+                  child:Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: newDreamViewerButton(context),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: Text(
+                          "Dream Log",
+                          style: TextStyle(
+                              fontFamily: "Permanent",
+                              fontSize: 10.0,
+                              color: Colors.black87
+                          ),
+                        ),
+                      )
+                    ],
+                  )
+                )
               ],
             ),
           ),
@@ -124,6 +109,7 @@ Widget newDreamEntryButton(BuildContext context) {
 Widget newDreamViewerButton(BuildContext context) {
   // recent dream page button
   return IconButton(
+    iconSize: MediaQuery.of(context).size.width * 0.15,
     onPressed: () {
       Navigator.push(
         context,
@@ -133,7 +119,7 @@ Widget newDreamViewerButton(BuildContext context) {
     icon: Icon(
       FontAwesomeIcons.book,
       color: Colors.black87,
-      size: MediaQuery.of(context).size.width * 0.1,
+      size: MediaQuery.of(context).size.width * 0.15,
     ),
   );
 }

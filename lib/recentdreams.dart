@@ -43,6 +43,7 @@ class _RecentDreamsState extends State<RecentDreams> {
       fit: BoxFit.cover,
     ),
     Scaffold(
+        backgroundColor: Colors.transparent,
         appBar: AppBar(
           title: Text('Recent Dreams') ,
           actions: <Widget>[

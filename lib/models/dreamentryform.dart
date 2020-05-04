@@ -53,6 +53,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
       fit: BoxFit.cover,
     ),
     Scaffold(
+        backgroundColor: Colors.transparent,
         appBar: AppBar(title: Text(widget.title), centerTitle: true, automaticallyImplyLeading: false,),
     body: Column(
             children: <Widget>[

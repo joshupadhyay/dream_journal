@@ -1,6 +1,7 @@
 import 'package:dreamjournal/ui/ButtonList.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'dreamentryclass.dart';
@@ -60,18 +61,21 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
               _calendarbutton(context), //date entry button and calendar functionality
 
-             textFieldsBuilder(context),
-               //controls each of the textfields
+             textBuilder(context),
+               //all the textfield information
+
 
               Flexible(
                   child: widget.bl,
-                  flex: 3 //controls emoji clicking
+                  flex: 4 //controls emoji clicking
               ),
+
 
               Flexible(
                 child:  Center(
                     child:_submissionbutton(context)
-                ), flex: 2,//submission button
+                ),
+                flex: 2,//submission button
 
               ),
             ])
@@ -82,165 +86,93 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
   }
 
 
-  Widget textFieldsBuilder (BuildContext context) {
+  Widget textBuilder (BuildContext context) {
 
-    var mqbuffer = MediaQuery.of(context).size.width*0.03;
+    var mqbuffer = MediaQuery.of(context).size.width*0.03; //to standardize padding
 
-    final headingcolor = Colors.greenAccent; //used in TextStyle() and InputDecoration() to set question colors
 
-    //determines what headers, hints look like for textfield entry
-    InputDecoration baselineInputDecorator(headertitle, hinttext, controllernum){
+    //Widget that determines what each TextField looks like, by default.
+    Widget questionLayout(String given_question,
+        String given_hinttext,
+        TextEditingController given_controller, {given_validator = null}){
+      return new Container(
+          margin: EdgeInsets.fromLTRB(
+              mqbuffer,
+              mqbuffer*.2, mqbuffer, mqbuffer*.2),
 
-      return new InputDecoration(
-        labelText: headertitle,
-        labelStyle: TextStyle(color: headingcolor, fontWeight: FontWeight.bold,
-            fontSize: 16),
-        hintText: hinttext,
-        hintStyle: TextStyle(fontStyle: FontStyle.italic),
-        suffixIcon: IconButton(
-          onPressed: () => controllernum.clear(),
-          icon: Icon(Icons.clear),
-        ),
-        focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(5.0)),
-            borderSide: BorderSide(color: Colors.blue)),
-      );
+          child: TextFormField(
+            style: TextStyle( // style for input text
+              fontSize: 18,
+              color: Colors.black,
+              fontWeight: FontWeight.w500
+            ),
+              maxLength: 30, //to limit text entry length
+              controller: given_controller,
+              validator: given_validator,
+              decoration: InputDecoration(
+                  labelText: given_question,
+                  labelStyle: TextStyle(color: Colors.greenAccent, //used to set question colors, style
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
+                  hintText: given_hinttext,
+                  hintStyle: TextStyle(
+                    fontSize: 17,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.greenAccent.withOpacity(0.7),
+                  ),
+                  suffixIcon: IconButton( //x button to clear data from given textfield
+                      icon: Icon(Icons.clear),
+                      onPressed: () => given_controller.clear()
+                  ))
+
+          ));
     }
-    /*NOTE:
-  * only 'dream title' has a validator*/
-    return Builder(
-      builder: (context) =>
-          Form( //contains all logical stuff
-            key: widget.submissionKey,
-            //will be using formkey to get access to form data
-            child: Column( //container for all our form fields to be aligned vertically
-
-              children: [
-
-                Container(
-                  margin: EdgeInsets.fromLTRB(
-                      mqbuffer,
-                      mqbuffer*.8, mqbuffer, mqbuffer*.8),
-                child: TextFormField(
-                  textAlign: TextAlign.center,
-                  controller: widget.controlTitle,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black
-                  ),
-
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: const BorderSide(
-                        color: Colors.black,
-                        width: 2
-                      )
-                    ),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: const BorderSide(
-                            color: Colors.tealAccent,
-                            width: .7
-                        )
-                    ),
-                    hintText: "What's your dream title?",
-                    hintStyle: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: headingcolor,
-                    ),
-                    suffixIcon: IconButton(
-                        icon: Icon(Icons.clear),
-                        onPressed: () => widget.controlTitle.clear()
-                    ))
-
-                  ),
 
 
-                ),
+    //what actually builds the textfields
+    return Column(
+      children: <Widget>[
+    Builder(
+    builder: (context) =>
+        Form( //contains all logical stuff
+          key: widget.submissionKey,
+          //will be using formkey to get access to form data
+          child: Column( //for all our form fields to be aligned vertically
 
-
-
-                   TextFormField(
-                    decoration: baselineInputDecorator("Where were you?",
-                        "'Federico's House'",
-                        widget.controlLocation),
-                    controller: widget.controlLocation,
-
-//                  validator: (String value) {
-//                    if (value.isEmpty) {
-//                      return 'Please enter location(s).';
-//                    }else if (value.length > 30){
-//                      return 'Shorter entry please!';
-//                    }
-//                    return null;
-//                  },
-                  ),
-
-
-
-
-                  TextFormField(
-                    maxLines: null,
-                    decoration:
-                    baselineInputDecorator(
-                        "Who was with you?",
-                        "'Kpop star IU'",
-                        widget.controlPeople),
-                    controller: widget.controlPeople,
-//                  validator: (String value) {
-//                    if (value.isEmpty) {
-//                      return 'Please enter a name.';
-//                    }else if (value.length > 30){
-//                      return 'Shorter / less names please!';
-//                    }
-//                    return null;
-//                  }
-                  ),
-
-
-                Container(
-                    padding: const EdgeInsets.fromLTRB(0 , 20 , 0 , 20) ,
-                    child: Center(
-                        child:RichText(
-                          textAlign: TextAlign.center,
-                            text: TextSpan(
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: headingcolor
-                              ),
-                              text: "What emotions did you experience? Press all that apply:",
-                            )
-                        )
-                    ),
-                ),
-              ] ,
-            ) ,
+            children: [
+              questionLayout("What's your dream called?",
+                  "'Josh Singing Kpop'", widget.controlTitle,
+                  given_validator: (String value) {
+                    if (value.isEmpty) {
+                      return 'Please enter a title.'; //validator method, as title is the only one we need non-null
+                    }
+                    return null;
+                  }),
+              questionLayout("Who did you meet?",
+                  "'Kpop Star IU'", widget.controlPeople),
+              questionLayout("Where were you?",
+                  "'My apartment'", widget.controlLocation),
+            ] ,
           ) ,
+        )),
+
+        RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+            text: "Click on the emotions you felt during your dream:",
+            style: TextStyle(color: Colors.greenAccent, //used to set question colors, style
+                fontStyle: FontStyle.italic,
+                fontSize: 16)
+          )
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.height*0.14,
+        )
+      ],
+
     );
   }
 
-
-//  Widget oldText (BuildContext context){
-//    return TextFormField(
-//        maxLines: null,
-//        decoration: baselineInputDecorator("What shall we call your dream?",
-//            "'Josh Singing Kpop'", widget.controlTitle),
-//        controller: widget.controlTitle,
-//
-//        validator: (String value) {
-//          if (value.isEmpty) {
-//            return 'Please enter a title.';
-//          }else if (value.length > 30){
-//            return 'Shorter title needed.';
-//          }
-//          return null;
-//        }
-//    );
-//  }
 
   ///builds the calendar pressable widget
 
@@ -255,9 +187,9 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
     style: TextStyle(
     fontWeight: FontWeight.bold ,
     fontSize: 18 ,
-    color: Colors.black87)),
+    color: Colors.black)),
                 icon: Icon(Icons.calendar_today),
-                color: Colors.blueAccent,                 ///to change background color of calendar text
+                color: Colors.lightBlue,                 ///to change background color of calendar text
                 onPressed: (){
                   _popupSelectDate(context);
                 },

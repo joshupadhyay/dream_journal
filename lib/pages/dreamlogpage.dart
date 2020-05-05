@@ -42,12 +42,20 @@ class _DreamLogState extends State<DreamLog> {
         Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
+                leading: Builder(
+                  builder: (BuildContext context) {
+                    return Column(
+                      children:
+                    <Widget>[homepage(context)
+                    ]);
+                  },
+                ),
                 title: Text(
                   '  Dream Log',
                   style: TextStyle(),
-                ),
-                automaticallyImplyLeading: false,
-                actions: <Widget>[homepage(context), adddreampage(context)]),
+                ), centerTitle: true,
+                automaticallyImplyLeading: true,
+                actions: <Widget>[adddreampage(context)]),
             body: dreamListBuilder(context))
       ],
     );

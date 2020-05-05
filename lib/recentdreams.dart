@@ -45,7 +45,11 @@ class _RecentDreamsState extends State<RecentDreams> {
     Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: Text('Recent Dreams'),
+          title: Text('Recent Dreams',
+          style: TextStyle(
+              fontFamily: "Permanent"
+          ),
+          ),
             automaticallyImplyLeading: false,
           actions: <Widget>[
             homepage(context), adddreampage(context)] ) ,
@@ -125,7 +129,8 @@ Widget dreamCard(dreamentry , BuildContext context) {
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5),
       ) ,
-      color: Colors.white70,
+      color: Colors.pink,
+      elevation: 10,
       child: FlatButton(
           onPressed: () {
             Navigator.push(context ,
@@ -141,16 +146,17 @@ Widget dreamCard(dreamentry , BuildContext context) {
                     child: Text(
                         dreamentry.dreamTitle.toString() ,
                         style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width*0.075 ,
-                          color: Colors.blueAccent,
-                          fontWeight: FontWeight.bold
+                          fontSize: MediaQuery.of(context).size.width*0.055,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "SansCondensed",
                         ))),
 
                 Flexible(
                   child:  Text('${dateformat.format(dreamentry.date)}',
                         style: TextStyle(
                           fontSize: MediaQuery.of(context).size.width*0.035 ,
-                          color: Colors.black,
+                          color: Colors.blue,
                         )
                   )
                 ),

@@ -58,7 +58,9 @@ flutter:
     - family: Permanent
       fonts:
         - asset: fonts/PermanentMarker-Regular.ttf
-
+    - family: SansCondensed
+      fonts:
+        - asset: fonts/OpenSansCondensed-Light.ttf
     # To add assets to your application, add an assets section, like this:
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+///class that builds an Emotion object
+
 class Emotion{
   String name;
   AssetImage emoji;

@@ -18,6 +18,8 @@ import 'package:flutter/material.dart';
 //           disabledColor: widget.bl.buttonsList[i].displayColor,
 //         ),
 
+/// class that builds Emotion buttons which uses Emotion objects
+
 class EmoteButton extends StatefulWidget{
   final id;
   Emotion emotion;
@@ -59,6 +61,8 @@ class EmoteButtonState extends State<EmoteButton>{
       disabledColor: widget.displayColor,
     );
   }
+
+  ///Attaches color to switch statement toggle
 
   void switchState() {
 

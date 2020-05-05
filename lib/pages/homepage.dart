@@ -8,6 +8,8 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
+///Assembles the home page of our app
+
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
@@ -100,7 +102,7 @@ Widget dreamEntryButton(BuildContext context) {
   );
 }
 
-
+///recentDreamsButton for going to recent dreams page
 
 Widget recentDreamsViewerButton(BuildContext context) {
   // recent dream page button

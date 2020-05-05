@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'adddreampage.dart';
-import 'recentdreams.dart';
+import 'dreamlogpage.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -109,7 +109,7 @@ Widget recentDreamsViewerButton(BuildContext context) {
     onPressed: () {
       Navigator.push(
         context,
-        new MaterialPageRoute(builder: (context) => new RecentDreams()),
+        new MaterialPageRoute(builder: (context) => new DreamLog()),
       );
     },
     icon: Icon(

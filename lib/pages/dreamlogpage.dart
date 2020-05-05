@@ -9,14 +9,15 @@ import '../models/dreamentryclass.dart';
 import 'editdreampage.dart';
 import '../ui/ButtonList.dart';
 
-///Page for showing saved / recent dream entries
+///Page for showing saved / recent dream entries,
+///also called 'DreamLog' in apptitle description and on homepage
 
-class RecentDreams extends StatefulWidget {
+class DreamLog extends StatefulWidget {
   @override
-  _RecentDreamsState createState() => _RecentDreamsState();
+  _DreamLogState createState() => _DreamLogState();
 }
 
-class _RecentDreamsState extends State<RecentDreams> {
+class _DreamLogState extends State<DreamLog> {
   DBManager dbmanager = DBManager();
 
   // List<DreamEntry> dreamentries;
@@ -42,7 +43,7 @@ class _RecentDreamsState extends State<RecentDreams> {
             backgroundColor: Colors.transparent,
             appBar: AppBar(
                 title: Text(
-                  '  Recent Dreams',
+                  '  Dream Log',
                   style: TextStyle(),
                 ),
                 automaticallyImplyLeading: false,
@@ -157,7 +158,7 @@ class _RecentDreamsState extends State<RecentDreams> {
 
           Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => RecentDreams() //index add
+              MaterialPageRoute(builder: (context) => DreamLog() //index add
                   ));
         },
         icon: Icon(FontAwesomeIcons.trashAlt,

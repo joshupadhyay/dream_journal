@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:intl/intl.dart';
 import 'dreamentryclass.dart';
-import '../pages/recentdreams.dart';
+import '../pages/dreamlogpage.dart';
 
 ///DreamEntryForm is the parent class for creating add and edit dream entry pages (adddreampage, editdreampage)
 
@@ -147,7 +147,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
                     return null;
                   }),
               questionLayout("Who did you meet?",
-                  "'Kpop Star IU'", widget.controlPeople),
+                  "'Josh, Kpop Star IU'", widget.controlPeople),
               questionLayout("Where were you?",
                   "'My apartment'", widget.controlLocation),
             ] ,
@@ -160,10 +160,10 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
         RichText(
           textAlign: TextAlign.center,
           text: TextSpan(
-            text: "Click on the emotions you felt during your dream:",
+            text: "What emotion(s) did you feel? Tap to select.",
             style: TextStyle(color: Colors.greenAccent, //used to set question colors, style
                 fontStyle: FontStyle.italic,
-                fontSize: 16)
+                fontSize: 17)
           )
         ),
         SizedBox(
@@ -256,7 +256,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
             ///specific submission functions are in adddreampage, editdreampage (widget.submit)
             return Navigator.push(context ,
                 new MaterialPageRoute(
-                    builder: (context) => new RecentDreams()));
+                    builder: (context) => new DreamLog()));
             //if all OK submitting, open recent dreams page (successful submit only, validator will catch errors otherwise)
           }
           return null;

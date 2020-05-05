@@ -2,12 +2,11 @@ import 'package:dreamjournal/ui/ButtonList.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'dreamentryclass.dart';
-import '../recentdreams.dart';
+import '../pages/recentdreams.dart';
 
-///DreamEntryForm is the class for creating add and edit dream entry pages (adddreampage, editdreampage)
+///DreamEntryForm is the parent class for creating add and edit dream entry pages (adddreampage, editdreampage)
 
 class DreamEntryForm extends StatefulWidget {
   final String title;
@@ -38,17 +37,14 @@ class DreamEntryForm extends StatefulWidget {
 }
 
 class _DreamEntryFormState extends State<DreamEntryForm>{
-
-  /*wherever you see widget.(something), like widget.title,
-  that's a parameter that's passed from the DreamEntryForm constructor defined above!
-   */
+  
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
     Image.asset(
-    "assets/images/Aidan_BG_Muted.jpg",
+    "assets/images/Aidan_BG_Muted.jpg", //background image
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       fit: BoxFit.cover,
@@ -59,18 +55,21 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
     body: Column(
             children: <Widget>[
 
-              _calendarbutton(context), //date entry button and calendar functionality
+              _calendarbutton(context),
+              ///date entry button and calendar functionality
 
              textBuilder(context),
-               //all the textfield information
+               ///builds all the forms and text on the page
 
 
+              ///buttonlist
               Flexible(
                   child: widget.bl,
-                  flex: 4 //controls emoji clicking
+                  flex: 4
               ),
 
 
+              ///submission button
               Flexible(
                 child:  Center(
                     child:_submissionbutton(context)
@@ -90,11 +89,10 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
     var mqbuffer = MediaQuery.of(context).size.width*0.03; //to standardize padding
 
-
     //Widget that determines what each TextField looks like, by default.
-    Widget questionLayout(String given_question,
-        String given_hinttext,
-        TextEditingController given_controller, {given_validator = null}){
+    Widget questionLayout(String passedQuestionText,
+        String passedHintText,
+        TextEditingController passedController, {passedValidator = null}){ //not all fields use a validator 
       return new Container(
           margin: EdgeInsets.fromLTRB(
               mqbuffer,
@@ -107,14 +105,14 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
               fontWeight: FontWeight.w500
             ),
               maxLength: 30, //to limit text entry length
-              controller: given_controller,
-              validator: given_validator,
+              controller: passedController,
+              validator: passedValidator,
               decoration: InputDecoration(
-                  labelText: given_question,
+                  labelText: passedQuestionText,
                   labelStyle: TextStyle(color: Colors.greenAccent, //used to set question colors, style
                       fontWeight: FontWeight.bold,
                       fontSize: 18),
-                  hintText: given_hinttext,
+                  hintText: passedHintText,
                   hintStyle: TextStyle(
                     fontSize: 17,
                     fontStyle: FontStyle.italic,
@@ -122,14 +120,14 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
                   ),
                   suffixIcon: IconButton( //x button to clear data from given textfield
                       icon: Icon(Icons.clear),
-                      onPressed: () => given_controller.clear()
+                      onPressed: () => passedController.clear()
                   ))
 
           ));
     }
 
 
-    //what actually builds the textfields
+    ///what actually builds the textfields
     return Column(
       children: <Widget>[
     Builder(
@@ -142,7 +140,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
             children: [
               questionLayout("What's your dream called?",
                   "'Josh Singing Kpop'", widget.controlTitle,
-                  given_validator: (String value) {
+                  passedValidator: (String value) {
                     if (value.isEmpty) {
                       return 'Please enter a title.'; //validator method, as title is the only one we need non-null
                     }
@@ -155,6 +153,9 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
             ] ,
           ) ,
         )),
+
+
+        //text above buttonlist
 
         RichText(
           textAlign: TextAlign.center,
@@ -213,16 +214,28 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
     }
   }
 
-  int boolToInt(bool a) => a == false ? 0 : 1; //because for some reason we can't cast!
+  int boolToInt(bool a) => a == false ? 0 : 1;
+  //because for some reason we can't cast!
 
   Widget _submissionbutton(BuildContext context){
 
-    return SizedBox(
-
+    return SizedBox( //used for setting dimensions of button
       width: MediaQuery.of(context).size.width *0.4,
         height: MediaQuery.of(context).size.height *0.06,
 
-        child: RaisedButton(//submission button
+        child: RaisedButton(
+          //submission button parameters
+
+          color: Colors.pinkAccent,
+          shape: new RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(30.0)) ,
+
+          //text shown on submitbutton
+          child: Text('SUBMIT',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold ,
+                  fontSize: 14 ,
+                  color: Colors.black87)),
 
         onPressed: () {
           widget.dreamEntry.dreamPeople = widget.controlPeople.text;
@@ -240,8 +253,7 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
 
           if (widget.submit(widget.submissionKey) == true)  {
 
-            ///Submission functions are in adddreampage, editdreampage (widget.submit)
-
+            ///specific submission functions are in adddreampage, editdreampage (widget.submit)
             return Navigator.push(context ,
                 new MaterialPageRoute(
                     builder: (context) => new RecentDreams()));
@@ -249,17 +261,6 @@ class _DreamEntryFormState extends State<DreamEntryForm>{
           }
           return null;
         },
-
-      color: Colors.pinkAccent,
-      shape: new RoundedRectangleBorder(
-          borderRadius: new BorderRadius.circular(30.0)) ,
-
-        //text shown on submitbutton
-        child: Text('SUBMIT',
-        style: TextStyle(
-            fontWeight: FontWeight.bold ,
-            fontSize: 14 ,
-            color: Colors.black87)),
     ));
   }
 

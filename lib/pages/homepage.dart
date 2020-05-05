@@ -26,22 +26,19 @@ class _HomePageState extends State<HomePage> {
             child: Stack(
               children: <Widget>[
                 Align(
-                  alignment: Alignment(0,-0.8),
+                  alignment: Alignment(0, -0.8),
                   child: Image.asset(
                     "assets/images/Quill_Colored.png",
-                    height: MediaQuery.of(context).size.width*0.25,
-                    width: MediaQuery.of(context).size.width*0.25,
-                  ) ,
+                    height: MediaQuery.of(context).size.width * 0.25,
+                    width: MediaQuery.of(context).size.width * 0.25,
+                  ),
                 ),
                 Positioned(
                   left: 20,
                   right: 10,
-                  top: MediaQuery
-                      .of(context)
-                      .size
-                      .height * 0.32,
+                  top: MediaQuery.of(context).size.height * 0.32,
                   // new dream entry placement// double changes height, larger means lower
-                  child: newDreamEntryButton(context),
+                  child: dreamEntryButton(context),
                 ),
                 Align(
                     alignment: Alignment(0.0, 0.3),
@@ -53,28 +50,26 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.black87),
                     )),
                 Positioned(
-                  right:MediaQuery.of(context).size.width*0.05,
-                  top: MediaQuery.of(context).size.height*0.75,
-                  child:Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: newDreamViewerButton(context),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: Text(
-                          "Dream Log",
-                          style: TextStyle(
-                              fontFamily: "Permanent",
-                              fontSize: 14.0,
-                              color: Colors.black87
-                          ),
+                    right: MediaQuery.of(context).size.width * 0.05,
+                    top: MediaQuery.of(context).size.height * 0.75,
+                    child: Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: recentDreamsViewerButton(context),
                         ),
-                      )
-                    ],
-                  )
-                )
+                        Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: Text(
+                            "Dream Log",
+                            style: TextStyle(
+                                fontFamily: "Permanent",
+                                fontSize: 14.0,
+                                color: Colors.black87),
+                          ),
+                        )
+                      ],
+                    ))
               ],
             ),
           ),
@@ -84,14 +79,13 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-//newDreamEntryButton(context),
+///newDreamEntryButton for going to new dream entry page
 
-Widget newDreamEntryButton(BuildContext context) {
+Widget dreamEntryButton(BuildContext context) {
   // new dream button
   return IconButton(
-    iconSize: MediaQuery.of(context).size.width *
-        0.5,
-    icon:Icon(
+    iconSize: MediaQuery.of(context).size.width * 0.5,
+    icon: Icon(
       Icons.add_circle_outline,
       color: Colors.black87,
       size: MediaQuery.of(context).size.width *
@@ -106,7 +100,9 @@ Widget newDreamEntryButton(BuildContext context) {
   );
 }
 
-Widget newDreamViewerButton(BuildContext context) {
+
+
+Widget recentDreamsViewerButton(BuildContext context) {
   // recent dream page button
   return IconButton(
     iconSize: MediaQuery.of(context).size.width * 0.15,
@@ -123,9 +119,3 @@ Widget newDreamViewerButton(BuildContext context) {
     ),
   );
 }
-
-//Text("",
-//textAlign: TextAlign.left,
-//style: TextStyle(fontFamily: "Pacifico",
-//fontSize: 20.0,
-//fontWeight: FontWeight.bold)));

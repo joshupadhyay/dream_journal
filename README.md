@@ -1,5 +1,10 @@
 # dreamjournal
 
-Official 'Dream Journal' software dev repo, by Aidan Alls, Daniel Chelinitsky, Federico Chung, and me.
+Official 'Dream Journal' software dev repo, by Aidan Alls, Daniel Chechelnitsky, Federico Chung, and me. Created using
+flutter framework and the Dart language.
 
-Still WIP. 
+#About
+
+#Complatability
+
+#

@@ -8,6 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
+		2E1AA27C2463050900BACB32 /* launchimage_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1AA2712463050700BACB32 /* launchimage_2x.png */; };
+		2E1AA27D2463050900BACB32 /* launchimage_750.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1AA2722463050800BACB32 /* launchimage_750.png */; };
+		2E1AA27E2463050900BACB32 /* launchimage_1125.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1AA2732463050800BACB32 /* launchimage_1125.png */; };
+		2E1AA27F2463050900BACB32 /* launchscreen_320.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1AA2742463050800BACB32 /* launchscreen_320.png */; };
+		2E1AA2802463050900BACB32 /* launchscreen_640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1AA2752463050800BACB32 /* launchscreen_640x960.png */; };
+		2E1AA2812463050900BACB32 /* launchscreen_640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1AA2762463050800BACB32 /* launchscreen_640x1136.png */; };
+		2E1AA2822463050900BACB32 /* launchimage_1242.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1AA2772463050800BACB32 /* launchimage_1242.png */; };
+		2E1AA2832463050900BACB32 /* launchimage_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1AA2782463050900BACB32 /* launchimage_retina.png */; };
+		2E1AA2842463050900BACB32 /* launchscreen_320 copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1AA2792463050900BACB32 /* launchscreen_320 copy.png */; };
+		2E1AA2852463050900BACB32 /* launchscreen_1536.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1AA27A2463050900BACB32 /* launchscreen_1536.png */; };
+		2E1AA2862463050900BACB32 /* launchscreen_768.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1AA27B2463050900BACB32 /* launchscreen_768.png */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		3B80C3941E831B6300D905FE /* App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B80C3931E831B6300D905FE /* App.framework */; };
 		3B80C3951E831B6300D905FE /* App.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B80C3931E831B6300D905FE /* App.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -40,6 +51,17 @@
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		2477E1BCB630721C412B3811 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
+		2E1AA2712463050700BACB32 /* launchimage_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchimage_2x.png; path = Assets.xcassets/LaunchImage.launchimage/launchimage_2x.png; sourceTree = "<group>"; };
+		2E1AA2722463050800BACB32 /* launchimage_750.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchimage_750.png; path = Assets.xcassets/LaunchImage.launchimage/launchimage_750.png; sourceTree = "<group>"; };
+		2E1AA2732463050800BACB32 /* launchimage_1125.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchimage_1125.png; path = Assets.xcassets/LaunchImage.launchimage/launchimage_1125.png; sourceTree = "<group>"; };
+		2E1AA2742463050800BACB32 /* launchscreen_320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchscreen_320.png; path = Assets.xcassets/LaunchImage.launchimage/launchscreen_320.png; sourceTree = "<group>"; };
+		2E1AA2752463050800BACB32 /* launchscreen_640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchscreen_640x960.png; path = Assets.xcassets/LaunchImage.launchimage/launchscreen_640x960.png; sourceTree = "<group>"; };
+		2E1AA2762463050800BACB32 /* launchscreen_640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchscreen_640x1136.png; path = Assets.xcassets/LaunchImage.launchimage/launchscreen_640x1136.png; sourceTree = "<group>"; };
+		2E1AA2772463050800BACB32 /* launchimage_1242.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchimage_1242.png; path = Assets.xcassets/LaunchImage.launchimage/launchimage_1242.png; sourceTree = "<group>"; };
+		2E1AA2782463050900BACB32 /* launchimage_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchimage_retina.png; path = Assets.xcassets/LaunchImage.launchimage/launchimage_retina.png; sourceTree = "<group>"; };
+		2E1AA2792463050900BACB32 /* launchscreen_320 copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launchscreen_320 copy.png"; path = "Assets.xcassets/LaunchImage.launchimage/launchscreen_320 copy.png"; sourceTree = "<group>"; };
+		2E1AA27A2463050900BACB32 /* launchscreen_1536.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchscreen_1536.png; path = Assets.xcassets/LaunchImage.launchimage/launchscreen_1536.png; sourceTree = "<group>"; };
+		2E1AA27B2463050900BACB32 /* launchscreen_768.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchscreen_768.png; path = Assets.xcassets/LaunchImage.launchimage/launchscreen_768.png; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		3B80C3931E831B6300D905FE /* App.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = App.framework; path = Flutter/App.framework; sourceTree = "<group>"; };
 		55BB529F244757F7002B7B8C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -121,6 +143,17 @@
 			children = (
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
+				2E1AA2712463050700BACB32 /* launchimage_2x.png */,
+				2E1AA2722463050800BACB32 /* launchimage_750.png */,
+				2E1AA2732463050800BACB32 /* launchimage_1125.png */,
+				2E1AA2772463050800BACB32 /* launchimage_1242.png */,
+				2E1AA2782463050900BACB32 /* launchimage_retina.png */,
+				2E1AA2792463050900BACB32 /* launchscreen_320 copy.png */,
+				2E1AA2742463050800BACB32 /* launchscreen_320.png */,
+				2E1AA2752463050800BACB32 /* launchscreen_640x960.png */,
+				2E1AA2762463050800BACB32 /* launchscreen_640x1136.png */,
+				2E1AA27B2463050900BACB32 /* launchscreen_768.png */,
+				2E1AA27A2463050900BACB32 /* launchscreen_1536.png */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
 				97C147021CF9000F007C117D /* Info.plist */,
 				97C146F11CF9000F007C117D /* Supporting Files */,
@@ -211,11 +244,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E1AA27F2463050900BACB32 /* launchscreen_320.png in Resources */,
+				2E1AA27C2463050900BACB32 /* launchimage_2x.png in Resources */,
+				2E1AA2812463050900BACB32 /* launchscreen_640x1136.png in Resources */,
+				2E1AA2802463050900BACB32 /* launchscreen_640x960.png in Resources */,
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
+				2E1AA2862463050900BACB32 /* launchscreen_768.png in Resources */,
 				55BB52A0244757F7002B7B8C /* GoogleService-Info.plist in Resources */,
+				2E1AA27D2463050900BACB32 /* launchimage_750.png in Resources */,
+				2E1AA2852463050900BACB32 /* launchscreen_1536.png in Resources */,
+				2E1AA27E2463050900BACB32 /* launchimage_1125.png in Resources */,
+				2E1AA2822463050900BACB32 /* launchimage_1242.png in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
+				2E1AA2842463050900BACB32 /* launchscreen_320 copy.png in Resources */,
+				2E1AA2832463050900BACB32 /* launchimage_retina.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,4 +1,7 @@
 
+/// DreamEntryClass class instantiates a DreamEntryClass object with given
+/// parameters: id, texts, and buttons
+
 class DreamEntryClass {
   int id;
   String dreamTitle;

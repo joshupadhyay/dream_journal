@@ -4,7 +4,8 @@ import 'dart:async';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
 
-/// class for
+/// file for DBManager class that uses sqlLite imports to instantiate and
+/// utilize local storage on the user's phone
 
 class DBManager{
   static final DBManager _instance = DBManager._internal();
@@ -26,6 +27,8 @@ class DBManager{
     });
     return _database;
   }
+
+  /// function _openDB instantiates SQL database
 
   Future<Database> _openDB () async {
     return await openDatabase(

@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 import 'dreamentryclass.dart';
 import '../pages/dreamlogpage.dart';
 
-///DreamEntryForm is the parent class for creating add and edit dream entry pages (adddreampage, editdreampage)
+///DreamEntryForm is the parent class for creating add and edit dream entry pages (adddreampage.dart, editdreampage.dart)
 
 class DreamEntryForm extends StatefulWidget {
   final String title;

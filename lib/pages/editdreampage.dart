@@ -1,4 +1,4 @@
-import 'package:dreamjournal/models/dreamentryform.dart';
+import 'package:DreamJournal/models/dreamentryform.dart';
 import 'package:flutter/material.dart';
 import '../models/dreamentryclass.dart';
 import '../models/dbmanager.dart';

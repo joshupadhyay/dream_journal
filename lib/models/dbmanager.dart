@@ -1,4 +1,4 @@
-import 'package:dreamjournal/models/dreamentryclass.dart';
+import 'package:DreamJournal/models/dreamentryclass.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'package:path/path.dart';

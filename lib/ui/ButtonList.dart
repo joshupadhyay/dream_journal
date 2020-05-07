@@ -1,6 +1,6 @@
-import 'package:dreamjournal/models/dreamentryclass.dart';
-import 'package:dreamjournal/ui/EmoteButton.dart';
-import 'package:dreamjournal/ui/Emotion.dart';
+import 'package:DreamJournal/models/dreamentryclass.dart';
+import 'package:DreamJournal/ui/EmoteButton.dart';
+import 'package:DreamJournal/ui/Emotion.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

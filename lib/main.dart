@@ -1,5 +1,5 @@
 
-import 'package:dreamjournal/pages/homepage.dart';
+import 'package:DreamJournal/pages/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

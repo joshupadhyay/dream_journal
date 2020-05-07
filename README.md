@@ -1,5 +1,5 @@
-# Dream Journal
-Dream Journal is an cross platform virtual journal used to document your dreams that you might forget
+# DreamJournal
+DreamJournal is an cross platform virtual journal used to document your dreams that you might forget
 throughout the day. Created with Flutter framework and Dart language for Software Design and
 Development (COMP 225) course at Macalester College.
 

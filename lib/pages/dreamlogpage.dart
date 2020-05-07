@@ -116,7 +116,7 @@ class _DreamLogState extends State<DreamLog> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
             ),
-            color: Color.fromRGBO(249, 100, 140, 1), // the weird salmon pink
+            color: Color.fromRGBO(249, 100, 140, 1), // the pink
             //color: Color.fromRGBO(120,230,230,1), // the turquoise
             elevation: 10,
             child: FlatButton(

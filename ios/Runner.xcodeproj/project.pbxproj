@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
+		2E071DCE2463A8EC0039CAB7 /* launchimage_750.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E071DCD2463A8EB0039CAB7 /* launchimage_750.png */; };
 		2E1AA27C2463050900BACB32 /* launchimage_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1AA2712463050700BACB32 /* launchimage_2x.png */; };
 		2E1AA27D2463050900BACB32 /* launchimage_750.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1AA2722463050800BACB32 /* launchimage_750.png */; };
 		2E1AA27E2463050900BACB32 /* launchimage_1125.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1AA2732463050800BACB32 /* launchimage_1125.png */; };
@@ -50,6 +51,7 @@
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		2477E1BCB630721C412B3811 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
+		2E071DCD2463A8EB0039CAB7 /* launchimage_750.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchimage_750.png; path = Assets.xcassets/LaunchImage.launchimage/launchimage_750.png; sourceTree = "<group>"; };
 		2E1AA2712463050700BACB32 /* launchimage_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchimage_2x.png; path = Assets.xcassets/LaunchImage.launchimage/launchimage_2x.png; sourceTree = "<group>"; };
 		2E1AA2722463050800BACB32 /* launchimage_750.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchimage_750.png; path = Assets.xcassets/LaunchImage.launchimage/launchimage_750.png; sourceTree = "<group>"; };
 		2E1AA2732463050800BACB32 /* launchimage_1125.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchimage_1125.png; path = Assets.xcassets/LaunchImage.launchimage/launchimage_1125.png; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				2E1AA2732463050800BACB32 /* launchimage_1125.png */,
 				2E1AA2772463050800BACB32 /* launchimage_1242.png */,
 				2E1AA2782463050900BACB32 /* launchimage_retina.png */,
+				2E071DCD2463A8EB0039CAB7 /* launchimage_750.png */,
 				2E1AA2792463050900BACB32 /* launchscreen_320 copy.png */,
 				2E1AA2752463050800BACB32 /* launchscreen_640x960.png */,
 				2E1AA2762463050800BACB32 /* launchscreen_640x1136.png */,
@@ -256,6 +259,7 @@
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
 				2E1AA2842463050900BACB32 /* launchscreen_320 copy.png in Resources */,
 				2E1AA2832463050900BACB32 /* launchimage_retina.png in Resources */,
+				2E071DCE2463A8EC0039CAB7 /* launchimage_750.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

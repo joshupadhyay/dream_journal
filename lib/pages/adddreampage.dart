@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import '../models/dreamentryclass.dart';
 import '../models/dbmanager.dart';
 
+/// page for adding a dream entry, inherits from DreamEntryForm in models
+
 class AddDreamPage extends StatefulWidget {
   DreamEntryClass dreamInit; //initialize empty dream to populate for submission
 

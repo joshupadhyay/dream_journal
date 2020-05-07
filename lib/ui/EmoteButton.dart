@@ -1,23 +1,6 @@
 import 'package:DreamJournal/ui/Emotion.dart';
 import 'package:flutter/material.dart';
 
-//TODO: Make this a widget that renders itself
-// I.e this should have a build method that does this:
-// RaisedButton(
-//           padding: const EdgeInsets.all(18.0),
-//           shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(50.0)),
-//           onPressed: widget.bl.buttonsList[i].enabled?()=>switchState(widget.bl.buttonsList[i]):null, // if the button is enabled, call switchState, else do null
-//           child: Container(
-//               decoration: BoxDecoration(
-//                   image: DecorationImage(
-//                       image:widget.bl.buttonsList[i].emotion.emoji,
-//                   ),
-//               )
-//           ),
-//           color: widget.bl.buttonsList[i].displayColor,
-//           disabledColor: widget.bl.buttonsList[i].displayColor,
-//         ),
-
 /// class that builds Emotion buttons which uses Emotion objects
 
 class EmoteButton extends StatefulWidget{
@@ -69,7 +52,8 @@ class EmoteButtonState extends State<EmoteButton>{
     setState(() { // to recall build, so it rebuilds
       widget.on = !widget.on; // to switch on and off
       if (widget.on) {
-        widget.displayColor = widget.emotion.onColor; // bg is the actual displayed color, color1 and color2 are just the on/off colors respectively
+        widget.displayColor = widget.emotion.onColor;
+        // bg is the actual displayed color, color1 and color2 are just the on/off colors respectively
 
       }
       else {
@@ -77,5 +61,4 @@ class EmoteButtonState extends State<EmoteButton>{
       }
     });
   }
-
 }

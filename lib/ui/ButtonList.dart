@@ -4,8 +4,7 @@ import 'package:DreamJournal/ui/Emotion.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// Make this a stateful widget that renders each button.
-// i.e. does what emotebuttonbuilder currently does
+///Makes a list of buttons using the EmoteButton class
 
 class ButtonList extends StatefulWidget{
 
@@ -38,7 +37,7 @@ class ButtonList extends StatefulWidget{
       // angry
       new Emotion(name:"Angry", emoji:AssetImage("lib/assets/images/AngryEmoji.png"), onColor: Colors.deepOrange),
       //embarassed
-      new Emotion(name:"Embarassed", emoji:AssetImage("lib/assets/images/AnxiousEmoji.png"), onColor: Colors.lightGreen),
+      new Emotion(name:"Embarassed", emoji:AssetImage("lib/assets/images/AnxiousEmoji.png"), onColor: Colors.lightGreenAccent),
       //confused
       new Emotion(name:"Contemplative", emoji:AssetImage("lib/assets/images/ConfusedEmoji.png"), onColor: Colors.cyanAccent),
       //excited
@@ -50,7 +49,7 @@ class ButtonList extends StatefulWidget{
       //sad
       new Emotion(name:"Sad", emoji:AssetImage("lib/assets/images/SadEmoji.png"), onColor: Colors.blueAccent),
       //scared
-      new Emotion(name:"Scared", emoji:AssetImage("lib/assets/images/ScaredEmoji.png"), onColor: Colors.purpleAccent),
+      new Emotion(name:"Scared", emoji:AssetImage("lib/assets/images/ScaredEmoji.png"), onColor: Colors.green),
 
     ];
 

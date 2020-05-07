@@ -9,8 +9,7 @@ import '../models/dreamentryclass.dart';
 import 'editdreampage.dart';
 import '../ui/ButtonList.dart';
 
-///Page for showing saved / recent dream entries,
-///also called 'DreamLog' in apptitle description and on homepage
+///Page for showing saved / recent dream entries
 
 class DreamLog extends StatefulWidget {
   @override
@@ -20,7 +19,6 @@ class DreamLog extends StatefulWidget {
 class _DreamLogState extends State<DreamLog> {
   DBManager dbmanager = DBManager();
 
-  // List<DreamEntry> dreamentries;
   Future<List<DreamEntryClass>> data;
 
   @override
@@ -116,7 +114,7 @@ class _DreamLogState extends State<DreamLog> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
             ),
-            color: Color.fromRGBO(249, 100, 140, 1), // the pink
+            color: Color.fromRGBO(249, 100, 140, .8), // the pink
             //color: Color.fromRGBO(120,230,230,1), // the turquoise
             elevation: 10,
             child: FlatButton(
@@ -125,7 +123,7 @@ class _DreamLogState extends State<DreamLog> {
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              EditDreamPage(dreamEntry: dreamentry) //index add
+                              EditDreamPage(dreamEntry: dreamentry) //to pass desired dream to editing page
                           ));
                 },
                 child: Column(children: <Widget>[

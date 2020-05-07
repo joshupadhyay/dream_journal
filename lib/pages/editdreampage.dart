@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../models/dreamentryclass.dart';
 import '../models/dbmanager.dart';
 
+/// page for editing a dream entry, inherits from DreamEntryForm in models
+
 class EditDreamPage extends StatefulWidget {
   DreamEntryClass dreamEntry;
 
@@ -30,13 +32,6 @@ class _EditDreamPageState extends State<EditDreamPage> {
     super.initState();
     data = dbmanager.dreamList();
   }
-
-
-//  Future<void> showdreams() async {
-//    dbmanager = this.dbmanager;
-//    List<DreamEntryClass> dreamlisted = await dbmanager.dreamList();
-//    dreamentries = dreamlisted;
-//  }
 
   final _editingKey = new GlobalKey<FormState>();
 

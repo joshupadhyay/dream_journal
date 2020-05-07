@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
 
+/// class for
 
 class DBManager{
   static final DBManager _instance = DBManager._internal();
@@ -47,6 +48,9 @@ class DBManager{
     );
   }
 
+  /// when insertDream method is called, new DreamEntryClass object is passed
+  /// in and added to database
+
   Future<void> insertDream(DreamEntryClass newdream) async {
 
     // Get a reference to the database.
@@ -59,6 +63,8 @@ class DBManager{
       //conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
+
+  /// returns a Future object of a list of DreamEntryClass objects
 
   Future <List<DreamEntryClass>> dreamList() async {
 
@@ -76,7 +82,8 @@ class DBManager{
 
   }
 
-
+/// when updateDream is called, DreamEntryClass object is passed in and updated
+  /// with the user input
 
   Future<void> updateDream(DreamEntryClass dream) async {
 
@@ -96,7 +103,7 @@ class DBManager{
   }
 
 
-  ///when delete method is
+  ///when delete method is called, dream at specified ID is removed from database
 
   Future<void> deleteDream(int id) async {
 
@@ -112,37 +119,4 @@ class DBManager{
       whereArgs: [id],
     );
   }
-
-
 }
-
-///These are the database functions. Note how they're structured!
-
-//void main() async {
-//
-//  // Insert a dog into the database.
-//  await insertDog(fido);
-//
-//  // Print the list of dogs (only Fido for now).
-//  print(await dogs());
-//
-//  // Update Fido's age and save it to the database.
-//  fido = Dog(
-//    id: fido.id,
-//    name: fido.name,
-//    age: fido.age + 7,
-//  );
-//  await updateDog(fido);
-//
-//  // Print Fido's updated information.
-//  print(await dogs());
-//
-//  // Delete Fido from the database.
-//  await deleteDog(fido.id);
-//
-//  // Print the list of dogs (empty).
-//  print(await dogs());
-//}
-
-
-

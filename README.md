@@ -10,7 +10,7 @@ Development (COMP 225) course at Macalester College.
 * **Federico Chung** - [fchung1224](https://github.com/fchung1224)
 * **Daniel Chechelnitsky** - [chechelnitskd](https://github.com/chechelnitskd)
 
-## Complatability
+## Compatability
 
 All android and iOS mobile devices (not iPads, tablets, or desktop).
 
@@ -43,3 +43,6 @@ until it works.
 1) https://flutter.dev/docs
 
 2) https://stackoverflow.com/
+
+## Known Bugs:
+* RendexFlex error (overflow) may occur when using the app on certain phones (Spotted on Samsung S8). App is fully functional on iPhone 11 and this error was not detected on any simulator. 

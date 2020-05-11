@@ -234,17 +234,15 @@ class _DreamEntryFormState extends State<DreamEntryForm> {
                   fontSize: 14,
                   color: Colors.black87)),
 
+          /// sets each button in the ButtonList boolean value
           onPressed: () {
             widget.dreamEntry.dreamPeople = widget.controlPeople.text;
             widget.dreamEntry.dreamTitle = widget.controlTitle.text;
             widget.dreamEntry.dreamLocation = widget.controlLocation.text;
             widget.dreamEntry.isAngry = boolToInt(widget.bl.buttonsList[0].on);
-            widget.dreamEntry.isEmbarassed =
-                boolToInt(widget.bl.buttonsList[1].on);
-            widget.dreamEntry.isContemplative =
-                boolToInt(widget.bl.buttonsList[2].on);
-            widget.dreamEntry.isExcited =
-                boolToInt(widget.bl.buttonsList[3].on);
+            widget.dreamEntry.isEmbarassed = boolToInt(widget.bl.buttonsList[1].on);
+            widget.dreamEntry.isContemplative = boolToInt(widget.bl.buttonsList[2].on);
+            widget.dreamEntry.isExcited = boolToInt(widget.bl.buttonsList[3].on);
             widget.dreamEntry.isHappy = boolToInt(widget.bl.buttonsList[4].on);
             widget.dreamEntry.isCool = boolToInt(widget.bl.buttonsList[5].on);
             widget.dreamEntry.isSad = boolToInt(widget.bl.buttonsList[6].on);

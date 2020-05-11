@@ -1,7 +1,7 @@
 import 'package:DreamJournal/ui/Emotion.dart';
 import 'package:flutter/material.dart';
 
-/// class that builds Emotion buttons which uses Emotion objects
+/// class that builds EmoteButton widgets (not the image on the button, just the button itself)
 
 class EmoteButton extends StatefulWidget{
   final id;

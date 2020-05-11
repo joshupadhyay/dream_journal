@@ -4,7 +4,8 @@ import 'package:DreamJournal/ui/Emotion.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-///Makes a list of buttons using the EmoteButton class
+///Makes a ButtonList widget that is a list of buttons made up of
+/// EmoteButton widgets
 
 class ButtonList extends StatefulWidget{
 
